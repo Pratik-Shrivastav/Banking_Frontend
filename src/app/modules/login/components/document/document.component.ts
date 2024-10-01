@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-document',
@@ -12,7 +13,7 @@ export class DocumentComponent {
   // Use a union type for keys
   files: { cin?: File, aoa?: File, pan?: File } = {};
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private loginService:LoginService) {
     this.fileForm = this.fb.group({
       cin: [null, Validators.required],
       aoa: [null, Validators.required],
@@ -31,8 +32,27 @@ export class DocumentComponent {
 
   uploadFiles(): void {
     if (this.fileForm.valid) {
-      // Implement your file upload logic here
-      console.log('Uploading files:', this.files);
+      const formData = new FormData();
+      
+
+      // Append the files to the FormData object
+      if (this.files.cin) {
+        formData.append('cin', this.files.cin, this.files.cin.name);
+      }
+      if (this.files.aoa) {
+        formData.append('aoa', this.files.aoa, this.files.aoa.name);
+      }
+      if (this.files.pan) {
+        formData.append('pan', this.files.pan, this.files.pan.name);
+      }
+
+      // Make the HTTP POST request to the server
+      this.loginService.upload(formData).subscribe(
+         (response) =>{ console.log(response)},
+        
+        error => 
+          {console.error('File upload failed', error)}
+      );
     } else {
       console.log('Please select all required files.');
     }

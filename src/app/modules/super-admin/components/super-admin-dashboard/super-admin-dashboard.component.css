@@ -1,0 +1,27 @@
+.dashboard {
+    max-width: 600px;
+    margin: 20px auto; /* Center the dashboard */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none; /* Remove default list styles */
+    padding: 0; /* Remove default padding */
+  }
+  
+  li {
+    padding: 10px;
+    border-bottom: 1px solid #eee; /* Add a bottom border for each item */
+  }
+  
+  li:last-child {
+    border-bottom: none; /* Remove the last item's bottom border */
+  }
+  

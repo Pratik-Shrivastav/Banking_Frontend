@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { DocumentComponent } from './components/document/document.component';
+import { DocumentDisplayComponent } from './components/document-display/document-display.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,9 @@ const routes: Routes = [
   },
   {
     path:"Document", component:DocumentComponent
+  },
+  {
+    path:"DocumentDisplay", component:DocumentDisplayComponent
   }
 ];
 

@@ -11,13 +11,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { DocumentComponent } from './components/document/document.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DocumentDisplayComponent } from './components/document-display/document-display.component';
 
 
 @NgModule({
   declarations: [
     LoginPageComponent,
     RegisterPageComponent,
-    DocumentComponent
+    DocumentComponent,
+    DocumentDisplayComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,16 @@
+<div class="dashboard">
+    <h1>Super Admin Dashboard</h1>
+  
+    <div *ngIf="loading">Loading clients...</div>
+  
+    <ul *ngIf="!loading && clients.length > 0">
+      <li *ngFor="let client of clients">
+        {{ client.name }} <!-- Display the name of each client -->
+      </li>
+    </ul>
+  
+    <div *ngIf="!loading && clients.length === 0">
+      No clients found.
+    </div>
+  </div>
+  

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginPageComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router:Router) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
@@ -27,22 +27,35 @@ export class LoginPageComponent {
       this.loginService.login(loginData).subscribe(
         (response: LoginResponse) => {
           console.log(response);
-          
-          if(response.success && response.status=="Success"){
-            console.log('Login successful!', response);
-            localStorage.setItem("Token",response.token);
-            this.router.navigate(['Client'])
+          if (response.role == "SuperAdmin") {
+            this.router.navigate(['SuperAdmin']);
           }
-          else if(response.success && response.status=="Pending"){
+          else {
+            if (response.success && response.status == "Success") {
+              console.log('Login successful!', response);
+              localStorage.setItem("Token", response.token);
+              this.router.navigate(['Client'])
+            }
+            else if (response.success && response.status == "Pending") {
               console.log("Pending");
-              localStorage.setItem("Token",response.token);
-              this.router.navigate(['Document'])
+              localStorage.setItem("Token", response.token);
+              this.loginService.getUser().subscribe(
+                (response) => {
+                  if ((response.clientObject.documentList).length == 0) {
+                    this.router.navigate(['Document'])
+                  }
+                  else {
+                    this.router.navigate(['DocumentDisplay'])
+                  }
+                }
+              )
+            }
+            else {
+              console.log("Rejected");
+
+            }
+
           }
-          else{
-            console.log("Rejected");
-            
-          }
-          
         },
         error => {
           console.error('Login failed', error);

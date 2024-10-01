@@ -22,8 +22,14 @@ export class LoginService {
     return this.httpClient.post<LoginResponse>(requestUrl, loginData);
   }
 
-  // upload(): Observable<any>{
-  //   const requestUrl =`${this.url}/Uplaod`;
-  // }
+  upload(formData: FormData): Observable<any>{
+    const requestUrl =`${this.url}/Upload`;
+    return this.httpClient.post<string>(requestUrl,formData);
+  }
+
+  getUser():Observable<any>{
+    const requestUrl =`${this.url}`;
+    return this.httpClient.get<any>(requestUrl);
+  }
 
 }

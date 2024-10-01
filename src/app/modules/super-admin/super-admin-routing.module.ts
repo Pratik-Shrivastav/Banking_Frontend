@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SuperAdminDashboardComponent } from './components/super-admin-dashboard/super-admin-dashboard.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:"", component:SuperAdminDashboardComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

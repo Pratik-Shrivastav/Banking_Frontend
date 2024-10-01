@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path:"Client",
     loadChildren: ()=>import("./modules/client/client.module").then(m=>m.ClientModule)
+  },
+  {
+    path:"SuperAdmin",
+    loadChildren: ()=>import("./modules/super-admin/super-admin.module").then(m=>m.SuperAdminModule)
   }
 ];
 
