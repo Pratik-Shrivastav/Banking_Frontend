@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <h3>Salary Disbursement</h3>
+
+  <div class="form-group">
+    <label>Select Employees:</label>
+    <div *ngFor="let employee of employees">
+      <input 
+        type="checkbox" 
+        [value]="employee.employeeId" 
+        (change)="onEmployeeSelectionChange(employee.employeeId!, $event)">
+      {{ employee.name }} - {{ employee.salary | currency }}
+    </div>
+  </div>
+
+  <div class="form-group mt-3">
+    <h4>Total Salary: {{ totalSalary | currency }}</h4>
+  </div>
+
+  <button 
+    type="button" 
+    class="btn btn-primary" 
+    (click)="disburseSalaries()" 
+    [disabled]="selectedEmployeeIds.length === 0">
+    Disburse Salaries
+  </button>
+</div>

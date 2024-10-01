@@ -10,6 +10,7 @@ import { ViewEmployeesComponent } from './components/view-employee/view-employee
 import { ViewBeneficiariesComponent } from './components/view-beneficiary/view-beneficiary.component';
 import { EditBeneficiaryComponent } from './components/edit-beneficiary/edit-beneficiary.component';
 import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
+import { SalaryDisbursementComponent } from './components/salary-disbursement/salary-disbursement.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditEmployeeComponent } from './components/edit-employee/edit-employee.
     ViewEmployeesComponent,
     ViewBeneficiariesComponent,
     EditBeneficiaryComponent,
-    EditEmployeeComponent
+    EditEmployeeComponent,
+    SalaryDisbursementComponent
     
   ],
   imports: [

@@ -66,4 +66,11 @@ export class ClientService {
   deleteBeneficiary(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/Beneficiary/${id}`);
   }
+
+  // Disburse salaries
+  disburseSalaries(salaryDisbursementRequest: { amount: number; employeeIds: number[] }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/disburse-salaries`, salaryDisbursementRequest);
+  }
+  
+
 }
