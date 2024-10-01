@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <h3>Edit Employee</h3>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <!-- Add form fields similar to Add Employee -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input formControlName="name" class="form-control" id="name" placeholder="Enter name">
+          </div>
+      
+          <div class="form-group">
+            <label for="designation">Designation</label>
+            <input formControlName="designation" class="form-control" id="designation" placeholder="Enter designation">
+          </div>
+      
+          <div class="form-group">
+            <label for="salary">Salary</label>
+            <input formControlName="salary" type="number" class="form-control" id="salary" placeholder="Enter salary">
+          </div>
+      
+          <!-- Nested FormGroup for Account Details -->
+          <div formGroupName="accountDetailsObject">
+            <div class="form-group">
+              <label for="accountNumber">Account Number</label>
+              <input formControlName="accountNumber" class="form-control" id="accountNumber" placeholder="Enter account number">
+            </div>
+      
+            <div class="form-group">
+              <label for="ifsc">IFSC</label>
+              <input formControlName="ifsc" class="form-control" id="ifsc" placeholder="Enter IFSC">
+            </div>
+      
+            <div class="form-group">
+              <label for="branch">Branch</label>
+              <input formControlName="branch" class="form-control" id="branch" placeholder="Enter branch">
+            </div>
+          </div>
+      
+        <!-- Repeat for other fields (designation, salary, account details, etc.) -->
+        <button type="submit" class="btn btn-secondary">Update</button>
+    </form>
+</div>

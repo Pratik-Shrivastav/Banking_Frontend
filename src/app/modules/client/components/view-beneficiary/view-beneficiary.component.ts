@@ -18,12 +18,23 @@ export class ViewBeneficiariesComponent implements OnInit {
 
   getBeneficiaries(): void {
     this.clientService.getBeneficiaries().subscribe(
-      (data) => {
-        this.beneficiaries = data;
+      (data: Beneficiary[]) => {
+        this.beneficiaries = data.filter(beneficiary => beneficiary.isActive); // Filter by isActive === true
       },
       (error) => {
         console.error('Error fetching beneficiaries', error);
       }
     );
+  }
+
+  deleteBeneficiary(id: number): void {
+    if (confirm("Are you sure you want to delete this beneficiary?")) {
+      this.clientService.deleteBeneficiary(id).subscribe(() => {
+        alert("Beneficiary deleted successfully");
+        this.getBeneficiaries(); // Refresh the list
+      }, error => {
+        console.error("Error deleting beneficiary", error);
+      });
+    }
   }
 }

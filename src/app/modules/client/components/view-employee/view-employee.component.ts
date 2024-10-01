@@ -18,12 +18,23 @@ export class ViewEmployeesComponent implements OnInit {
 
   getEmployees(): void {
     this.clientService.getEmployees().subscribe(
-      (data) => {
-        this.employees = data;
+      (data: Employee[]) => {
+        this.employees = data.filter(employee => employee.isActive); // Filter by isActive === true
       },
       (error) => {
         console.error('Error fetching employees', error);
       }
     );
+  }
+
+  deleteEmployee(id: number): void {
+    if (confirm("Are you sure you want to delete this employee?")) {
+      this.clientService.deleteEmployee(id).subscribe(() => {
+        alert("Employee deleted successfully");
+        this.getEmployees(); 
+      }, error => {
+        console.error("Error deleting employee", error);
+      });
+    }
   }
 }
