@@ -31,7 +31,7 @@ export class PendingRequestComponent {
   }
 
   onCardClick(id:number) {
-    this.router.navigate(['SuperAdmin/ViewClient', id])
+    this.router.navigate(['SuperAdmin/DisplayPendingClient', id])
     }
 
 }

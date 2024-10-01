@@ -8,6 +8,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { PendingRequestComponent } from './components/pending-request/pending-request.component';
 import { ApprovedPaymentComponent } from './components/approved-payment/approved-payment.component';
 import { MatCardModule } from '@angular/material/card';
+import { DisplayPendingClientComponent } from './components/display-pending-client/display-pending-client.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MatCardModule } from '@angular/material/card';
     ViewClientComponent,
     ClientsComponent,
     PendingRequestComponent,
-    ApprovedPaymentComponent
+    ApprovedPaymentComponent,
+    DisplayPendingClientComponent
   ],
   imports: [
     CommonModule,

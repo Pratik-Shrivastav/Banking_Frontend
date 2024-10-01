@@ -1,0 +1,45 @@
+<div *ngIf="loading" class="loading-spinner">
+    Loading client details...
+  </div>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div *ngIf="!loading && client" class="client-details">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ client.companyName }}</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
+        <p><strong>Company Name:</strong> {{ client.companyName }}</p>
+        <p><strong>Phone:</strong> {{ client.phone }}</p>
+        <p><strong>Address:</strong> {{ client.address }}, {{ client.city }}, {{ client.region }}, {{ client.country }}</p>
+        <p><strong>Status:</strong> {{ client.status }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <div *ngIf="documents.length > 0">
+    <h3>Documents</h3>
+    <ul>
+      <li *ngIf="documents[0]">
+        <strong>AOA:</strong>
+        <button (click)="downloadFile(documents[0].documentName)">Download</button>
+        <p>Uploaded on: {{ documents[0].uploadedOn | date }}</p>
+      </li>
+      <li *ngIf="documents[1]">
+        <strong>PAN:</strong>
+        <button (click)="downloadFile(documents[1].documentName)">Download</button>
+        <p>Uploaded on: {{ documents[1].uploadedOn | date }}</p>
+      </li>
+      <li *ngIf="documents[2]">
+        <strong>MoM:</strong>
+        <button (click)="downloadFile(documents[2].documentName)">Download</button>
+        <p>Uploaded on: {{ documents[2].uploadedOn | date }}</p>
+      </li>
+    </ul>
+  </div>
+  

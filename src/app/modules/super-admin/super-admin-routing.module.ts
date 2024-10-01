@@ -4,6 +4,7 @@ import { SuperAdminDashboardComponent } from './components/super-admin-dashboard
 import { ViewClientComponent } from './components/view-client/view-client.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { PendingRequestComponent } from './components/pending-request/pending-request.component';
+import { DisplayPendingClientComponent } from './components/display-pending-client/display-pending-client.component';
 
 const routes: Routes = [
   {path:"", component:SuperAdminDashboardComponent},
@@ -15,6 +16,9 @@ const routes: Routes = [
   },
   {
     path:"ViewClient/:clientId", component:ViewClientComponent
+  },
+  {
+    path:"DisplayPendingClient/:clientId", component:DisplayPendingClientComponent
   }
 ];
 
