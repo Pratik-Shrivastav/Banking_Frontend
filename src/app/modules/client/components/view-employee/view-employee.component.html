@@ -10,6 +10,8 @@
           <th>Account Number</th>
           <th>IFSC</th>
           <th>Branch</th>
+          <th>Actions</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +23,9 @@
           <td>{{ employee.accountDetailsObject?.accountNumber }}</td>
           <td>{{ employee.accountDetailsObject?.ifsc }}</td>
           <td>{{ employee.accountDetailsObject?.branch }}</td>
+          <td><button [routerLink]="['/Client/edit-employee', employee.employeeId]" class="btn btn-primary">Edit</button></td>
+            <td><button (click)="deleteEmployee(employee.employeeId!)" class="btn btn-danger">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>

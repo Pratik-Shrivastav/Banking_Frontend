@@ -8,6 +8,8 @@
               <th>Account Number</th>
               <th>IFSC</th>
               <th>Branch</th>
+              <th>Actions</th>
+              <th>Delete</th>
           </tr>
       </thead>
       <tbody>
@@ -17,6 +19,9 @@
               <td>{{ beneficiary.accountDetailsObject.accountNumber }}</td> <!-- Access nested object -->
               <td>{{ beneficiary.accountDetailsObject.ifsc }}</td> <!-- Access nested object -->
               <td>{{ beneficiary.accountDetailsObject.branch }}</td> <!-- Access nested object -->
+              <td><button [routerLink]="['/Client/edit-beneficiary', beneficiary.id]" class="btn btn-primary">Edit</button></td>
+                <td><button (click)="deleteBeneficiary(beneficiary.id!)" class="btn btn-danger">Delete</button>
+              </td>
           </tr>
       </tbody>
   </table>

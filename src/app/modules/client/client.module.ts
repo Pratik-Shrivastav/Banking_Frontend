@@ -8,6 +8,8 @@ import { AddBeneficiaryComponent } from './components/add-beneficiary/add-benefi
 import { ReactiveFormsModule } from '@angular/forms';
 import { ViewEmployeesComponent } from './components/view-employee/view-employee.component';
 import { ViewBeneficiariesComponent } from './components/view-beneficiary/view-beneficiary.component';
+import { EditBeneficiaryComponent } from './components/edit-beneficiary/edit-beneficiary.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ViewBeneficiariesComponent } from './components/view-beneficiary/view-b
     AddEmployeeComponent,
     AddBeneficiaryComponent,
     ViewEmployeesComponent,
-    ViewBeneficiariesComponent
+    ViewBeneficiariesComponent,
+    EditBeneficiaryComponent,
+    EditEmployeeComponent
     
   ],
   imports: [

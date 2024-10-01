@@ -5,6 +5,8 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import { AddBeneficiaryComponent } from './components/add-beneficiary/add-beneficiary.component';
 import { ViewEmployeesComponent } from './components/view-employee/view-employee.component';
 import { ViewBeneficiariesComponent } from './components/view-beneficiary/view-beneficiary.component';
+import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
+import { EditBeneficiaryComponent } from './components/edit-beneficiary/edit-beneficiary.component';
 
 const routes: Routes = [
   { path: '', component: ClientdashboardComponent },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'add-beneficiary', component: AddBeneficiaryComponent },
   { path: 'view-employees', component: ViewEmployeesComponent },
   { path: 'view-beneficiaries', component: ViewBeneficiariesComponent },
+  { path: 'edit-employee/:id', component: EditEmployeeComponent }, // New route for editing employee
+  { path: 'edit-beneficiary/:id', component: EditBeneficiaryComponent }
  
  
 ];
