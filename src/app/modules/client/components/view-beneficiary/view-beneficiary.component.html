@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <h3>View Beneficiaries</h3>
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Account Number</th>
+              <th>IFSC</th>
+              <th>Branch</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let beneficiary of beneficiaries">
+              <td>{{ beneficiary.id }}</td> <!-- Update to use beneficiary.id -->
+              <td>{{ beneficiary.benificiaryName }}</td> <!-- Update to use beneficiary.benificiaryName -->
+              <td>{{ beneficiary.accountDetailsObject.accountNumber }}</td> <!-- Access nested object -->
+              <td>{{ beneficiary.accountDetailsObject.ifsc }}</td> <!-- Access nested object -->
+              <td>{{ beneficiary.accountDetailsObject.branch }}</td> <!-- Access nested object -->
+          </tr>
+      </tbody>
+  </table>
+</div>

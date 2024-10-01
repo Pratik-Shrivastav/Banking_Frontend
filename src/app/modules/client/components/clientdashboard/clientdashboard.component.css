@@ -1,0 +1,23 @@
+.navbar {
+    margin-bottom: 20px;
+  }
+  
+  .nav-item {
+    margin: 0 10px; /* Add spacing between buttons */
+  }
+  
+  .container {
+    background-color: #f8f9fa; /* Light background for the dashboard */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  h2 {
+    font-weight: bold; /* Make the heading bold */
+  }
+  
+  .btn {
+    width: 100%; /* Make buttons full-width */
+  }
+  
