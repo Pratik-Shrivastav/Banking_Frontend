@@ -17,4 +17,9 @@ export class SuperAdminService {
     const requestUrl = `${this.apiUrl}`;
     return this.httpClient.get<any[]>(requestUrl)   
   }
+  
+  public getClientById(id:number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/${id}`;
+    return this.httpClient.get<any[]>(requestUrl)   
+  }
 }
