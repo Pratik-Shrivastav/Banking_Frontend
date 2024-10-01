@@ -1,0 +1,26 @@
+/* Center the form container with Bootstrap classes */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Full viewport height */
+    padding: 16px;
+  }
+  
+  /* Card takes a maximum width */
+  mat-card {
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Slightly larger to fit Bootstrap columns */
+    padding: 24px;
+  }
+  mat-step{
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  button {
+    margin: 8px;
+  }
+  
