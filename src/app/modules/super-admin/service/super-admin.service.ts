@@ -28,7 +28,7 @@ export class SuperAdminService {
     return this.httpClient.get<any[]>(requestUrl)   
   }
 
-  downloadFile(fileName: string): void {
+  public downloadFile(fileName: string): void {
     this.httpClient
       .get(`${this.apiUrl}/Download/${fileName}`, { responseType: 'blob' })
       .subscribe((blob) => {
@@ -43,6 +43,12 @@ export class SuperAdminService {
       }, error => {
         console.error('Download error:', error);
       });
+  }
+
+  public clientStatus(id:number,status:string):Observable<any>{
+    const requestUrl = `${this.apiUrl}/ClientStatus/${id}`;
+    const headers = { 'Content-Type': 'application/json' };
+    return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }
 
 }

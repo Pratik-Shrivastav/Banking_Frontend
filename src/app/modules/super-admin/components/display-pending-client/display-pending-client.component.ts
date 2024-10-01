@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SuperAdminService } from '../../service/super-admin.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class DisplayPendingClientComponent {
   constructor(
     private route: ActivatedRoute,
     private superAdminService: SuperAdminService,
+    private router:Router
     
   ) { }
 
@@ -60,5 +61,17 @@ export class DisplayPendingClientComponent {
     this.superAdminService.downloadFile(fileName);
   }
 
-  
+  ClientStatus(status:string){
+    this.superAdminService.clientStatus(this.client.id,status).subscribe(
+      (response)=>{
+        console.log(response);
+        
+      },
+      (err) => {
+        console.error('Error updating Client:', err);
+        this.error = 'Failed to Change client statud';
+      }
+    )
+    this.router.navigate(['SuperAdmin'])
+  }
 }
