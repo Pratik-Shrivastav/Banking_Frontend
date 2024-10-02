@@ -83,6 +83,13 @@ export class ClientService {
 
     return this.http.post<Payment>(`${this.apiUrl}/Beneficiary/Payment`, request);
 }
+getRecentPayments(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/Payments/Recent`); // Adjust the URL as needed
+}
+
+getSalaryDisbursements(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/Payments/SalaryDisbursements`); // Adjust the URL as needed
+}
 
 
 }
