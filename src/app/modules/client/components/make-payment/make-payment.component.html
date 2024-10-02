@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <h2 class="text-center">Make a Payment</h2>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+        <!-- Payment Type Field -->
+        <div class="form-group">
+            <label for="paymentType">Payment Type</label>
+            <input type="text" class="form-control" id="paymentType" formControlName="paymentType" required>
+            <div *ngIf="paymentForm.get('paymentType')?.invalid && paymentForm.get('paymentType')?.touched" class="text-danger">
+                Payment type is required.
+            </div>
+        </div>
+
+        <!-- Amount Field -->
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" id="amount" formControlName="amount" required>
+            <div *ngIf="paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched" class="text-danger">
+                Amount must be greater than 0.
+            </div>
+        </div>
+
+        <!-- Beneficiary Dropdown -->
+        <div class="form-group">
+            <label for="beneficiary">Select Beneficiary</label>
+            <select class="form-control" id="beneficiary" formControlName="beneficiaryId" required>
+                <option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.id">
+                    {{ beneficiary.benificiaryName }}
+                </option>
+            </select>
+            <div *ngIf="paymentForm.get('beneficiaryId')?.invalid && paymentForm.get('beneficiaryId')?.touched" class="text-danger">
+                Please select a beneficiary.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3" [disabled]="paymentForm.invalid">Submit Payment</button>
+    </form>
+</div>

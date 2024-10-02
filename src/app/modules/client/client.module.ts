@@ -11,6 +11,7 @@ import { ViewBeneficiariesComponent } from './components/view-beneficiary/view-b
 import { EditBeneficiaryComponent } from './components/edit-beneficiary/edit-beneficiary.component';
 import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 import { SalaryDisbursementComponent } from './components/salary-disbursement/salary-disbursement.component';
+import { MakePaymentComponent } from './components/make-payment/make-payment.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SalaryDisbursementComponent } from './components/salary-disbursement/sa
     ViewBeneficiariesComponent,
     EditBeneficiaryComponent,
     EditEmployeeComponent,
-    SalaryDisbursementComponent
+    SalaryDisbursementComponent,
+    MakePaymentComponent
     
   ],
   imports: [

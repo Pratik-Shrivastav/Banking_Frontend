@@ -29,3 +29,8 @@ export interface Transaction {
     transactionAmount: number;
     transactionStatus: string;
 }
+export interface BeneficiaryPaymentRequest {
+    beneficiaryId: number;
+    paymentType: string;
+    amount: number;
+}

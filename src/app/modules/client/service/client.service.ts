@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from '../../../models/employee';  // Import the employee model
-import { Beneficiary } from '../../../models/beneficiary';  // Import the beneficiary model
+import { Beneficiary, BeneficiaryPaymentRequest, Payment } from '../../../models/beneficiary';  // Import the beneficiary model
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +71,18 @@ export class ClientService {
   disburseSalaries(salaryDisbursementRequest: { amount: number; employeeIds: number[] }): Observable<any> {
     return this.http.post(`${this.apiUrl}/disburse-salaries`, salaryDisbursementRequest);
   }
-  
+  makePayment(payment: Payment, beneficiaryId: number): Observable<Payment> {
+    // Create the request object including beneficiaryId
+    const request: BeneficiaryPaymentRequest = {
+        beneficiaryId: beneficiaryId,
+        paymentType: payment.paymentType,
+        amount: payment.amount
+    };
+
+    console.log('Request payload:', request); // Log the entire request payload
+
+    return this.http.post<Payment>(`${this.apiUrl}/Beneficiary/Payment`, request);
+}
+
 
 }

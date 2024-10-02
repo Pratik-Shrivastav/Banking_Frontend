@@ -8,6 +8,7 @@ import { ViewBeneficiariesComponent } from './components/view-beneficiary/view-b
 import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 import { EditBeneficiaryComponent } from './components/edit-beneficiary/edit-beneficiary.component';
 import { SalaryDisbursementComponent } from './components/salary-disbursement/salary-disbursement.component';
+import { MakePaymentComponent } from './components/make-payment/make-payment.component';
 const routes: Routes = [
   { path: '', component: ClientdashboardComponent },
   { path: 'add-employee', component: AddEmployeeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'view-employees', component: ViewEmployeesComponent },
   { path: 'view-beneficiaries', component: ViewBeneficiariesComponent },
   { path: 'disburse-salary', component:SalaryDisbursementComponent},
+  { path: 'make-payment', component: MakePaymentComponent },
   { path: 'edit-employee/:id', component: EditEmployeeComponent }, // New route for editing employee
   { path: 'edit-beneficiary/:id', component: EditBeneficiaryComponent }
   
