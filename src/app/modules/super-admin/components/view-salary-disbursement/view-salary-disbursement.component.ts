@@ -12,12 +12,19 @@ export class ViewSalaryDisbursementComponent {
   constructor(
     private superAdminService:SuperAdminService,
     public dialogRef: MatDialogRef<ViewPaymentComponent>,
-    @Inject(MAT_DIALOG_DATA) public salaryDisbursement: any
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
+  get salaryDisbursement(){
+    return this.data.salaryDisbursement
+  }
+
+  get clientId(){
+    return this.data.clientId
+  }
   approve() {
     console.log('Salary Approved:', this.salaryDisbursement);
-    this.superAdminService.salaryDisbursementStatus(this.salaryDisbursement.id, "Success").subscribe((response)=>{
+    this.superAdminService.salaryDisbursementStatus(this.salaryDisbursement.id, "Success", this.clientId).subscribe((response)=>{
       console.log(response);  
     },
     (err)=>{
@@ -29,7 +36,7 @@ export class ViewSalaryDisbursementComponent {
 
   reject() {
     console.log('Salary Rejected:', this.salaryDisbursement);
-    this.superAdminService.salaryDisbursementStatus(this.salaryDisbursement.id, "Reject").subscribe(
+    this.superAdminService.salaryDisbursementStatus(this.salaryDisbursement.id, "Reject" , this.clientId).subscribe(
       (response)=>{
         console.log(response);  
       },

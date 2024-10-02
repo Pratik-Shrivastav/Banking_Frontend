@@ -67,9 +67,10 @@ export class ViewClientComponent implements OnInit {
   }
 
   viewPaymentDetails(benificiary: any, payment:any) {
+    const clientId = this.client.id;
     const dialogRef = this.dialog.open(ViewPaymentComponent, {
       width: '400px',
-      data: {benificiary, payment }
+      data: {benificiary, payment ,clientId}
     });
 
 
@@ -101,9 +102,10 @@ export class ViewClientComponent implements OnInit {
     });
   }
   viewSalaryDisbursementDetails(salaryDisbursement:any){
+    const clientId = this.client.id;
     const dialogRef = this.dialog.open(ViewSalaryDisbursementComponent, {
       width: '400px',
-      data: salaryDisbursement
+      data: {salaryDisbursement,clientId }
     });
   }
 }

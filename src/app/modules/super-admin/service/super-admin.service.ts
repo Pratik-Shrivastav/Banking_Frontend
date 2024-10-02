@@ -51,8 +51,8 @@ export class SuperAdminService {
     return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }
 
-  public paymentStatus(id:number,status:string):Observable<any>{
-    const requestUrl = `${this.apiUrl}/PaymentStatus/${id}`;
+  public paymentStatus(id:number,status:string,clientId:number):Observable<any>{
+    const requestUrl = `${this.apiUrl}/PaymentStatus/${clientId}/${id}`;
     const headers = { 'Content-Type': 'application/json' };
     return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }
@@ -62,8 +62,8 @@ export class SuperAdminService {
     return this.httpClient.get<any[]>(requestUrl)   
   }
 
-  public salaryDisbursementStatus(id:number,status:string):Observable<any>{
-    const requestUrl = `${this.apiUrl}/SalaryDisbursementStatus/${id}`;
+  public salaryDisbursementStatus(id:number,status:string,clientId:number):Observable<any>{
+    const requestUrl = `${this.apiUrl}/SalaryDisbursementStatus/${clientId}/${id}`;
     const headers = { 'Content-Type': 'application/json' };
     return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }
