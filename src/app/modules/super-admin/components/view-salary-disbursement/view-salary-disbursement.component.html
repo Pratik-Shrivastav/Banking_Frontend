@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Payment Details</h1>
+<div mat-dialog-content>
+    <div>
+        <p><strong>Salary Disbursement Id</strong> {{ salaryDisbursement.id }}</p>
+        <p><strong>Amount:</strong> {{ salaryDisbursement.amount | currency }}</p>
+        <p><strong>Status:</strong> {{ salaryDisbursement.status }}</p>
+        <p><strong>Created At:</strong> {{ salaryDisbursement.processedAt | date: 'short' }}</p>
+    </div>
+    <h5>Employee List</h5>
+    <div>
+        <table>
+            <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Salary</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of salaryDisbursement.employeeList">
+                    <td>{{employee.employeeId}}</td>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.salary}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="approve()">Approve</button>
+    <button mat-button (click)="reject()">Reject</button>
+    <button mat-button mat-dialog-close>Close</button>
+</div>

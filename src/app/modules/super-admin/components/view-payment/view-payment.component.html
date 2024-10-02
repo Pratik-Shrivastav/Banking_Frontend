@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Payment Details</h1>
+<div mat-dialog-content>
+    <div>
+        <p><strong>Benificiary Name</strong> {{ benificiary.benificiaryName}}</p>
+        <p><strong>Account Number:</strong> {{ benificiary.accountDetailsObject.accountNumber }}</p>
+        <p><strong>IFSC:</strong> {{ benificiary.accountDetailsObject.ifsc }}</p>
+        <p><strong>Branch:</strong> {{ benificiary.accountDetailsObject.branch }}</p>
+
+    </div>
+    <div>
+        <p><strong>Payment Type:</strong> {{ payment.paymentType }}</p>
+  <p><strong>Amount:</strong> {{ payment.amount | currency }}</p>
+  <p><strong>Status:</strong> {{ payment.status }}</p>
+  <p><strong>Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
+
+    </div>
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="approve()">Approve</button>
+  <button mat-button (click)="reject()">Reject</button>
+  <button mat-button mat-dialog-close>Close</button>
+</div>

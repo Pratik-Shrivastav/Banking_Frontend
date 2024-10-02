@@ -51,4 +51,21 @@ export class SuperAdminService {
     return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }
 
+  public paymentStatus(id:number,status:string):Observable<any>{
+    const requestUrl = `${this.apiUrl}/PaymentStatus/${id}`;
+    const headers = { 'Content-Type': 'application/json' };
+    return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
+  }
+
+  public getClientSalaryDisbursementById(id:number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/SalaryDisbursement/${id}`;
+    return this.httpClient.get<any[]>(requestUrl)   
+  }
+
+  public salaryDisbursementStatus(id:number,status:string):Observable<any>{
+    const requestUrl = `${this.apiUrl}/SalaryDisbursementStatus/${id}`;
+    const headers = { 'Content-Type': 'application/json' };
+    return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
+  }
+
 }
