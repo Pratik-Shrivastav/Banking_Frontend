@@ -1,49 +1,59 @@
 <div class="modal-header">
     <h5 class="modal-title">Details</h5>
-  </div>
-  <div class="modal-body">
+</div>
+<div class="modal-body">
     <ng-container *ngIf="data">
-      <!-- Salary Disbursement Details -->
-      <ng-container *ngIf="data.type === 'salary'">
-        <h6>Salary Disbursement Details</h6>
-        <p><strong>Amount:</strong> {{ data.amount }}</p>
-        <p><strong>Status:</strong> {{ data.status }}</p>
-       
-  
-        <!-- Display Employees with their Transactions -->
-        <h6>Employees and Transactions:</h6>
-        <ul>
-          <li *ngFor="let employee of data.employees">
-            <strong>{{ employee.name }} ({{ employee.designation }})</strong>
+        <!-- Salary Disbursement Details -->
+        <ng-container *ngIf="data.type === 'salary'">
+            <h6>Salary Disbursement Details</h6>
+            <p><strong>Amount:</strong> {{ data.amount }}</p>
+            <p><strong>Status:</strong> {{ data.status }}</p>
+
+            <!-- Display Employees with their Transactions -->
+            <h6>Employees and Transactions:</h6>
             <ul>
-              <ng-container *ngIf="data.transactions">
-                <ng-container *ngFor="let transaction of data.transactions">
-                  <li *ngIf="transaction.employeePaidId === employee.employeeId">
-                    <p><strong class="mt-3">Transaction ID:</strong> {{ transaction.id }}</p>
-                    <p><strong>Amount:</strong> {{ transaction.transactionAmount }}</p>
-                    <p><strong>Processed At:</strong> {{ transaction.transactionDate | date: 'short' }}</p>
-                    <p><strong>Status:</strong> {{ transaction.transactionStatus }}</p>
-                  </li>
-                </ng-container>
-                <!-- Display message if no transactions -->
-                <li *ngIf="!hasTransactions(employee.employeeId)">No transactions found for {{ employee.name }}.</li>
-              </ng-container>
+                <li *ngFor="let employee of data.employees">
+                    <strong>{{ employee.name }} ({{ employee.designation }})</strong>
+                    <ul>
+                        <ng-container *ngIf="data.transactions && data.transactions.length > 0; else noTransactions">
+                            <ng-container *ngFor="let transaction of data.transactions">
+                                <li *ngIf="transaction.employeePaidId === employee.employeeId">
+                                    <p><strong class="mt-3">Transaction ID:</strong> {{ transaction.id }}</p>
+                                    <p><strong>Amount:</strong> {{ transaction.transactionAmount }}</p>
+                                    <p><strong>Processed At:</strong> {{ transaction.transactionDate | date: 'short' }}</p>
+                                    <p><strong>Status:</strong> {{ transaction.transactionStatus }}</p>
+                                </li>
+                            </ng-container>
+                        </ng-container>
+                        <ng-template #noTransactions>
+                            <li>No transactions found for {{ employee.name }}.</li>
+                        </ng-template>
+                    </ul>
+                </li>
             </ul>
-          </li>
-        </ul>
-      </ng-container>
-  
-      <!-- Payment Details Section -->
-      <ng-container *ngIf="data.type === 'payment'">
-        <h6>Payment Details</h6>
-        <p><strong>Beneficiary Name:</strong> {{ data.beneficiaryName }}</p>
-        <p><strong>Amount:</strong> {{ data.amount }}</p>
-        <p><strong>Status:</strong> {{ data.status }}</p>
-        <p><strong>Created At:</strong> {{ data.createdAt | date: 'short' }}</p>
-      </ng-container>
+        </ng-container>
+
+        <!-- Payment Details Section -->
+        <ng-container *ngIf="data.type === 'payment'">
+            <h6>Payment Details</h6>
+            <p><strong>Beneficiary Name:</strong> {{ data.beneficiaryName }}</p>
+            <p><strong>Amount:</strong> {{ data.amount }}</p>
+            <p><strong>Status:</strong> {{ data.status }}</p>
+            <p><strong>Created At:</strong> {{ data.createdAt | date: 'short' }}</p>
+            <hr/>
+            <h6>Transaction Details</h6>
+            <ng-container *ngIf="data.transactionId; else noPaymentTransactions">
+                <p><strong>Transaction Id:</strong> {{ data.transactionId }}</p>
+                <p><strong>Transaction Amount:</strong> {{ data.transactionAmount }}</p>
+                <p><strong>Transaction Status:</strong> {{ data.transactionStatus }}</p>
+                <p><strong>Transaction Date:</strong> {{ data.transactionDate | date: 'short' }}</p>
+            </ng-container>
+            <ng-template #noPaymentTransactions>
+                <p>No transactions found for this payment.</p>
+            </ng-template>
+        </ng-container>
     </ng-container>
-  </div>
-  <div class="modal-footer">
+</div>
+<div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Close</button>
-  </div>
-  
+</div>

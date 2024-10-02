@@ -51,15 +51,44 @@ export class ViewRecentComponent implements OnInit {
   }
 
   // Method to handle row click for recent payments
-  onPaymentClick(payment: any): void {
-    const paymentDetails = {
+  onPaymentClick(payment: any,beneficiary:any): void {
+    let paymentDetails={};
+    if(payment.transactions.length > 0){
+       paymentDetails = {
+        type: 'payment',
+        id: payment.id,
+        beneficiaryName: beneficiary.benificiaryName, 
+        amount: payment.amount,
+        status: payment.status,
+        createdAt: payment.createdAt,
+        
+        transactionId:payment.transactions[0].id,
+        transactionAmount:payment.transactions[0].transactionAmount,
+        transactionStatus:payment.transactions[0].transactionStatus,
+        transactionDate:payment.transactions[0].transactionDate,
+  
+  
+      };
+      
+    }
+    else{ paymentDetails = {
       type: 'payment',
       id: payment.id,
-      beneficiaryName: payment.beneficiaryName, // Ensure you have this field
+      beneficiaryName: beneficiary.benificiaryName, 
       amount: payment.amount,
       status: payment.status,
       createdAt: payment.createdAt,
-    };
+      
+      // transactionId:payment.transactions[0].id,
+      // transactionAmount:payment.transactions[0].transactionAmount,
+      // transactionStatus:payment.transactions[0].transactionStatus,
+      // transactionDate:payment.transactions[0].transactionDate,
+
+
+    };}
+    
+    console.log(payment);
+    
     this.openDetails(paymentDetails);
   }
 

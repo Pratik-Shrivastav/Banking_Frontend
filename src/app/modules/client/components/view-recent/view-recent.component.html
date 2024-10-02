@@ -22,7 +22,7 @@
     </div>
     <div class="col-md-6">
       <h4>Recent Payments</h4>
-      <table class="table table-striped">
+      <table class="table table-striped" >
         <thead>
           <tr>
             <th>ID</th>
@@ -33,13 +33,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let payment of recentPayments" (click)="onPaymentClick(payment)">
+         <ng-container *ngFor="let beneficiary of recentPayments"  >
+          <tr *ngFor="let payment of beneficiary.paymentsList" (click)="onPaymentClick(payment,beneficiary)" >
             <td>{{ payment.id }}</td>
             <td>{{ payment.paymentType }}</td>
             <td>{{ payment.amount }}</td>
             <td>{{ payment.status }}</td>
             <td>{{ payment.createdAt | date:'short' }}</td>
           </tr>
+        </ng-container> 
         </tbody>
       </table>
     </div>
