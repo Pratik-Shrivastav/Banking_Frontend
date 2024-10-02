@@ -10,7 +10,7 @@ import { DetailsModalComponent } from '../details-modal/details-modal.component'
 })
 export class ViewRecentComponent implements OnInit {
   salaryDisbursements: any[] = []; // Array to hold salary disbursement payments
-  recentPayments: any[] = [];       // Array to hold recent payments
+  recentPayments: any[] = []; // Array to hold recent payments
 
   constructor(private clientService: ClientService, private modalService: NgbModal) {}
 
@@ -44,13 +44,14 @@ export class ViewRecentComponent implements OnInit {
   }
 
   // Method to open the modal with details
-  openDetails(data: any) {
+  openDetails(data: any): void {
+    console.log('Opening modal with data:', data);
     const modalRef = this.modalService.open(DetailsModalComponent);
-    modalRef.componentInstance.data = data;
+    modalRef.componentInstance.data = data; // Ensure the correct data is being passed
   }
 
   // Method to handle row click for recent payments
-  onPaymentClick(payment: any) {
+  onPaymentClick(payment: any): void {
     const paymentDetails = {
       type: 'payment',
       id: payment.id,
@@ -63,15 +64,17 @@ export class ViewRecentComponent implements OnInit {
   }
 
   // Method to handle row click for salary disbursements
-  onSalaryClick(salary: any) {
+  onSalaryClick(salary: any): void {
     const salaryDetails = {
       type: 'salary',
-      
       amount: salary.amount,
       status: salary.status,
       createdAt: salary.createdAt,
-      employees: salary.employeeList, // Ensure this contains employee data
+      employees: salary.employeeList, // Directly use employeeList
+      transactions: salary.transactionList // Directly use transactionList
     };
+  
+    console.log('Salary transaction list:', salary.transactionList); // Debugging statement
     this.openDetails(salaryDetails);
   }
 }

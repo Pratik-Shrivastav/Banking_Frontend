@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbActiveModal
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details-modal',
@@ -7,7 +7,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbActive
   styleUrls: ['./details-modal.component.css']
 })
 export class DetailsModalComponent {
-  @Input() data: any; // Data passed from the parent component
+  @Input() data: any; // Receiving data from the parent component
 
-  constructor(public activeModal: NgbActiveModal) {} // Inject NgbActiveModal for modal control
+  constructor(public activeModal: NgbActiveModal) {}
+
+  // Method to check if any transactions exist for the employee
+  hasTransactions(employeeId: number): boolean {
+    return this.data.transactions?.some((t: { employeePaidId: number }) => t.employeePaidId === employeeId) || false;
+  }
 }
