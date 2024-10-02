@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { LoginModule } from './modules/login/login.module';
 import { JwtModule } from '@auth0/angular-jwt';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 export function tokenGetter() {
   return localStorage.getItem('Token');
 }
@@ -26,6 +27,8 @@ export function tokenGetter() {
         disallowedRoutes: [], 
       },
     }),
+    BrowserAnimationsModule
+   
   ],
   providers: [
     provideAnimationsAsync()

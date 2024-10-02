@@ -1,28 +1,67 @@
-<div class="container mt-5">
-    <h3>Add Beneficiary</h3>
-    <form [formGroup]="beneficiaryForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="benificiaryName">Beneficiary Name</label>
-            <input formControlName="benificiaryName" class="form-control" id="benificiaryName" placeholder="Enter name">
+<div class="container full-screen-container">
+    <div class="card form-card shadow">
+      <h3 class="text-center mb-3">Add Beneficiary</h3>
+      <form [formGroup]="beneficiaryForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-row">
+          <!-- Beneficiary Name -->
+          <div class="form-group col-md-6 mb-2">
+            <mat-form-field class="w-100 small-field">
+              <mat-label>Beneficiary Name</mat-label>
+              <input matInput formControlName="beneficiaryName" placeholder="Enter beneficiary name" id="beneficiaryName" />
+              <mat-error *ngIf="beneficiaryForm.get('beneficiaryName')?.invalid && beneficiaryForm.get('beneficiaryName')?.touched">
+                Beneficiary name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
-
-        <div formGroupName="accountDetailsObject"> <!-- Add this to bind the group -->
-            <div class="form-group">
-                <label for="accountNumber">Account Number</label>
-                <input formControlName="accountNumber" class="form-control" id="accountNumber" placeholder="Enter account number">
+  
+        <!-- Account Details -->
+        <div formGroupName="accountDetailsObject" class="account-details mt-3">
+          <h4 class="sub-heading">Account Details</h4>
+          <div class="form-row">
+            <!-- Account Number -->
+            <div class="form-group col-md-4 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>Account Number</mat-label>
+                <input matInput formControlName="accountNumber" placeholder="Enter account number" id="accountNumber" />
+                <mat-error *ngIf="beneficiaryForm.get('accountDetailsObject.accountNumber')?.invalid && beneficiaryForm.get('accountDetailsObject.accountNumber')?.touched">
+                  Account number is required
+                </mat-error>
+              </mat-form-field>
             </div>
-
-            <div class="form-group">
-                <label for="ifsc">IFSC</label>
-                <input formControlName="ifsc" class="form-control" id="ifsc" placeholder="Enter IFSC">
+  
+            <!-- IFSC -->
+            <div class="form-group col-md-4 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>IFSC</mat-label>
+                <input matInput formControlName="ifsc" placeholder="Enter IFSC" id="ifsc" />
+                <mat-error *ngIf="beneficiaryForm.get('accountDetailsObject.ifsc')?.invalid && beneficiaryForm.get('accountDetailsObject.ifsc')?.touched">
+                  IFSC is required
+                </mat-error>
+              </mat-form-field>
             </div>
-
-            <div class="form-group">
-                <label for="branch">Branch</label>
-                <input formControlName="branch" class="form-control" id="branch" placeholder="Enter Branch">
+  
+            <!-- Branch -->
+            <div class="form-group col-md-4 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>Branch</mat-label>
+                <input matInput formControlName="branch" placeholder="Enter branch" id="branch" />
+                <mat-error *ngIf="beneficiaryForm.get('accountDetailsObject.branch')?.invalid && beneficiaryForm.get('accountDetailsObject.branch')?.touched">
+                  Branch is required
+                </mat-error>
+              </mat-form-field>
             </div>
+          </div>
         </div>
-
-        <button type="submit" class="btn btn-secondary">Submit</button>
-    </form>
-</div>
+  
+        <!-- Submit Button -->
+        <div class="text-center mt-3">
+          <button type="submit" mat-raised-button color="primary" class="w-100 submit-button" [disabled]="beneficiaryForm.invalid">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,26 +1,48 @@
 <div class="container mt-5">
-  <h3>Salary Disbursement</h3>
+  <mat-card class="shadow">
+    <mat-card-header>
+      <mat-card-title class="text-center">
+        <h3>Salary Disbursement</h3>
+      </mat-card-title>
+    </mat-card-header>
 
-  <div class="form-group">
-    <label>Select Employees:</label>
-    <div *ngFor="let employee of employees">
-      <input 
-        type="checkbox" 
-        [value]="employee.employeeId" 
-        (change)="onEmployeeSelectionChange(employee.employeeId!, $event)">
-      {{ employee.name }} - {{ employee.salary | currency }}
-    </div>
-  </div>
+    <mat-card-content>
+      <div class="form-group">
+        <label class="font-weight-bold">Select Employees:</label>
+        <div class="employee-list">
+          <div *ngFor="let employee of employees" class="employee-item">
+            <mat-checkbox 
+              (change)="onEmployeeSelectionChange(employee.employeeId!, $event)" 
+              class="employee-checkbox"
+            >
+              <div class="employee-info">
+                <span class="employee-name">{{ employee.name }}</span>
+                <span class="employee-salary">{{ employee.salary | currency:'INR' }}</span>
+              </div>
+            </mat-checkbox>
+          </div>
+        </div>
+      </div>
 
-  <div class="form-group mt-3">
-    <h4>Total Salary: {{ totalSalary | currency }}</h4>
-  </div>
+      <div class="form-group mt-3 total-salary-container">
+        <h4>Total Salary: 
+          <span class="total-salary">{{ totalSalary | currency:'INR' }}</span>
+        </h4>
+      </div>
+    </mat-card-content>
 
-  <button 
-    type="button" 
-    class="btn btn-primary" 
-    (click)="disburseSalaries()" 
-    [disabled]="selectedEmployeeIds.length === 0">
-    Disburse Salaries
-  </button>
+    <mat-card-actions>
+      <div class="text-center mt-4">
+        <button 
+          mat-raised-button 
+          color="primary" 
+          (click)="disburseSalaries()" 
+          [disabled]="selectedEmployeeIds.length === 0"
+          class="disburse-button"
+        >
+          Disburse Salaries
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
 </div>

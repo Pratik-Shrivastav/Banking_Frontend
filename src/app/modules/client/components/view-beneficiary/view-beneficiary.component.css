@@ -1,0 +1,44 @@
+.table {
+    margin-top: 20px;
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .table th, .table td {
+    vertical-align: middle; /* Center align content */
+  }
+  
+  .btn {
+    display: flex;
+    align-items: center; /* Center the icon vertically */
+  }
+  
+  .btn i {
+    margin-right: 5px; /* Space between icon and text */
+  }
+  .table-card {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  .table-card {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  /* Table styles */
+  .table {
+    margin-bottom: 0;
+  }
+  
+  .table th {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f1f3f5;
+    transition: background-color 0.2s ease-in-out;
+  }

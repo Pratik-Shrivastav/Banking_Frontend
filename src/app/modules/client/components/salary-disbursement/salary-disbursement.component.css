@@ -1,0 +1,60 @@
+.container {
+    max-width: 600px; /* Limit the width of the container */
+    margin: 0 auto; /* Center the container */
+  }
+  
+  mat-card {
+    padding: 20px; /* Add padding around the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+  
+  .employee-list {
+    max-height: 300px; /* Set a max height for the employee list */
+    overflow-y: auto; /* Enable scrolling */
+    border: 1px solid #ccc; /* Border around the employee list */
+    border-radius: 4px; /* Rounded corners for the list */
+    padding: 10px; /* Padding inside the list */
+  }
+  
+  .employee-item {
+    margin-bottom: 10px; 
+    
+  }
+  
+  .employee-checkbox {
+    width: 100%; /* Full width for checkbox */
+    padding: 10px; /* Padding for better click area */
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background transition */
+  }
+  
+  .employee-checkbox:hover {
+    background-color: #f1f1f1; /* Darker background on hover */
+  }
+  .employee-info {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Align items to opposite ends */
+    align-items: center; /* Center align vertically */
+    padding: 5px; /* Add some padding for better spacing */
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .employee-name {
+    font-weight: bold; 
+    margin-right: 10px;/* Bold for the name */
+  }
+  .employee-info:hover {
+    background-color: #f9f9f9; /* Change background on hover */
+  }
+  .total-salary-container {
+    text-align: right; /* Align total salary to the right */
+    font-weight: bold; /* Make total salary bold */
+  }
+  
+  .disburse-button {
+    width: 100%; /* Make button full width */
+    font-size: 16px; /* Slightly larger font size for button */
+  }
+  
