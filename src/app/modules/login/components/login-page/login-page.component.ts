@@ -28,6 +28,7 @@ export class LoginPageComponent {
         (response: LoginResponse) => {
           console.log(response);
           if (response.role == "SuperAdmin") {
+            localStorage.setItem("Token", response.token);
             this.router.navigate(['SuperAdmin']);
           }
           else {
