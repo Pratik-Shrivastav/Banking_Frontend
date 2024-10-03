@@ -12,11 +12,13 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent {
   loginForm: FormGroup;
+  //siteKey = '6Lf151QqAAAAACVNLhJNZaJPUl1Z7aG4oVh9MP7W';
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      // recaptcha: ['', Validators.required]
     });
   }
 

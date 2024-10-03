@@ -13,6 +13,9 @@ import { DocumentComponent } from './components/document/document.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DocumentDisplayComponent } from './components/document-display/document-display.component';
 
+import { NgxCaptchaModule } from 'ngx-captcha';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { DocumentDisplayComponent } from './components/document-display/document
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxCaptchaModule
   ]
 })
 export class LoginModule { }

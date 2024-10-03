@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginModule } from './modules/login/login.module';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxCaptchaModule } from 'ngx-captcha';
 import { ClientModule } from './modules/client/client.module';
 import { SuperAdminModule } from './modules/super-admin/super-admin.module';
 export function tokenGetter() {
@@ -22,6 +23,7 @@ export function tokenGetter() {
     LoginModule,
     ClientModule,
     SuperAdminModule,
+    NgxCaptchaModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter, 

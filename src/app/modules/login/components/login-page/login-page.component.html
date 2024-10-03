@@ -1,28 +1,39 @@
-<!-- vudetose@mailinator.com -->
-
-<!-- components/login-page/login-page.component.html -->
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="col-md-4">
-      <mat-card>
-        <mat-card-content>
-          <h2>Login</h2>
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Username</mat-label>
-              <input matInput formControlName="userName" required />
-              <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">Username is required</mat-error>
-            </mat-form-field>
-            
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Password</mat-label>
-              <input matInput type="password" formControlName="password" required />
-              <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
-            </mat-form-field>
-  
-            <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
-          </form>
-        </mat-card-content>
-      </mat-card>
-    </div>
+  <div class="col-md-4">
+    <mat-card>
+      <mat-card-content>
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="userName" required />
+            <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">
+              Username is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" required />
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+          
+          <!-- <div class="w-100 mb-3">
+            <ngx-captcha2
+              siteKey="6Lf151QqAAAAACVNLhJNZaJPUl1Z7aG4oVh9MP7W"
+              formControlName="recaptcha">
+            </ngx-captcha2>
+            <mat-error *ngIf="loginForm.get('recaptcha')?.hasError('required')">
+              Please verify you are not a robot.
+            </mat-error>
+          </div> -->
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+</div>
