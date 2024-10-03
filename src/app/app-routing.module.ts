@@ -14,14 +14,23 @@ const routes: Routes = [
   },
   {
     path:"Client",
-    loadChildren: ()=>import("./modules/client/client.module").then(m=>m.ClientModule)
+    loadChildren: ()=>import("./modules/client/client.module").then(m=>m.ClientModule),
+    canActivate: [authGuard],  // Apply the authGuard here
+    data: { role: 'Client' }
   },
   {
     path:"SuperAdmin",
     loadChildren: ()=>import("./modules/super-admin/super-admin.module").then(m=>m.SuperAdminModule),
     canActivate: [authGuard],  // Apply the authGuard here
     data: { role: 'SuperAdmin' } 
+  },
+  {
+    path:"Bank",
+    loadChildren: ()=>import("./modules/bank/bank.module").then(m=>m.BankModule),
+    canActivate: [authGuard],  // Apply the authGuard here
+    data: { role: 'SuperAdmin' } 
   }
+
 ];
 
 @NgModule({
