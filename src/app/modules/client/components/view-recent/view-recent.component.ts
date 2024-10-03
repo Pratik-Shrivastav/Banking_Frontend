@@ -76,10 +76,45 @@ export class ViewRecentComponent implements OnInit {
   }
   
   // Methods to open modals and handle clicks
-  onPaymentClick(payment: any, beneficiary: any): void {
-    const paymentDetails = this.preparePaymentDetails(payment, beneficiary);
+  onPaymentClick(payment: any,beneficiary:any): void {
+    let paymentDetails={};
+    if(payment.transactions.length > 0){
+       paymentDetails = {
+        type: 'payment',
+        id: payment.id,
+        beneficiaryName: beneficiary.benificiaryName, 
+        amount: payment.amount,
+        status: payment.status,
+        createdAt: payment.createdAt,
+        
+        transactionId:payment.transactions[0].id,
+        transactionAmount:payment.transactions[0].transactionAmount,
+        transactionStatus:payment.transactions[0].transactionStatus,
+        transactionDate:payment.transactions[0].transactionDate,
+      }; 
+    }
+    else{ paymentDetails = {
+      type: 'payment',
+      id: payment.id,
+      beneficiaryName: beneficiary.benificiaryName, 
+      amount: payment.amount,
+      status: payment.status,
+      createdAt: payment.createdAt,
+      
+      // transactionId:payment.transactions[0].id,
+      // transactionAmount:payment.transactions[0].transactionAmount,
+      // transactionStatus:payment.transactions[0].transactionStatus,
+      // transactionDate:payment.transactions[0].transactionDate,
+
+
+    };}
+    
+    console.log(payment);
+    
     this.openDetails(paymentDetails);
   }
+
+
 
   onSalaryClick(salary: any): void {
     const salaryDetails = {
@@ -173,9 +208,7 @@ export class ViewRecentComponent implements OnInit {
     return [headers.join(","), ...rows].join("\n"); // Join headers with a comma, then join all rows with new lines
   }
 
-  private preparePaymentDetails(payment: any, beneficiary: any): any {
-    // Prepare payment details logic
-  }
+  
 }
 
 
