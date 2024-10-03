@@ -5,7 +5,7 @@ import { ViewClientComponent } from './components/view-client/view-client.compon
 import { ClientsComponent } from './components/clients/clients.component';
 import { PendingRequestComponent } from './components/pending-request/pending-request.component';
 import { DisplayPendingClientComponent } from './components/display-pending-client/display-pending-client.component';
-
+import { ReportsComponent } from './components/reports/reports.component';
 const routes: Routes = [
   {path:"", component:SuperAdminDashboardComponent},
   {
@@ -15,11 +15,14 @@ const routes: Routes = [
     path:"Pending", component:PendingRequestComponent
   },
   {
+    path:'Reports',component:ReportsComponent
+  },
+  {
     path:"ViewClient/:clientId", component:ViewClientComponent
   },
   {
     path:"DisplayPendingClient/:clientId", component:DisplayPendingClientComponent
-  }
+  },
 ];
 
 @NgModule({

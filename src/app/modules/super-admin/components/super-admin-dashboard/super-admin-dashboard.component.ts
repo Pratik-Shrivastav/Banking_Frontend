@@ -16,4 +16,7 @@ export class SuperAdminDashboardComponent {
     onRequestsClick() {
       this.router.navigate(["SuperAdmin/Pending"]);
     }
+    onReportClick(){
+      this.router.navigate(['SuperAdmin/Reports'])
+    }
 }

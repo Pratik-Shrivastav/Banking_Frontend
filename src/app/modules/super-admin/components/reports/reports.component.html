@@ -1,0 +1,116 @@
+<div class="container mt-4">
+    <div class="col-md-12 mb-4 text-center">
+        <h1>Client and Employee Statistics</h1>
+    </div>
+    <div class="row">
+        <!-- Pie Chart for Client Statistics -->
+        <div class="col-md-12 col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Client Statistics</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Overview of client statuses: Pending, Rejected, and Successful.</p>
+                    <div class="chart-container">
+                        <canvas #clientChart></canvas>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Data updated recently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Salary Disbursement Bar Chart -->
+        <div class="col-md-12 col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Salary Disbursement Status</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas #salaryChart></canvas>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Data updated recently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Employees Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Total Employees</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h3>{{ employeeCount }}</h3>
+                </div>
+                <div class="card-footer text-muted">
+                    Active employees in the system.
+                </div>
+            </div>
+        </div>
+
+        <!-- Beneficiary Count Card -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Total Beneficiaries</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h3>{{ beneficiariesCount }}</h3>
+                </div>
+                <div class="card-footer text-muted">
+                    Data updated recently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Statistics: Pending Clients -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Pending Clients</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h3>{{ pendingClients }}</h3>
+                </div>
+                <div class="card-footer text-muted">
+                    Clients awaiting approval.
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Statistics: Rejected Clients -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Rejected Clients</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h3>{{ rejectedClients }}</h3>
+                </div>
+                <div class="card-footer text-muted">
+                    Clients who were not approved.
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Statistics: Successful Clients -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Successful Clients</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h3>{{ successfulClients }}</h3>
+                </div>
+                <div class="card-footer text-muted">
+                    Clients successfully approved.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

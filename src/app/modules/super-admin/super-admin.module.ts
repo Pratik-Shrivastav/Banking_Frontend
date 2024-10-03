@@ -15,9 +15,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ViewSuccessPaymentComponent } from './components/view-success-payment/view-success-payment.component';
 import { ViewSuccessSalaryDisbursementComponent } from './components/view-success-salary-disbursement/view-success-salary-disbursement.component';
 import { ViewSalaryDisbursementComponent } from './components/view-salary-disbursement/view-salary-disbursement.component';
-import { MatCardContent } from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { MatIcon } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon'; // Correct import for MatIcon
+import { ReportsComponent } from './components/reports/reports.component';
+import { NgChartjsModule } from 'ng-chartjs';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatIcon } from '@angular/material/icon';
     ViewPaymentComponent,
     ViewSuccessPaymentComponent,
     ViewSuccessSalaryDisbursementComponent,
-    ViewSalaryDisbursementComponent
+    ViewSalaryDisbursementComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,
@@ -38,9 +40,9 @@ import { MatIcon } from '@angular/material/icon';
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
-    MatCardContent,
     MatProgressSpinnerModule,
-    MatIcon
+    MatIconModule, // Use MatIconModule instead of MatIcon
+    NgChartjsModule // No need to import Chart class here
   ]
 })
 export class SuperAdminModule { }

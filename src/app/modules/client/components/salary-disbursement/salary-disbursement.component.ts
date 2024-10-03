@@ -14,6 +14,8 @@ export class SalaryDisbursementComponent implements OnInit {
   selectedEmployeeIds: number[] = [];
   totalSalary: number = 0;
   router: any;
+  status: string | undefined;
+  
 
   constructor(private clientService: ClientService,
     router:Router
