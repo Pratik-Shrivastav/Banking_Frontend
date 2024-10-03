@@ -28,7 +28,7 @@ const routes: Routes = [
     path:"Bank",
     loadChildren: ()=>import("./modules/bank/bank.module").then(m=>m.BankModule),
     canActivate: [authGuard],  // Apply the authGuard here
-    data: { role: 'SuperAdmin' } 
+    data: { role: 'Bank' } 
   }
 
 ];

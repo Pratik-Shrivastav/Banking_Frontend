@@ -45,6 +45,10 @@ export class LoginPageComponent {
             localStorage.setItem("Token", response.token);
             this.router.navigate(['SuperAdmin']);
           }
+          else if(response.role == "Bank" ){
+            localStorage.setItem("Token", response.token);
+            this.router.navigate(['Bank']);
+          }
           else 
           {
             if (response.success && response.status == "Success") {
