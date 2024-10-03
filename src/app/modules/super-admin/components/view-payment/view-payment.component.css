@@ -1,0 +1,54 @@
+.dialog-title {
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* White text */
+    padding: 10px;
+    text-align: center;
+    margin: 0; /* Remove default margin */
+}
+
+.dialog-content {
+    margin-top: 20px;
+    padding: 20px; /* Add padding */
+    background-color: #f9f9f9; /* Light background for content */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.beneficiary-info,
+.payment-info {
+    margin-bottom: 15px; /* Space between sections */
+}
+
+.divider {
+    border: 1px solid #e0e0e0; /* Light gray line */
+    margin: 20px 0; /* Space above and below */
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    padding: 10px 20px; /* Padding for actions */
+}
+
+.action-button {
+    flex: 1; /* Allow buttons to grow */
+    margin: 0 5px; /* Space between buttons */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding for buttons */
+    color: #fff; /* White text */
+}
+
+.approve-button {
+    background-color: #28a745; /* Success color */
+}
+
+.reject-button {
+    background-color: #dc3545; /* Danger color */
+}
+
+.close-button {
+    background-color: #007bff; /* Primary color */
+}
+
+.action-button:hover {
+    filter: brightness(90%); /* Darken on hover */
+}

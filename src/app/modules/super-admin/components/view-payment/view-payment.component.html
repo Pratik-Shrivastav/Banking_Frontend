@@ -1,23 +1,25 @@
-<h1 mat-dialog-title>Payment Details</h1>
-<div mat-dialog-content>
-    <div>
-        <p><strong>Benificiary Name</strong> {{ benificiary.benificiaryName}}</p>
+<h1 mat-dialog-title class="dialog-title">Payment Details</h1>
+
+<div mat-dialog-content class="dialog-content">
+    <div class="beneficiary-info">
+        <p><strong>Beneficiary Name:</strong> {{ benificiary.benificiaryName }}</p>
         <p><strong>Account Number:</strong> {{ benificiary.accountDetailsObject.accountNumber }}</p>
         <p><strong>IFSC:</strong> {{ benificiary.accountDetailsObject.ifsc }}</p>
         <p><strong>Branch:</strong> {{ benificiary.accountDetailsObject.branch }}</p>
-
     </div>
-    <div>
+
+    <hr class="divider">
+
+    <div class="payment-info">
         <p><strong>Payment Type:</strong> {{ payment.paymentType }}</p>
-  <p><strong>Amount:</strong> {{ payment.amount | currency }}</p>
-  <p><strong>Status:</strong> {{ payment.status }}</p>
-  <p><strong>Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
-
+        <p><strong>Amount:</strong> {{ payment.amount | currency }}</p>
+        <p><strong>Status:</strong> {{ payment.status }}</p>
+        <p><strong>Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
     </div>
-  
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="approve()">Approve</button>
-  <button mat-button (click)="reject()">Reject</button>
-  <button mat-button mat-dialog-close>Close</button>
+
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-button class="action-button approve-button" (click)="approve()">Approve</button>
+    <button mat-button class="action-button reject-button" (click)="reject()">Reject</button>
+    <button mat-button class="action-button close-button" mat-dialog-close>Close</button>
 </div>

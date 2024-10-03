@@ -1,0 +1,50 @@
+.dialog-title {
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* White text */
+    padding: 10px;
+    text-align: center;
+    margin: 0; /* Remove default margin */
+}
+
+.dialog-content {
+    margin-top: 20px;
+    padding: 20px; /* Add padding */
+    background-color: #f9f9f9; /* Light background for content */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.payment-info,
+.transaction-info {
+    margin-bottom: 15px; /* Space between sections */
+}
+
+.divider {
+    border: 1px solid #e0e0e0; /* Light gray line */
+    margin: 20px 0; /* Space above and below */
+}
+
+.transaction-title {
+    margin-top: 15px; /* Space above transaction title */
+}
+
+.transaction-divider {
+    border: 1px solid #e0e0e0; /* Light gray line for transaction section */
+    margin: 10px 0; /* Space above and below */
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    padding: 10px 20px; /* Padding for actions */
+}
+
+.action-button {
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding for button */
+    color: #fff; /* White text */
+    background-color: #007bff; /* Primary color */
+}
+
+.action-button:hover {
+    filter: brightness(90%); /* Darken on hover */
+}

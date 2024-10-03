@@ -1,20 +1,26 @@
-<h1 mat-dialog-title>Payment Details</h1>
-<div mat-dialog-content>
-    <div>
-    <p><strong>Payment Type:</strong> {{ payment.paymentType }}</p>
-    <p><strong>Amount:</strong> {{ payment.amount | currency }}</p>
-    <p><strong>Status:</strong> {{ payment.status }}</p>
-    <p><strong>Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
-    <p><strong>Approved At:</strong> {{ payment.approvedAt | date: 'short' }}</p>
+<h1 mat-dialog-title class="dialog-title">Payment Details</h1>
+
+<div mat-dialog-content class="dialog-content">
+    <div class="payment-info">
+        <p><strong>Payment Type:</strong> {{ payment.paymentType }}</p>
+        <p><strong>Amount:</strong> {{ payment.amount | currency }}</p>
+        <p><strong>Status:</strong> {{ payment.status }}</p>
+        <p><strong>Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
+        <p><strong>Approved At:</strong> {{ payment.approvedAt | date: 'short' }}</p>
     </div>
-    <h5>Transaction Detail</h5>
-    <div *ngFor="let transaction of payment.transactions" >
-        <p><strong>Transaction Id:</strong> {{ transaction.id}}</p>
+
+    <hr class="divider">
+
+    <h3 class="transaction-title">Transaction Details</h3>
+    <div *ngFor="let transaction of payment.transactions" class="transaction-info">
+        <p><strong>Transaction Id:</strong> {{ transaction.id }}</p>
         <p><strong>Transaction Date:</strong> {{ transaction.transactionDate | date: 'short' }}</p>
-        <p><strong>Transaction Status:</strong> {{ transaction.transactionStatus}}</p>
-        <p><strong>Transaction Amount</strong> {{ transaction.transactionAmount }}</p>
+        <p><strong>Transaction Status:</strong> {{ transaction.transactionStatus }}</p>
+        <p><strong>Transaction Amount:</strong> {{ transaction.transactionAmount | currency }}</p>
+        <hr class="transaction-divider">
     </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-button class="action-button close-button" mat-dialog-close>Close</button>
 </div>

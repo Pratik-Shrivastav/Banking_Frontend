@@ -1,26 +1,26 @@
 <div class="dashboard">
-    <h1>Pending Request</h1>
-  
-    <div *ngIf="loading">Loading clients...</div>
-  
-    <div *ngIf="!loading && clients.length > 0">
-      <div *ngFor="let client of clients" class="client-card-container">
-        <div *ngIf="client.status!='Success'">
-        <mat-card class="client-card" (click)="onCardClick(client.id)">
-          <mat-card-header>
-            <mat-card-title>{{ client.companyName }}</mat-card-title>
-          </mat-card-header>
-  
-          <mat-card-content>
-            <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
-          </mat-card-content>
-        </mat-card>
-    </div>
-      </div>
-    </div>
-  
-    <div *ngIf="!loading && clients.length === 0">
-      No clients found.
-    </div>
+  <h1>Pending Requests</h1>
+
+  <div *ngIf="loading" class="loading-message">Loading clients...</div>
+
+  <div *ngIf="!loading && clients.length > 0" class="client-card-container">
+      <ng-container *ngFor="let client of clients">
+          <ng-container *ngIf="client.status !== 'Success'">
+              <div class="client-card-wrapper">
+                  <mat-card class="client-card" (click)="onCardClick(client.id)">
+                      <mat-card-header>
+                          <mat-card-title class="client-card-title">{{ client.companyName }}</mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content class="client-card-content">
+                          <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
+                      </mat-card-content>
+                  </mat-card>
+              </div>
+          </ng-container>
+      </ng-container>
   </div>
-  
+
+  <div *ngIf="!loading && clients.length === 0" class="no-clients-message">
+      No clients found.
+  </div>
+</div>
