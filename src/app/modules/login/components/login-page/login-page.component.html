@@ -20,16 +20,15 @@
             </mat-error>
           </mat-form-field>
 
-          
-          <!-- <div class="w-100 mb-3">
-            <ngx-captcha2
-              siteKey="6Lf151QqAAAAACVNLhJNZaJPUl1Z7aG4oVh9MP7W"
-              formControlName="recaptcha">
-            </ngx-captcha2>
+
+          <div class="w-100 mb-3">
+            <ngx-recaptcha2 siteKey="6Lf151QqAAAAACVNLhJNZaJPUl1Z7aG4oVh9MP7W" (success)="handleSuccess($event)" 
+              >
+            </ngx-recaptcha2>
             <mat-error *ngIf="loginForm.get('recaptcha')?.hasError('required')">
               Please verify you are not a robot.
             </mat-error>
-          </div> -->
+          </div>
 
           <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
         </form>
