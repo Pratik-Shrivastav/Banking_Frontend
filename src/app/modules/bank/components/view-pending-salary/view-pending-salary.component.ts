@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-pending-salary',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './view-pending-salary.component.css'
 })
 export class ViewPendingSalaryComponent {
+  constructor(
+    public dialogRef: MatDialogRef<ViewPendingSalaryComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  get salaryDisbursement(){
+    return this.data.salaryDisbursement
+  }
+
 
 }

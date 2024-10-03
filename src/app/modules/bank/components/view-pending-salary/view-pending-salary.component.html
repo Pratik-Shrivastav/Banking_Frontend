@@ -1,1 +1,41 @@
-<p>view-pending-salary works!</p>
+<h1 mat-dialog-title class="text-center">
+    <i class="fas fa-dollar-sign"></i> Payment Details
+</h1>
+
+<div mat-dialog-content class="dialog-content p-4">
+    <div class="salary-info mb-4">
+        <h5 class="font-weight-bold">Salary Disbursement Summary</h5>
+        <p><strong><i class="fas fa-file-invoice"></i> Salary Disbursement Id:</strong> {{ salaryDisbursement.id }}</p>
+        <p><strong><i class="fas fa-rupee-sign"></i> Amount:</strong> {{ salaryDisbursement.amount | currency:'INR' }}</p>
+        <p><strong><i class="fas fa-check-circle"></i> Status:</strong> {{ salaryDisbursement.status }}</p>
+        <p><strong><i class="fas fa-calendar-alt"></i> Created At:</strong> {{ salaryDisbursement.processedAt | date: 'short' }}</p>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="font-weight-bold employee-title">Employee List</h3>
+    <div>
+        <table class="table table-bordered employee-table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of salaryDisbursement.employeeList">
+                    <td>{{ employee.employeeId }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.salary | currency:'INR' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-center my-3">
+    <button mat-button class="btn btn-secondary" mat-dialog-close>
+        <i class="fas fa-times"></i> Close
+    </button>
+</div>

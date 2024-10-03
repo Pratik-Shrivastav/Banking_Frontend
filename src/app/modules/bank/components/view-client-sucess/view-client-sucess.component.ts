@@ -125,10 +125,9 @@ export class ViewClientSucessComponent {
   }
 
   viewSalaryDisbursementDetails(salaryDisbursement: any) {
-    const clientId = this.client.id;
     const dialogRef = this.dialog.open(ViewPendingSalaryComponent, {
       width: '400px',
-      data: { salaryDisbursement, clientId }
+      data: { salaryDisbursement }
     });
   }
 }
