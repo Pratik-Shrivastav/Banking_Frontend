@@ -51,8 +51,8 @@ export class SuperAdminService {
     return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }
 
-  public paymentStatus(id:number,status:string,clientId:number):Observable<any>{
-    const requestUrl = `${this.apiUrl}/PaymentStatus/${clientId}/${id}`;
+  public paymentStatus(id:number,benificiaryId:number,status:string,clientId:number):Observable<any>{
+    const requestUrl = `${this.apiUrl}/PaymentStatus/${clientId}/${benificiaryId}/${id}`;
     const headers = { 'Content-Type': 'application/json' };
     return this.httpClient.put(requestUrl,JSON.stringify(status),{headers});
   }

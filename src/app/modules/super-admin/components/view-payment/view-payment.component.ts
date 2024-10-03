@@ -28,7 +28,7 @@ export class ViewPaymentComponent {
 
   approve() {
     console.log('Payment Approved:', this.data);
-    this.superAdminService.paymentStatus(this.payment.id,"Success",this.clientId).subscribe(
+    this.superAdminService.paymentStatus(this.payment.id,this.benificiary.id,"Success",this.clientId).subscribe(
       (response)=>{
         console.log(response);  
       },
@@ -41,7 +41,7 @@ export class ViewPaymentComponent {
 
   reject() {
     console.log('Payment Rejected:', this.data);
-    this.superAdminService.paymentStatus(this.payment.id,"Reject",this.clientId).subscribe(
+    this.superAdminService.paymentStatus(this.payment.id,this.benificiary.id,"Reject",this.clientId).subscribe(
       (response)=>{
         console.log(response);  
       },
