@@ -35,6 +35,7 @@
                       <mat-label>Username</mat-label>
                       <input matInput formControlName="userName" required />
                       <mat-error *ngIf="userFormGroup.get('userName')?.hasError('required')">Username is required</mat-error>
+                      <mat-error *ngIf="userFormGroup.get('userName')?.hasError('usernameTaken')">Username is already taken.</mat-error>
                     </mat-form-field>
                   </div>
                 </div>

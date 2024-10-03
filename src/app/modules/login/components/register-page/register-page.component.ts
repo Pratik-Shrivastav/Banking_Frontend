@@ -44,7 +44,7 @@ export class RegisterPageComponent {
     this.userFormGroup = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      userName: ['', Validators.required]
+      userName: ['', Validators.required,this._service.validateUsername()]
     });
   }
 
