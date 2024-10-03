@@ -13,6 +13,15 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <div class="form-group col-md-6 mb-2">
+          <mat-form-field class="w-100 small-field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Enter email" id="email" />
+            <mat-error *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
+              Email is required
+            </mat-error>
+          </mat-form-field>
+        </div>
 
         <!-- Designation -->
         <div class="form-group col-md-6 mb-2">

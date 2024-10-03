@@ -1,180 +1,171 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="col-md-8">
-      <mat-card class="outerDiv">
-        <mat-card-content>
-          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100 register-page">
+  <div class="col-md-8">
+    <mat-card class="outerDiv shadow-lg">
+      <mat-card-content>
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
           
-            <!-- Step 1: User Details -->
-            <mat-step [stepControl]="userFormGroup">
-              <form [formGroup]="userFormGroup">
-                <ng-template matStepLabel>User Details</ng-template>
-  
-                <div class="row">
-                    
-                  <!-- Email Field -->
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Email</mat-label>
-                      <input matInput formControlName="email" required />
-                      <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">Email is required</mat-error>
-                    </mat-form-field>
-                  </div>
-  
-                  <!-- Password Field -->
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Password</mat-label>
-                      <input matInput type="password" formControlName="password" required />
-                      <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">Password is required</mat-error>
-                    </mat-form-field>
-                  </div>
-  
-                  <!-- Username Field -->
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Username</mat-label>
-                      <input matInput formControlName="userName" required />
-                      <mat-error *ngIf="userFormGroup.get('userName')?.hasError('required')">Username is required</mat-error>
-                      <mat-error *ngIf="userFormGroup.get('userName')?.hasError('usernameTaken')">Username is already taken.</mat-error>
-                    </mat-form-field>
-                  </div>
+          <!-- Step 1: User Details -->
+          <mat-step [stepControl]="userFormGroup">
+            <form [formGroup]="userFormGroup">
+              <ng-template matStepLabel>User Details</ng-template>
+
+              <div class="row">
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required />
+                    <mat-error *ngIf="userFormGroup.get('email')?.hasError('required')">Email is required</mat-error>
+                  </mat-form-field>
                 </div>
-  
-                <!-- Next button (enabled only if the form is valid) -->
-                <div class="d-flex justify-content-end">
-                  <button mat-raised-button color="primary" matStepperNext [disabled]="!userFormGroup.valid">Next</button>
+
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" required />
+                    <mat-error *ngIf="userFormGroup.get('password')?.hasError('required')">Password is required</mat-error>
+                  </mat-form-field>
                 </div>
-              </form>
-            </mat-step>
-  
-            <!-- Step 2: Founder & Company Details -->
-            <mat-step [stepControl]="companyFormGroup">
-              <form [formGroup]="companyFormGroup">
-                <ng-template matStepLabel>Founder & Company Details</ng-template>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Founder Name</mat-label>
-                      <input matInput formControlName="founderName" required />
-                      <mat-error *ngIf="companyFormGroup.get('founderName')?.hasError('required')">Founder Name is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Company Name</mat-label>
-                      <input matInput formControlName="companyName" required />
-                      <mat-error *ngIf="companyFormGroup.get('companyName')?.hasError('required')">Company Name is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-12 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Phone</mat-label>
-                      <input matInput formControlName="phone" required />
-                      <mat-error *ngIf="companyFormGroup.get('phone')?.hasError('required')">Phone number is required</mat-error>
-                    </mat-form-field>
-                  </div>
+
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="userName" required />
+                    <mat-error *ngIf="userFormGroup.get('userName')?.hasError('required')">Username is required</mat-error>
+                    <mat-error *ngIf="userFormGroup.get('userName')?.hasError('usernameTaken')">Username is already taken.</mat-error>
+                  </mat-form-field>
                 </div>
-  
-                <!-- Back and Next buttons with validation -->
-                <div class="d-flex justify-content-between">
-                  <button mat-raised-button matStepperPrevious>Back</button>
-                  <button mat-raised-button color="primary" matStepperNext [disabled]="!companyFormGroup.valid">Next</button>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button mat-raised-button color="primary" matStepperNext [disabled]="!userFormGroup.valid">Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <!-- Step 2: Founder & Company Details -->
+          <mat-step [stepControl]="companyFormGroup">
+            <form [formGroup]="companyFormGroup">
+              <ng-template matStepLabel>Founder & Company Details</ng-template>
+
+              <div class="row">
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Founder Name</mat-label>
+                    <input matInput formControlName="founderName" required />
+                    <mat-error *ngIf="companyFormGroup.get('founderName')?.hasError('required')">Founder Name is required</mat-error>
+                  </mat-form-field>
                 </div>
-              </form>
-            </mat-step>
-  
-            <!-- Step 3: Address Information -->
-            <mat-step [stepControl]="addressFormGroup">
-              <form [formGroup]="addressFormGroup">
-                <ng-template matStepLabel>Address Information</ng-template>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Address</mat-label>
-                      <input matInput formControlName="address" required />
-                      <mat-error *ngIf="addressFormGroup.get('address')?.hasError('required')">Address is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>City</mat-label>
-                      <input matInput formControlName="city" required />
-                      <mat-error *ngIf="addressFormGroup.get('city')?.hasError('required')">City is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Region</mat-label>
-                      <input matInput formControlName="region" required />
-                      <mat-error *ngIf="addressFormGroup.get('region')?.hasError('required')">Region is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Postal Code</mat-label>
-                      <input matInput formControlName="postalCode" required />
-                      <mat-error *ngIf="addressFormGroup.get('postalCode')?.hasError('required')">Postal Code is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-12 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Country</mat-label>
-                      <input matInput formControlName="country" required />
-                      <mat-error *ngIf="addressFormGroup.get('country')?.hasError('required')">Country is required</mat-error>
-                    </mat-form-field>
-                  </div>
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Company Name</mat-label>
+                    <input matInput formControlName="companyName" required />
+                    <mat-error *ngIf="companyFormGroup.get('companyName')?.hasError('required')">Company Name is required</mat-error>
+                  </mat-form-field>
                 </div>
-  
-                <!-- Back and Next buttons with validation -->
-                <div class="d-flex justify-content-between">
-                  <button mat-raised-button matStepperPrevious>Back</button>
-                  <button mat-raised-button color="primary" matStepperNext [disabled]="!addressFormGroup.valid">Next</button>
+                <div class="col-md-12 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Phone</mat-label>
+                    <input matInput formControlName="phone" required />
+                    <mat-error *ngIf="companyFormGroup.get('phone')?.hasError('required')">Phone number is required</mat-error>
+                  </mat-form-field>
                 </div>
-              </form>
-            </mat-step>
-  
-            <!-- Step 4: Account Details -->
-            <mat-step [stepControl]="accountFormGroup">
-              <form [formGroup]="accountFormGroup">
-                <ng-template matStepLabel>Account Details</ng-template>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Account Number</mat-label>
-                      <input matInput formControlName="accountNumber" required />
-                      <mat-error *ngIf="accountFormGroup.get('accountNumber')?.hasError('required')">Account Number is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>IFSC</mat-label>
-                      <input matInput formControlName="ifsc" required />
-                      <mat-error *ngIf="accountFormGroup.get('ifsc')?.hasError('required')">IFSC is required</mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-12 mb-3">
-                    <mat-form-field appearance="fill" class="w-100">
-                      <mat-label>Branch</mat-label>
-                      <input matInput formControlName="branch" required />
-                      <mat-error *ngIf="accountFormGroup.get('branch')?.hasError('required')">Branch is required</mat-error>
-                    </mat-form-field>
-                  </div>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" matStepperNext [disabled]="!companyFormGroup.valid">Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <!-- Step 3: Address Information -->
+          <mat-step [stepControl]="addressFormGroup">
+            <form [formGroup]="addressFormGroup">
+              <ng-template matStepLabel>Address Information</ng-template>
+
+              <div class="row">
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Address</mat-label>
+                    <input matInput formControlName="address" required />
+                    <mat-error *ngIf="addressFormGroup.get('address')?.hasError('required')">Address is required</mat-error>
+                  </mat-form-field>
                 </div>
-  
-                <!-- Back and Submit buttons with validation -->
-                <div class="d-flex justify-content-between">
-                  <button mat-raised-button matStepperPrevious>Back</button>
-                  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!accountFormGroup.valid">Submit</button>
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city" required />
+                    <mat-error *ngIf="addressFormGroup.get('city')?.hasError('required')">City is required</mat-error>
+                  </mat-form-field>
                 </div>
-              </form>
-            </mat-step>
-  
-          </mat-horizontal-stepper>
-        </mat-card-content>
-      </mat-card>
-    </div>
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Region</mat-label>
+                    <input matInput formControlName="region" required />
+                    <mat-error *ngIf="addressFormGroup.get('region')?.hasError('required')">Region is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Postal Code</mat-label>
+                    <input matInput formControlName="postalCode" required />
+                    <mat-error *ngIf="addressFormGroup.get('postalCode')?.hasError('required')">Postal Code is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Country</mat-label>
+                    <input matInput formControlName="country" required />
+                    <mat-error *ngIf="addressFormGroup.get('country')?.hasError('required')">Country is required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" matStepperNext [disabled]="!addressFormGroup.valid">Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <!-- Step 4: Account Details -->
+          <mat-step [stepControl]="accountFormGroup">
+            <form [formGroup]="accountFormGroup">
+              <ng-template matStepLabel>Account Details</ng-template>
+
+              <div class="row">
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Account Number</mat-label>
+                    <input matInput formControlName="accountNumber" required />
+                    <mat-error *ngIf="accountFormGroup.get('accountNumber')?.hasError('required')">Account Number is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6 mb-3 mt-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>IFSC</mat-label>
+                    <input matInput formControlName="ifsc" required />
+                    <mat-error *ngIf="accountFormGroup.get('ifsc')?.hasError('required')">IFSC is required</mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Branch</mat-label>
+                    <input matInput formControlName="branch" required />
+                    <mat-error *ngIf="accountFormGroup.get('branch')?.hasError('required')">Branch is required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button mat-raised-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!accountFormGroup.valid">Submit</button>
+              </div>
+            </form>
+          </mat-step>
+
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+</div>

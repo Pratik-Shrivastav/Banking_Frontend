@@ -1,6 +1,7 @@
-<mat-card>
+<div class="container">
+  <mat-card class="upload-card">
     <mat-card-header>
-      <mat-card-title>Upload Documents</mat-card-title>
+      <mat-card-title class="text-center mb-4 mt-3">Required Documents</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="fileForm">
@@ -9,13 +10,13 @@
           <input type="file" id="cin" (change)="onFileSelected($event, 'cin')" />
           <mat-error *ngIf="fileForm.get('cin')?.invalid">File is required</mat-error>
         </div>
-  
+
         <div class="file-input">
           <label for="aoa">Memorandum & Articles of Association (AOA)</label>
           <input type="file" id="aoa" (change)="onFileSelected($event, 'aoa')" />
           <mat-error *ngIf="fileForm.get('aoa')?.invalid">File is required</mat-error>
         </div>
-  
+
         <div class="file-input">
           <label for="pan">Company PAN Card</label>
           <input type="file" id="pan" (change)="onFileSelected($event, 'pan')" />
@@ -29,4 +30,4 @@
       </button>
     </mat-card-actions>
   </mat-card>
-  
+</div>

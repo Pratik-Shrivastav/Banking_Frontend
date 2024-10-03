@@ -19,7 +19,8 @@ export class AddBeneficiaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.beneficiaryForm = this.fb.group({
-      benificiaryName: ['', Validators.required], // Match with the model
+      benificiaryName: ['', Validators.required],
+      email:['',Validators.required], // Match with the model
       accountDetailsObject: this.fb.group({       // Create a FormGroup for account details
         id: [0],                                   // Optional ID for new account details
         accountNumber: ['', Validators.required],   // Required field

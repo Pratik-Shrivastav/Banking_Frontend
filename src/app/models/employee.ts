@@ -1,6 +1,7 @@
 export interface Employee {
     employeeId?: number; // Optional for new employees
     name: string;
+    email:string;
     designation: string;
     salary: number;
     accountDetailsObject: {

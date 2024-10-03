@@ -22,6 +22,7 @@ export class AddEmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({
       employeeId: [0],  // Optional, but defaults to 0 for new employees
       name: ['', Validators.required],
+      email:['',Validators.required],
       designation: ['', Validators.required],
       salary: ['', [Validators.required, Validators.min(0)]],
       accountDetailsObject: this.fb.group({   // Nesting account details inside a group

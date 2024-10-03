@@ -6,6 +6,7 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
+          <th>Email</th>
           <th>Designation</th>
           <th>Salary</th>
           <th>Account Number</th>
@@ -19,6 +20,7 @@
         <tr *ngFor="let employee of employees">
           <td>{{ employee.employeeId }}</td>
           <td>{{ employee.name }}</td>
+          <td>{{employee.email}}</td>
           <td>{{ employee.designation }}</td>
           <td>{{ employee.salary | currency:'INR' }}</td>
           <td>{{ employee.accountDetailsObject?.accountNumber }}</td>

@@ -1,6 +1,7 @@
 export interface Beneficiary {
     id?: number;  // Optional for new beneficiaries
-    benificiaryName: string; // Matches the C# model property
+    benificiaryName: string; 
+    email:string;// Matches the C# model property
     createdOn: string; // Should be string to match JSON date format
     isActive: boolean; // Matches the C# model property
     accountDetailsObject: {

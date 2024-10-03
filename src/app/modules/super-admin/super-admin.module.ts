@@ -15,7 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ViewSuccessPaymentComponent } from './components/view-success-payment/view-success-payment.component';
 import { ViewSuccessSalaryDisbursementComponent } from './components/view-success-salary-disbursement/view-success-salary-disbursement.component';
 import { ViewSalaryDisbursementComponent } from './components/view-salary-disbursement/view-salary-disbursement.component';
-
+import { MatCardContent } from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { ViewSalaryDisbursementComponent } from './components/view-salary-disbur
     MatCardModule,
     MatDialogModule,
     MatButtonModule,
+    MatCardContent,
+    MatProgressSpinnerModule
   ]
 })
 export class SuperAdminModule { }
