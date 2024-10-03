@@ -1,0 +1,172 @@
+.loading-spinner {
+    text-align: center;
+    padding: 20px;
+}
+
+.error-message {
+    color: #dc3545; /* Bootstrap danger color */
+    text-align: center;
+    font-size: 16px;
+    margin: 20px;
+}
+
+.client-details {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.client-card {
+    width: 100%;
+    max-width: 600px; /* Limit card width */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.client-card-header {
+    background-color: #007bff; /* Background color for header */
+    color: white; /* Text color */
+    padding: 16px; /* Header padding */
+    border-top-left-radius: 10px; /* Rounded corners */
+    border-top-right-radius: 10px; /* Rounded corners */
+}
+
+.client-card-content {
+    padding: 16px;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Space between elements */
+}
+
+.client-info p {
+    margin: 0; /* Remove default margin */
+    font-size: 16px; /* Font size */
+}
+
+
+.beneficiary-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for better visibility */
+}
+
+.beneficiary-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #343a40; /* Dark text color */
+    position: sticky; /* Make the heading sticky */
+    top: 0; /* Stick to the top of the container */
+    background: #ffffff; /* White background for the heading */
+    padding: 10px 0; /* Padding for spacing */
+    z-index: 1; /* Ensure it stays above other content */
+}
+
+.payment-info {
+    display: flex; /* Use flexbox to align items in a row */
+    align-items: center; /* Center items vertically */
+    margin: 10px 0;
+    font-size: 18px; /* Space around the paragraph */
+}
+
+.beneficiary-name {
+    font-weight: bold; /* Emphasize the beneficiary name */
+    margin-left: 5px; /* Space between label and name */
+}
+
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Space between tables */
+}
+
+.payment-table th, .payment-table td {
+    padding: 12px;
+    text-align: left; /* Align text to the left */
+    border-bottom: 1px solid #ddd; /* Border for table rows */
+}
+
+.payment-table th {
+    background-color: #343a40; /* Dark background for header */
+    color: white; /* White text for header */
+}
+
+.payment-table tr:hover {
+    background-color: #f1f3f5; /* Highlight on hover */
+}
+
+
+h3 {
+    color: #333; /* Darker text for headings */
+    margin-bottom: 10px;
+}
+
+
+
+button {
+    margin: 0 5px; /* Margin for buttons */
+}
+
+mat-button {
+    background-color: #007bff; /* Button background color */
+    color: white;
+    border-radius: 5px; /* Rounded corners */
+    padding: 6px 12px;
+    transition: background-color 0.2s; /* Smooth transition */
+}
+
+mat-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+.salary-section {
+    margin: 20px 0; /* Space above and below the section */
+    padding: 0 15px; /* Add horizontal padding */
+}
+
+.salary-heading {
+    margin-bottom: 10px; /* Space below the heading */
+    font-size: 1.5rem; /* Increase font size */
+    color: #333; /* Dark color for better contrast */
+}
+
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling for small screens */
+    margin: 0 auto; /* Center the container */
+    max-width: 800px; /* Set a maximum width for the table */
+}
+
+.salary-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove gaps between table cells */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+    background-color: #fff; /* Background color for table */
+}
+
+.salary-table-header {
+    background-color: #007bff; /* Blue background for header */
+    color: #fff; /* White text for header */
+}
+
+.salary-table th, .salary-table td {
+    padding: 12px 15px; /* Add padding for cells */
+    text-align: left; /* Align text to the left */
+}
+
+.salary-table tbody tr {
+    transition: background-color 0.2s; /* Smooth transition for hover effect */
+}
+
+.salary-table tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+.salary-table td {
+    border-top: 1px solid #e0e0e0; /* Add border to table cells */
+}
+
+.salary-table td button {
+    margin-right: 5px; /* Space between buttons */
+}

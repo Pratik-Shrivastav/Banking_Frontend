@@ -1,27 +1,48 @@
 .dashboard {
-    max-width: 600px;
-    margin: 20px auto; /* Center the dashboard */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  ul {
-    list-style-type: none; /* Remove default list styles */
-    padding: 0; /* Remove default padding */
-  }
-  
-  li {
-    padding: 10px;
-    border-bottom: 1px solid #eee; /* Add a bottom border for each item */
-  }
-  
-  li:last-child {
-    border-bottom: none; /* Remove the last item's bottom border */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height of the viewport */
+  background-color: #f4f4f9; /* Light background color */
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.3rem;
+  margin-bottom: 40px;
+  color: #333; /* Darker text color */
+}
+
+.dashboard-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between cards */
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+}
+
+.dashboard-card {
+  width: 300px; /* Fixed width for cards */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effect */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+mat-card-header {
+  background-color: #007bff; /* Primary color for header */
+  color: white;
+  text-align:justify;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+mat-card-content {
+  text-align: center;
+  padding: 20px; /* Padding for content */
+}

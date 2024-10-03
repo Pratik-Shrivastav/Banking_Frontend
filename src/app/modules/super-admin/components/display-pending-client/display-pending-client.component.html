@@ -28,7 +28,9 @@
     <ul>
       <li *ngFor="let doc of documents">
         <strong>{{ doc.documentName }}:</strong>
-        <button mat-button (click)="downloadFile(doc.documentName)">Download</button>
+        <button mat-button class="download-button" (click)="downloadFile(doc.documentName)">
+          <mat-icon>download</mat-icon> Download
+        </button>
         <p>Uploaded on: {{ doc.uploadedOn | date }}</p>
       </li>
     </ul>

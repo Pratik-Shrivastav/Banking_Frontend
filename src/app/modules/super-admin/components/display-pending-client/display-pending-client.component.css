@@ -49,6 +49,25 @@
     margin-bottom: 15px;
   }
   
+  .download-button {
+    background-color: #ffffff; /* Highlight color */
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border-color: black;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .download-button:hover {
+    background-color: #23eb70; /* Darker shade on hover */
+  }
+  
+  .download-button mat-icon {
+    margin-right: 5px; /* Space between icon and text */
+  }
+  
   .action-buttons {
     display: flex;
     justify-content: space-between;
