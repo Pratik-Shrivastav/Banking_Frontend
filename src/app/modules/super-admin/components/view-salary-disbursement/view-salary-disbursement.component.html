@@ -3,7 +3,7 @@
 <div mat-dialog-content class="dialog-content">
     <div class="salary-info">
         <p><strong>Salary Disbursement Id:</strong> {{ salaryDisbursement.id }}</p>
-        <p><strong>Amount:</strong> {{ salaryDisbursement.amount | currency }}</p>
+        <p><strong>Amount:</strong> {{ salaryDisbursement.amount | currency:'INR' }}</p>
         <p><strong>Status:</strong> {{ salaryDisbursement.status }}</p>
         <p><strong>Created At:</strong> {{ salaryDisbursement.processedAt | date: 'short' }}</p>
     </div>
@@ -24,7 +24,7 @@
                 <tr *ngFor="let employee of salaryDisbursement.employeeList">
                     <td>{{ employee.employeeId }}</td>
                     <td>{{ employee.name }}</td>
-                    <td>{{ employee.salary | currency }}</td>
+                    <td>{{ employee.salary | currency:'INR' }}</td>
                 </tr>
             </tbody>
         </table>

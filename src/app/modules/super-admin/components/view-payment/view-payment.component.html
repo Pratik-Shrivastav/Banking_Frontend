@@ -12,7 +12,7 @@
 
     <div class="payment-info">
         <p><strong>Payment Type:</strong> {{ payment.paymentType }}</p>
-        <p><strong>Amount:</strong> {{ payment.amount | currency }}</p>
+        <p><strong>Amount:</strong> {{ payment.amount | currency:'INR' }}</p>
         <p><strong>Status:</strong> {{ payment.status }}</p>
         <p><strong>Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
     </div>

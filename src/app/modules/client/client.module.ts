@@ -30,6 +30,7 @@ import { MatIcon } from '@angular/material/icon';
 import { ReportsStatisticsComponent } from './components/reports-statistics/reports-statistics.component';
 import { NgChartjsModule } from 'ng-chartjs';
 import { AuditLogComponent } from './components/audit-logs/audit-logs.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -45,6 +46,7 @@ import { AuditLogComponent } from './components/audit-logs/audit-logs.component'
     DetailsModalComponent,
     ReportsStatisticsComponent,
     AuditLogComponent,
+    NavbarComponent,
     
     
   ],
