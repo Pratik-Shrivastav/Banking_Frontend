@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Employee } from '../../../models/employee';  // Import the employee model
+import { catchError, Observable, throwError } from 'rxjs';
+import { Employee } from '../../../models/employee'; 
+import { AuditLog } from '../../../models/auditLogs';  // Import the employee model
 import { Beneficiary, BeneficiaryPaymentRequest, Payment } from '../../../models/beneficiary';  // Import the beneficiary model
 
 @Injectable({
@@ -90,6 +91,15 @@ getRecentPayments(): Observable<any[]> {
 getSalaryDisbursements(): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/Payments/SalaryDisbursements`); // Adjust the URL as needed
 }
+getAuditLogs(): Observable<AuditLog[]> {
+  return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`).pipe(
+    catchError(this.handleError)
+  );
+}
 
+private handleError(error: any): Observable<never> {
+  console.error('An error occurred while fetching audit logs', error);
+  return throwError('Something went wrong; please try again later.');
+}
 
 }

@@ -1,0 +1,43 @@
+.audit-log-container {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .audit-log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .audit-log-table th, .audit-log-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .audit-log-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .audit-log-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .audit-log-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .loading-message {
+    text-align: center;
+    font-style: italic;
+  }
+  

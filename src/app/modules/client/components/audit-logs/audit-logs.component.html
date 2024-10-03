@@ -1,0 +1,35 @@
+
+<div class="audit-log-container">
+    <h2>Audit Logs</h2>
+  
+    <!-- Error message display -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Loading message -->
+    <div *ngIf="!auditLogs.length && !errorMessage" class="loading-message">
+      Loading audit logs...
+    </div>
+  
+    <!-- Audit Log Table -->
+    <table *ngIf="auditLogs.length" class="audit-log-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Action</th>
+          <th>Timestamp</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of auditLogs">
+          <td>{{ log.id }}</td>
+          <td>{{ log.action }}</td>
+          <td>{{ log.timestamp | date:'medium' }}</td>
+          <td>{{ log.details }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

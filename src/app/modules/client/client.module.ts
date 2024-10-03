@@ -29,6 +29,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
 import { ReportsStatisticsComponent } from './components/reports-statistics/reports-statistics.component';
 import { NgChartjsModule } from 'ng-chartjs';
+import { AuditLogComponent } from './components/audit-logs/audit-logs.component';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -43,6 +44,7 @@ import { NgChartjsModule } from 'ng-chartjs';
     ViewRecentComponent,
     DetailsModalComponent,
     ReportsStatisticsComponent,
+    AuditLogComponent,
     
     
   ],

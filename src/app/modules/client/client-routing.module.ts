@@ -11,6 +11,7 @@ import { SalaryDisbursementComponent } from './components/salary-disbursement/sa
 import { MakePaymentComponent } from './components/make-payment/make-payment.component';
 import { ViewRecentComponent } from './components/view-recent/view-recent.component';
 import { ReportsStatisticsComponent } from './components/reports-statistics/reports-statistics.component';
+import { AuditLogComponent } from './components/audit-logs/audit-logs.component';
 const routes: Routes = [
   { path: '', component: ClientdashboardComponent },
   { path: 'add-employee', component: AddEmployeeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'make-payment', component: MakePaymentComponent },
   {path: 'recent-transactions',component:ViewRecentComponent },
   {path:'reports-statistics',component:ReportsStatisticsComponent},
+  {path:'audit-logs',component:AuditLogComponent},
   { path: 'edit-employee/:id', component: EditEmployeeComponent }, // New route for editing employee
   { path: 'edit-beneficiary/:id', component: EditBeneficiaryComponent }
   
