@@ -66,10 +66,7 @@ export class ViewRecentComponent implements OnInit {
         transactionAmount:payment.transactions[0].transactionAmount,
         transactionStatus:payment.transactions[0].transactionStatus,
         transactionDate:payment.transactions[0].transactionDate,
-  
-  
-      };
-      
+      }; 
     }
     else{ paymentDetails = {
       type: 'payment',

@@ -23,7 +23,7 @@ export class MakePaymentComponent implements OnInit {
     // Initialize the form
     this.paymentForm = this.fb.group({
       paymentType: ['', Validators.required],
-      amount: [0, [Validators.required, Validators.min(1)]],
+      amount: [null, [Validators.required, Validators.min(1)]],
       beneficiaryId: ['', Validators.required]
     });
 
