@@ -1,0 +1,43 @@
+/* Refined hover effect */
+.card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #e0e0e0;
+}
+
+.card-hover:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+
+/* Smoother hover interaction */
+.mat-card-header {
+    background: linear-gradient(to right, #007bff, #17a2b8);
+    color: white;
+    padding: 1rem;
+}
+
+.client-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Loading Spinner styles */
+.loading-message i {
+    font-size: 2rem;
+}
+
+.loading-message p {
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+/* Centered text and margins for better readability */
+.no-clients-message i {
+    margin-bottom: 1rem;
+}
+
+/* Refined typography */
+.display-4 {
+    font-size: 2.5rem;
+}

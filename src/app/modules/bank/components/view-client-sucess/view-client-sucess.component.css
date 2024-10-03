@@ -1,0 +1,27 @@
+/* view-client-sucess.component.css */
+
+.success-row {
+    background-color: #d4edda; /* Light green for success */
+}
+
+.pending-row {
+    background-color: #fff3cd; /* Light yellow for pending */
+}
+
+.rejected-row {
+    background-color: #f8d7da; /* Light red for reject */
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.beneficiary-heading,
+.salary-heading {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+}

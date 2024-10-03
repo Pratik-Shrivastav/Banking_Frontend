@@ -1,0 +1,25 @@
+/* Adjust card styling */
+.client-details-container .card {
+    border-radius: 8px;
+}
+
+/* Ensure proper padding and margin */
+.client-info p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* Loading container styling */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+/* Documents table responsiveness */
+@media (max-width: 768px) {
+    .documents-section table {
+        width: 100%;
+    }
+}

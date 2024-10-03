@@ -1,0 +1,31 @@
+<h1 mat-dialog-title class="dialog-title text-center">
+    <i class="fas fa-money-check-alt"></i> Payment Details
+</h1>
+
+<div mat-dialog-content class="dialog-content p-4">
+    <div class="payment-info mb-4">
+        <h5 class="font-weight-bold">Payment Information</h5>
+        <p><strong><i class="fas fa-tags"></i> Payment Type:</strong> {{ payment.paymentType }}</p>
+        <p><strong><i class="fas fa-rupee-sign"></i> Amount:</strong> {{ payment.amount | currency:'INR' }}</p>
+        <p><strong><i class="fas fa-info-circle"></i> Status:</strong> {{ payment.status }}</p>
+        <p><strong><i class="fas fa-calendar-alt"></i> Created At:</strong> {{ payment.createdAt | date: 'short' }}</p>
+        <p><strong><i class="fas fa-check-circle"></i> Approved At:</strong> {{ payment.approvedAt | date: 'short' }}</p>
+    </div>
+
+    <hr class="divider">
+
+    <h3 class="transaction-title font-weight-bold">Transaction Details</h3>
+    <div *ngFor="let transaction of payment.transactions" class="transaction-info mb-3">
+        <p><strong><i class="fas fa-file-invoice"></i> Transaction Id:</strong> {{ transaction.id }}</p>
+        <p><strong><i class="fas fa-calendar-check"></i> Transaction Date:</strong> {{ transaction.transactionDate | date: 'short' }}</p>
+        <p><strong><i class="fas fa-info-circle"></i> Transaction Status:</strong> {{ transaction.transactionStatus }}</p>
+        <p><strong><i class="fas fa-rupee-sign"></i> Transaction Amount:</strong> {{ transaction.transactionAmount | currency:'INR' }}</p>
+        <hr class="transaction-divider">
+    </div>
+</div>
+
+<div mat-dialog-actions class="dialog-actions d-flex justify-content-center my-3">
+    <button mat-button class="btn btn-secondary" mat-dialog-close>
+        <i class="fas fa-times"></i> Close
+    </button>
+</div>
