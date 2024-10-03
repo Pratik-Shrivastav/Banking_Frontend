@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../service/client.service'; // Adjust the path as needed
+import { ClientService } from '../../service/client.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DetailsModalComponent } from '../details-modal/details-modal.component'; // Adjust the path as needed
+import { DetailsModalComponent } from '../details-modal/details-modal.component'; 
 
 @Component({
   selector: 'app-transactions',
@@ -9,8 +9,11 @@ import { DetailsModalComponent } from '../details-modal/details-modal.component'
   styleUrls: ['./view-recent.component.css']
 })
 export class ViewRecentComponent implements OnInit {
-  salaryDisbursements: any[] = []; // Array to hold salary disbursement payments
-  recentPayments: any[] = []; // Array to hold recent payments
+  salaryDisbursements: any[] = [];
+  recentPayments: any[] = [];
+
+  filteredSalaryDisbursements: any[] = [];  // Filtered Salary Disbursements
+  filteredRecentPayments: any[] = [];       // Filtered Recent Payments
 
   constructor(private clientService: ClientService, private modalService: NgbModal) {}
 
@@ -19,23 +22,12 @@ export class ViewRecentComponent implements OnInit {
     this.loadSalaryDisbursements();
   }
 
-  // Method to load recent payments
-  loadRecentPayments(): void {
-    this.clientService.getRecentPayments().subscribe(
-      (data: any[]) => {
-        this.recentPayments = data;
-      },
-      error => {
-        console.error('Error fetching recent payments', error);
-      }
-    );
-  }
-
-  // Method to load salary disbursements
+  // Load Salary Disbursements
   loadSalaryDisbursements(): void {
     this.clientService.getSalaryDisbursements().subscribe(
       (data: any[]) => {
         this.salaryDisbursements = data;
+        this.filteredSalaryDisbursements = data; // Set initially
       },
       error => {
         console.error('Error fetching salary disbursements', error);
@@ -43,66 +35,70 @@ export class ViewRecentComponent implements OnInit {
     );
   }
 
-  // Method to open the modal with details
-  openDetails(data: any): void {
-    console.log('Opening modal with data:', data);
-    const modalRef = this.modalService.open(DetailsModalComponent);
-    modalRef.componentInstance.data = data; // Ensure the correct data is being passed
+  // Load Recent Payments
+  loadRecentPayments(): void {
+    this.clientService.getRecentPayments().subscribe(
+      (data: any[]) => {
+        this.recentPayments = data;
+        this.filteredRecentPayments = data; // Set initially
+      },
+      error => {
+        console.error('Error fetching recent payments', error);
+      }
+    );
   }
 
-  // Method to handle row click for recent payments
-  onPaymentClick(payment: any,beneficiary:any): void {
-    let paymentDetails={};
-    if(payment.transactions.length > 0){
-       paymentDetails = {
-        type: 'payment',
-        id: payment.id,
-        beneficiaryName: beneficiary.benificiaryName, 
-        amount: payment.amount,
-        status: payment.status,
-        createdAt: payment.createdAt,
-        
-        transactionId:payment.transactions[0].id,
-        transactionAmount:payment.transactions[0].transactionAmount,
-        transactionStatus:payment.transactions[0].transactionStatus,
-        transactionDate:payment.transactions[0].transactionDate,
-      }; 
-    }
-    else{ paymentDetails = {
-      type: 'payment',
-      id: payment.id,
-      beneficiaryName: beneficiary.benificiaryName, 
-      amount: payment.amount,
-      status: payment.status,
-      createdAt: payment.createdAt,
-      
-      // transactionId:payment.transactions[0].id,
-      // transactionAmount:payment.transactions[0].transactionAmount,
-      // transactionStatus:payment.transactions[0].transactionStatus,
-      // transactionDate:payment.transactions[0].transactionDate,
-
-
-    };}
-    
-    console.log(payment);
-    
+  // Handle filter change event
+  onFilterChange(event: any): void {
+    const days = +event.target.value; // Get the selected filter (1, 30, 60, 365)
+    const currentDate = new Date();
+  
+    // Filter salary disbursements for the selected time range
+    this.filteredSalaryDisbursements = this.salaryDisbursements.filter(salary => {
+      const processedAt = new Date(salary.processedAt);
+      return this.calculateDateDifference(processedAt, currentDate) <= days;
+    });
+  
+    // Filter recent payments for the selected time range
+    this.filteredRecentPayments = this.recentPayments.map(beneficiary => ({
+      ...beneficiary,
+      paymentsList: beneficiary.paymentsList.filter((payment: { createdAt: string | number | Date; }) => {
+        const createdAt = new Date(payment.createdAt);
+        return this.calculateDateDifference(createdAt, currentDate) <= days;
+      })
+    })).filter(beneficiary => beneficiary.paymentsList.length > 0);
+  }
+  
+  // Utility method to calculate the difference in days between two dates
+  calculateDateDifference(date1: Date, date2: Date): number {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    return Math.ceil(timeDiff / (1000 * 3600 * 24)); // Convert time difference to days
+  }
+  
+  // Methods to open modals and handle clicks
+  onPaymentClick(payment: any, beneficiary: any): void {
+    const paymentDetails = this.preparePaymentDetails(payment, beneficiary);
     this.openDetails(paymentDetails);
   }
 
-  // Method to handle row click for salary disbursements
   onSalaryClick(salary: any): void {
     const salaryDetails = {
       type: 'salary',
       amount: salary.amount,
       status: salary.status,
       createdAt: salary.createdAt,
-      employees: salary.employeeList, // Directly use employeeList
-      transactions: salary.transactionList // Directly use transactionList
+      employees: salary.employeeList,
+      transactions: salary.transactionList
     };
-  
-    console.log('Salary transaction list:', salary.transactionList); // Debugging statement
     this.openDetails(salaryDetails);
   }
+
+  openDetails(data: any): void {
+    const modalRef = this.modalService.open(DetailsModalComponent);
+    modalRef.componentInstance.data = data;
+  }
+
+  // Download functionality remains unchanged
   downloadData(): void {
     const successfulTransactions: any[] = [];
   
@@ -158,8 +154,8 @@ export class ViewRecentComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
-  
-  // Method to convert data to CSV format
+
+  // Convert to CSV (remains unchanged)
   private convertToCSV(transactions: any[]): string {
     const headers = ['Transaction', 'Type, Employee/Beneficiary', 'Name, Transaction', 'Amount, Transaction', 'Status, Transaction', 'Date'];
   
@@ -176,5 +172,13 @@ export class ViewRecentComponent implements OnInit {
     // Combine headers and rows
     return [headers.join(","), ...rows].join("\n"); // Join headers with a comma, then join all rows with new lines
   }
-  
+
+  private preparePaymentDetails(payment: any, beneficiary: any): any {
+    // Prepare payment details logic
+  }
 }
+
+
+
+
+
