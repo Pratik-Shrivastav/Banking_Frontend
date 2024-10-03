@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './authentication/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path:"Login",
-    loadChildren: ()=>import("./modules/login/login.module").then(m=>m.LoginModule)
+    loadChildren: ()=>import("./modules/login/login.module").then(m=>m.LoginModule),
   },
   {
     path:"Client",
@@ -17,7 +18,9 @@ const routes: Routes = [
   },
   {
     path:"SuperAdmin",
-    loadChildren: ()=>import("./modules/super-admin/super-admin.module").then(m=>m.SuperAdminModule)
+    loadChildren: ()=>import("./modules/super-admin/super-admin.module").then(m=>m.SuperAdminModule),
+    canActivate: [authGuard],  // Apply the authGuard here
+    data: { role: 'SuperAdmin' } 
   }
 ];
 

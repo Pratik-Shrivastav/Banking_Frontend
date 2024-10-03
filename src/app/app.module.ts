@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginModule } from './modules/login/login.module';
 import { JwtModule } from '@auth0/angular-jwt';
-import { JwtHelperService } from '@auth0/angular-jwt';
 export function tokenGetter() {
   return localStorage.getItem('Token');
 }
@@ -25,7 +24,7 @@ export function tokenGetter() {
         allowedDomains: ['localhost:7005'],
         disallowedRoutes: [], 
       },
-    }),
+    })
   ],
   providers: [
     provideAnimationsAsync()
