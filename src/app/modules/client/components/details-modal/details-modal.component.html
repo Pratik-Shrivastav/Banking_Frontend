@@ -1,25 +1,25 @@
 <div class="modal-header">
-    <h5 class="modal-title">Transaction Details</h5>
+    <h3 class="modal-title">Transaction Details</h3>
 </div>
 <div class="modal-body">
     <ng-container *ngIf="data">
         <!-- Salary Disbursement Details -->
         <ng-container *ngIf="data.type === 'salary'">
-            <h3 class="font-weight-bold">Salary Disbursement Details</h3>
+            <h3 class="">Salary Disbursement Details</h3>
             <div class="details">
-                <p><strong>Amount:</strong> {{ data.amount | currency:'INR' }}</p>
-                <p><strong>Status:</strong> <span [ngClass]="{'text-success': data.status === 'Successful', 'text-danger': data.status === 'Failed', 'text-warning': data.status === 'Pending'}">{{ data.status }}</span></p>
+                <p><strong>Amount: </strong> {{ data.amount | currency:'INR' }}</p>
+                <p><strong>Status: </strong> <span [ngClass]="{'text-success': data.status === 'Success', 'text-danger': data.status === 'Reject', 'text-warning': data.status === 'Pending'}">{{ data.status }}</span></p>
             </div>
 
-            <h3 class="font-weight-bold mt-4">Employees and Transactions:</h3>
+            <h3 class=" mt-2">Employees and Transactions:</h3>
             <ul class="employee-list">
                 <li *ngFor="let employee of data.employees">
-                    <strong>{{ employee.name }} ({{ employee.designation }})</strong>
+                    <strong style="margin-left:21px ;" class="mb-5">{{ employee.name }} - ({{ employee.designation }})</strong>
                     <ul class="transaction-list">
                         <ng-container *ngIf="data.transactions && data.transactions.length > 0; else noTransactions">
                             <ng-container *ngFor="let transaction of data.transactions">
                                 <li *ngIf="transaction.employeePaidId === employee.employeeId" class="transaction-item">
-                                    <p><strong>Transaction ID:</strong> {{ transaction.id }}</p>
+                                    <p><strong class="mt-3">Transaction ID:</strong> {{ transaction.id }}</p>
                                     <p><strong>Amount:</strong> {{ transaction.transactionAmount | currency:'INR' }}</p>
                                     <p><strong>Processed At:</strong> {{ transaction.transactionDate | date: 'short' }}</p>
                                     <p><strong>Status:</strong> <span [ngClass]="{'text-success': transaction.transactionStatus === 'Completed', 'text-warning': transaction.transactionStatus === 'Pending', 'text-danger': transaction.transactionStatus === 'Failed'}">{{ transaction.transactionStatus }}</span></p>
@@ -27,7 +27,7 @@
                             </ng-container>
                         </ng-container>
                         <ng-template #noTransactions>
-                            <li>No transactions found for {{ employee.name }}.</li>
+                            <li class="mt-2 mb-2">No transactions found for {{ employee.name }}.</li>
                         </ng-template>
                     </ul>
                 </li>

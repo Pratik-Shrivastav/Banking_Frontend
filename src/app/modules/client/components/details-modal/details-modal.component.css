@@ -1,6 +1,9 @@
 .modal-body {
     font-family: Arial, sans-serif;
 }
+.modal-title{
+    margin-bottom: -10px;
+}
 
 .details {
     margin-bottom: 1rem; /* Space between sections */
@@ -41,6 +44,3 @@
     font-weight: 600; /* Make headings bold */
 }
 
-.mt-4 {
-    margin-top: 1.5rem; /* More space above elements with mt-4 class */
-}

@@ -1,0 +1,73 @@
+/* Full screen container */
+.full-screen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f5f5f5;
+  }
+  
+  /* Card container */
+  .form-card {
+    width: 70%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  /* Form field sizes */
+  .small-field mat-label,
+  .small-field input {
+    font-size: 14px;
+  }
+  
+  /* Headings */
+  .mat-card-title {
+    font-size: 24px;
+    color: #004aad;
+  }
+  
+  .sub-heading {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Material form field customizations */
+  .mat-form-field {
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  
+  /* Submit button */
+  .submit-button {
+    margin-top: 15px;
+    border-radius: 6px;
+    height: 36px;
+  }
+  
+  /* Two-column layout */
+  .form-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .form-group {
+    flex: 1;
+    margin-bottom: 10px;
+  }
+  
+  /* Adjust responsiveness */
+  @media (max-width: 768px) {
+    .form-card {
+      width: 90%;
+    }
+  
+    .form-row {
+      flex-direction: column;
+    }
+  }
+  

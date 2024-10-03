@@ -26,6 +26,7 @@ import { MatCardContent } from '@angular/material/card';
 import { MatOption } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MatSelect, MatSelectModule } from '@angular/material/select';
     MatOption,
     MatCardModule,
     MatSelect,
+    MatIcon
     
     
 

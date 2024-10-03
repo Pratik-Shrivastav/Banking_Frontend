@@ -1,41 +1,88 @@
-<div class="container mt-5">
-    <h3>Edit Employee</h3>
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-        <!-- Add form fields similar to Add Employee -->
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input formControlName="name" class="form-control" id="name" placeholder="Enter name">
+<div class="container full-screen-container">
+  <mat-card class="form-card shadow">
+    <mat-card-title class="text-center mb-3">Add Employee</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <!-- Employee Name -->
+          <div class="form-group col-md-6 mb-2">
+            <mat-form-field class="w-100 small-field">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" placeholder="Enter name" id="name" />
+              <mat-error *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
+                Name is required
+              </mat-error>
+            </mat-form-field>
           </div>
-      
-          <div class="form-group">
-            <label for="designation">Designation</label>
-            <input formControlName="designation" class="form-control" id="designation" placeholder="Enter designation">
+
+          <!-- Designation -->
+          <div class="form-group col-md-6 mb-2">
+            <mat-form-field class="w-100 small-field">
+              <mat-label>Designation</mat-label>
+              <input matInput formControlName="designation" placeholder="Enter designation" id="designation" />
+              <mat-error *ngIf="employeeForm.get('designation')?.invalid && employeeForm.get('designation')?.touched">
+                Designation is required
+              </mat-error>
+            </mat-form-field>
           </div>
-      
-          <div class="form-group">
-            <label for="salary">Salary</label>
-            <input formControlName="salary" type="number" class="form-control" id="salary" placeholder="Enter salary">
+        </div>
+
+        <!-- Salary -->
+        <div class="form-row">
+          <div class="form-group col-md-6 mb-2">
+            <mat-form-field class="w-100 small-field">
+              <mat-label>Salary</mat-label>
+              <input matInput type="number" formControlName="salary" placeholder="Enter salary" id="salary" />
+              <mat-error *ngIf="employeeForm.get('salary')?.invalid && employeeForm.get('salary')?.touched">
+                Salary must be a positive number
+              </mat-error>
+            </mat-form-field>
           </div>
-      
-          <!-- Nested FormGroup for Account Details -->
-          <div formGroupName="accountDetailsObject">
-            <div class="form-group">
-              <label for="accountNumber">Account Number</label>
-              <input formControlName="accountNumber" class="form-control" id="accountNumber" placeholder="Enter account number">
+        </div>
+
+        <!-- Account Details -->
+        <div formGroupName="accountDetailsObject" class="account-details mt-3">
+          <h4 class="sub-heading">Account Details</h4>
+          <div class="form-row">
+            <div class="form-group col-md-4 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>Account Number</mat-label>
+                <input matInput formControlName="accountNumber" placeholder="Enter account number" id="accountNumber" />
+                <mat-error *ngIf="employeeForm.get('accountDetailsObject.accountNumber')?.invalid && employeeForm.get('accountDetailsObject.accountNumber')?.touched">
+                  Account Number is required
+                </mat-error>
+              </mat-form-field>
             </div>
-      
-            <div class="form-group">
-              <label for="ifsc">IFSC</label>
-              <input formControlName="ifsc" class="form-control" id="ifsc" placeholder="Enter IFSC">
+
+            <div class="form-group col-md-4 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>IFSC</mat-label>
+                <input matInput formControlName="ifsc" placeholder="Enter IFSC" id="ifsc" />
+                <mat-error *ngIf="employeeForm.get('accountDetailsObject.ifsc')?.invalid && employeeForm.get('accountDetailsObject.ifsc')?.touched">
+                  IFSC is required
+                </mat-error>
+              </mat-form-field>
             </div>
-      
-            <div class="form-group">
-              <label for="branch">Branch</label>
-              <input formControlName="branch" class="form-control" id="branch" placeholder="Enter branch">
+
+            <div class="form-group col-md-4 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>Branch</mat-label>
+                <input matInput formControlName="branch" placeholder="Enter branch" id="branch" />
+                <mat-error *ngIf="employeeForm.get('accountDetailsObject.branch')?.invalid && employeeForm.get('accountDetailsObject.branch')?.touched">
+                  Branch is required
+                </mat-error>
+              </mat-form-field>
             </div>
           </div>
-      
-        <!-- Repeat for other fields (designation, salary, account details, etc.) -->
-        <button type="submit" class="btn btn-secondary">Update</button>
-    </form>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-3">
+          <button type="submit" mat-raised-button color="primary" class="w-100 submit-button" [disabled]="employeeForm.invalid">
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

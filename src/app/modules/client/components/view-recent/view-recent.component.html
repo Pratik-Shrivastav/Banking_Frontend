@@ -1,57 +1,61 @@
 <div class="container mt-5">
-  <h2 class="text-center font-weight-bold mb-4">Recent Transactions</h2>
-  <div class="row">
-      <div class="col-md-6">
-          <h4 class="font-weight-bold mb-3">Salary Disbursement Payments</h4>
-          <table class="table table-striped table-bordered table-hover">
-              <thead class="thead-dark">
-                  <tr>
-                      <th>ID</th>
-                      <th>Amount</th>
-                      <th>Status</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let salary of salaryDisbursements" (click)="onSalaryClick(salary)" class="clickable-row">
-                      <td>{{ salary.id }}</td>
-                      <td>{{ salary.amount | currency:'INR' }}</td>
-                      <td>
-                          <span [ngClass]="{'text-success': salary.status === 'Successful', 'text-danger': salary.status === 'Failed'}">
-                              {{ salary.status }}
-                          </span>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-      <div class="col-md-6">
-          <h4 class="font-weight-bold mb-3">Recent Payments</h4>
-          <table class="table table-striped table-bordered table-hover">
-              <thead class="thead-dark">
-                  <tr>
-                      <th>ID</th>
-                      <th>Payment Type</th>
-                      <th>Amount</th>
-                      <th>Status</th>
-                      <th>Created At</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <ng-container *ngFor="let beneficiary of recentPayments">
-                      <tr *ngFor="let payment of beneficiary.paymentsList" (click)="onPaymentClick(payment,beneficiary)" class="clickable-row">
-                          <td>{{ payment.id }}</td>
-                          <td>{{ payment.paymentType }}</td>
-                          <td>{{ payment.amount | currency:'INR' }}</td>
-                          <td>
-                              <span [ngClass]="{'text-success': payment.status === 'Completed', 'text-warning': payment.status === 'Pending', 'text-danger': payment.status === 'Failed'}">
-                                  {{ payment.status }}
-                              </span>
-                          </td>
-                          <td>{{ payment.createdAt | date:'short' }}</td>
-                      </tr>
-                  </ng-container>
-              </tbody>
-          </table>
-      </div>
-  </div>
+    <h2 class="text-center font-weight-bold mb-4">Recent Transactions</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h4 class="font-weight-bold mb-3">Salary Disbursement Payments</h4>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let salary of salaryDisbursements" (click)="onSalaryClick(salary)" class="clickable-row">
+                        <td>{{ salary.id }}</td>
+                        <td>{{ salary.amount | currency:'INR' }}</td>
+                        <td>
+                            <span [ngClass]="{'text-success': salary.status === 'Success','text-warning': salary.status === 'Pending', 'text-danger': salary.status === 'Reject'}">
+                                {{ salary.status }}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h4 class="font-weight-bold mb-3">Recent Payments</h4>
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Payment Type</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let beneficiary of recentPayments">
+                        <tr *ngFor="let payment of beneficiary.paymentsList" (click)="onPaymentClick(payment,beneficiary)" class="clickable-row">
+                            <td>{{ payment.id }}</td>
+                            <td>{{ payment.paymentType }}</td>
+                            <td>{{ payment.amount | currency:'INR' }}</td>
+                            <td>
+                                <span [ngClass]="{
+                                    'text-success': payment.status === 'Success',
+                                    'text-warning': payment.status === 'Pending',
+                                    'text-danger': payment.status === 'Reject'
+                                }">
+                                    {{ payment.status }}
+                                </span>
+                            </td>
+                            <td>{{ payment.createdAt | date:'short' }}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

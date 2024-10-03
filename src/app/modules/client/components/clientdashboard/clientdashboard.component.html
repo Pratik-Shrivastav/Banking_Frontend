@@ -1,44 +1,118 @@
 <div class="container mt-5">
-  <h2 class="text-center mb-4">Client Dashboard</h2>
-  
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <button class="btn btn-primary" routerLink="/Client/add-employee">Add Employee</button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-secondary" routerLink="/Client/add-beneficiary">Add Beneficiary</button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-info" routerLink="/Client/view-employees">View Employees</button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-warning" routerLink="/Client/view-beneficiaries">View Beneficiaries</button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-warning" routerLink="/Client/disburse-salary">Disburse Salary</button>
-          </li>
-          <!-- New Button for Making a Payment -->
-          <li class="nav-item">
-            <button class="btn btn-success" routerLink="/Client/make-payment">Make Payment</button>
-          </li>
-          <li class="nav-item">
-            <button class="btn btn-success" routerLink="/Client/recent-transactions">View Recent Transactions</button>
-          </li>
-        </ul>
+  <h3 class="text-center mb-5 heading">Client Dashboard</h3>
+
+
+  <div class="row g-4 justify-content-center">
+    <!-- Add Employee Card -->
+    <div class="col-md-4">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-user-plus fa-4x"></i> <!-- FontAwesome Icon -->
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">Add Employee</h3>
+            <p>Add new employees and manage their details including salary and designation.</p>
+            <button class="btn btn-primary w-100" routerLink="/Client/add-employee">Add Employee</button>
+          </div>
+        </div>
       </div>
     </div>
-  </nav>
 
-  <!-- Optional Additional Content (like statistics) can go here -->
-  <div class="text-center">
-    <h5>Welcome to the Client Dashboard!</h5>
-    <p>Manage your employees and beneficiaries effectively.</p>
+    <!-- Add Beneficiary Card -->
+    <div class="col-md-4">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-user-friends fa-4x"></i>
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">Add Beneficiary</h3>
+            <p>Add beneficiaries for payments, with options for tracking payment details.</p>
+            <button class="btn btn-secondary w-100" routerLink="/Client/add-beneficiary">Add Beneficiary</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Employees Card -->
+    <div class="col-md-4">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-users fa-4x"></i>
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">View Employees</h3>
+            <p>View and manage the list of all employees associated with your account.</p>
+            <button class="btn btn-info w-100" routerLink="/Client/view-employees">View Employees</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Beneficiaries Card -->
+    <div class="col-md-4">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-address-book fa-4x"></i>
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">View Beneficiaries</h3>
+            <p>Manage and review the list of beneficiaries for salary or payment disbursements.</p>
+            <button class="btn btn-warning w-100" routerLink="/Client/view-beneficiaries">View Beneficiaries</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disburse Salary Card -->
+    <div class="col-md-4">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-money-check-alt fa-4x"></i>
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">Disburse Salary</h3>
+            <p>Disburse salaries to employees, directly to their accounts with payment tracking.</p>
+            <button class="btn btn-danger w-100" routerLink="/Client/disburse-salary">Disburse Salary</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Make Payment Card -->
+    <div class="col-md-4">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-credit-card fa-4x"></i>
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">Make Payment</h3>
+            <p>Initiate payments to your beneficiaries with detailed transaction logs.</p>
+            <button class="btn btn-success w-100" routerLink="/Client/make-payment">Make Payment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Transactions Card (Centered in Last Row) -->
+    <div class="col-md-4 mb-5 ">
+      <div class="card dashboard-card">
+        <div class="card-content">
+          <div class="icon-section">
+            <i class="fas fa-receipt fa-4x"></i>
+          </div>
+          <div class="text-section">
+            <h3 class="card-title">Recent Transactions</h3>
+            <p>Review the most recent transactions and payments made from your account.</p>
+            <button class="btn btn-info w-100" routerLink="/Client/recent-transactions">View Transactions</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

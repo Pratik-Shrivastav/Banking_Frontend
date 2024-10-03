@@ -1,23 +1,81 @@
-.navbar {
-    margin-bottom: 20px;
+/* General container spacing */
+.container {
+  margin-top: 30px;
+}
+.heading {
+  font-size: 2rem; /* Larger font size */
+  font-weight:500; /* Bold text */
+  color: #000000; /* Blue color for the text */
+  text-shadow: 2px 2px 4px rgba(105, 105, 105, 0.2); /* Subtle shadow effect */
+  margin-top: 20px; /* Space above the heading */
+  margin-bottom: px; /* Space below the heading */
+}
+
+/* Optional: Add some responsive styling */
+@media (max-width: 576px) {
+  .heading {
+    font-size: 2rem; /* Smaller font size on smaller screens */
   }
-  
-  .nav-item {
-    margin: 0 10px; /* Add spacing between buttons */
+}
+
+/* General card styles */
+.dashboard-card {
+  border: 2px solid grey; /* Grey border for uniformity */
+  border-radius: 15px; /* Rounded edges */
+  height: 100%;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Flexbox to divide card content */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Icon section styling */
+.icon-section {
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+/* Proper FontAwesome icon size and alignment */
+.dashboard-card .fas {
+  font-size: 64px; /* Increased icon size */
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Text section spacing */
+.text-section {
+  flex: 1;
+  padding: 10px;
+}
+
+/* Full-width buttons */
+button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Hover effect */
+.dashboard-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive layout for small screens */
+@media (max-width: 992px) {
+  .col-md-4 {
+    max-width: 100%;
   }
-  
-  .container {
-    background-color: #f8f9fa; /* Light background for the dashboard */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  h2 {
-    font-weight: bold; /* Make the heading bold */
-  }
-  
-  .btn {
-    width: 100%; /* Make buttons full-width */
-  }
-  
+}
+
+/* Center the last card */
+.offset-md-3 {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
