@@ -1,0 +1,30 @@
+.chart-container {
+  position: relative;
+  height: 400px; /* Set a specific height for the chart */
+  width: 100%; /* Full width */
+}
+
+.card {
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 0.5rem; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.2s; /* Smooth scaling on hover */
+}
+
+.card:hover {
+  transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+.card-header {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* Text color */
+  font-weight: bold; /* Bold header */
+}
+
+.card-body {
+  padding: 1.5rem; /* Padding inside the card body */
+}
+
+.card-footer {
+  background-color: #f8f9fa; /* Light gray footer */
+}

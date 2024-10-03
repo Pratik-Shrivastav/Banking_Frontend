@@ -27,7 +27,8 @@ import { MatOption } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
-
+import { ReportsStatisticsComponent } from './components/reports-statistics/reports-statistics.component';
+import { NgChartjsModule } from 'ng-chartjs';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -41,6 +42,7 @@ import { MatIcon } from '@angular/material/icon';
     MakePaymentComponent,
     ViewRecentComponent,
     DetailsModalComponent,
+    ReportsStatisticsComponent,
     
     
   ],
@@ -61,7 +63,8 @@ import { MatIcon } from '@angular/material/icon';
     MatOption,
     MatCardModule,
     MatSelect,
-    MatIcon
+    MatIcon,
+    NgChartjsModule
     
     
 

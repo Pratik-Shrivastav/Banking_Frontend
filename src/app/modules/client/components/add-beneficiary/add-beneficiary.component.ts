@@ -24,7 +24,8 @@ export class AddBeneficiaryComponent implements OnInit {
         id: [0],                                   // Optional ID for new account details
         accountNumber: ['', Validators.required],   // Required field
         ifsc: ['', Validators.required],           // Required field
-        branch: ['', Validators.required],         // Required field
+        branch: ['', Validators.required],  
+        accountBalance:0       // Required field
       }),
       createdOn: [new Date().toISOString()],      // Optional if you want to handle it in the backend
       isActive: [true]                            // Default value
@@ -35,8 +36,12 @@ export class AddBeneficiaryComponent implements OnInit {
     if (this.beneficiaryForm.valid) {
       const beneficiaryData = this.beneficiaryForm.value; // Get the form value
       
-      beneficiaryData.createdOn = new Date().toISOString(); // Set createdOn date
-
+      // Set createdOn date
+      beneficiaryData.createdOn = new Date().toISOString(); 
+      
+      // Logging beneficiaryData for debugging
+      console.log('Submitting Beneficiary Data:', beneficiaryData);
+      
       this.clientService.addBeneficiary(beneficiaryData).subscribe(
         () => {
           alert("Beneficiary Added Successfully");
@@ -46,7 +51,10 @@ export class AddBeneficiaryComponent implements OnInit {
           console.error('Error adding beneficiary', error);
         }
       );
-      console.log(this.beneficiaryForm.controls);
+    } else {
+      // Log if the form is invalid
+      console.log('Form is invalid', this.beneficiaryForm.errors);
     }
   }
+  
 }

@@ -29,6 +29,7 @@ export class AddEmployeeComponent implements OnInit {
         accountNumber: ['', Validators.required],
         ifsc: ['', Validators.required],
         branch: ['', Validators.required],
+        accountBalance:0
       }),
       isActive: [true],  // Defaulting to true
     });

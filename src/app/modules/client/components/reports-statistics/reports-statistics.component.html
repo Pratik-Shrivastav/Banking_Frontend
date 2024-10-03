@@ -1,0 +1,61 @@
+<div class="container mt-4">
+    <div class="col-md-12 mb-4 text-center">
+        <button class="btn btn-primary" (click)="downloadStatistics()">Download Statistics</button>
+    </div>
+    <div class="row">
+        <!-- Bar Chart for Reports and Statistics -->
+        <div class="col-md-12 col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Reports and Statistics</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Overview of active employees and beneficiaries.</p>
+                    <div class="chart-container">
+                        <canvas #barChart></canvas>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Data updated recently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Salary Disbursement Pie Chart -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Salary Disbursement Status</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas #salaryPieChart></canvas>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Data updated recently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Payments Pie Chart -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Recent Payments Status</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas #paymentPieChart></canvas>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Data updated recently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Button -->
+    
+    </div>
+</div>
