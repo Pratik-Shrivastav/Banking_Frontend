@@ -14,6 +14,18 @@ import { SalaryDisbursementComponent } from './components/salary-disbursement/sa
 import { MakePaymentComponent } from './components/make-payment/make-payment.component';
 import { ViewRecentComponent } from './components/view-recent/view-recent.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCard } from '@angular/material/card';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatCardHeader } from '@angular/material/card';
+import { MatCardActions } from '@angular/material/card';
+import { MatCardTitle } from '@angular/material/card';
+import { MatCardContent } from '@angular/material/card';
+import { MatOption } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -27,13 +39,28 @@ import { DetailsModalComponent } from './components/details-modal/details-modal.
     SalaryDisbursementComponent,
     MakePaymentComponent,
     ViewRecentComponent,
-    DetailsModalComponent
+    DetailsModalComponent,
+    
     
   ],
   imports: [
     CommonModule,
     ClientRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCard,
+    MatCheckbox,
+    MatCardActions,
+    MatCardContent,
+    MatCardContent,
+    MatCardTitle,
+    MatCardHeader,
+    MatOption,
+    MatCardModule,
+    MatSelect,
+    
     
 
   ]

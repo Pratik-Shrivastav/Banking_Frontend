@@ -1,0 +1,46 @@
+.table {
+    border-radius: 8px; /* Rounded corners for tables */
+    overflow: hidden; /* To clip the corners of the table */
+}
+
+.table th, .table td {
+    padding: 12px; /* Increased padding for better spacing */
+}
+
+.table th {
+    background-color: #343a40; /* Dark background for table header */
+    color: white; /* White text for contrast */
+    text-align: center; /* Center-align table headers */
+}
+
+.table td {
+    vertical-align: middle; /* Center-align text vertically */
+    text-align: center; /* Center-align table data */
+}
+
+.clickable-row {
+    cursor: pointer; /* Indicate that the row is clickable */
+}
+
+.clickable-row:hover {
+    background-color: #e9ecef; /* Light gray background on hover */
+}
+
+.text-success {
+    color: green;
+}
+
+.text-warning {
+    color: orange;
+}
+
+.text-danger {
+    color: red;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .table {
+        font-size: 14px; /* Adjust font size on smaller screens */
+    }
+}

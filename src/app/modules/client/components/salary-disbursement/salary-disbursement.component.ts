@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../service/client.service';
 import { Employee } from '../../../../models/employee';
+import { MatCheckboxChange } from '@angular/material/checkbox'; // Import MatCheckboxChange
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-salary-disbursement',
@@ -11,8 +13,11 @@ export class SalaryDisbursementComponent implements OnInit {
   employees: Employee[] = [];
   selectedEmployeeIds: number[] = [];
   totalSalary: number = 0;
+  router: any;
 
-  constructor(private clientService: ClientService) {}
+  constructor(private clientService: ClientService,
+    router:Router
+  ) {}
 
   ngOnInit(): void {
     this.getEmployees();
@@ -21,7 +26,7 @@ export class SalaryDisbursementComponent implements OnInit {
   getEmployees(): void {
     this.clientService.getEmployees().subscribe(
       (data: Employee[]) => {
-        this.employees = data;
+        this.employees = data.filter(emp => emp.isActive); // Filter to get only active employees
       },
       (error) => {
         console.error('Error fetching employees', error);
@@ -29,8 +34,9 @@ export class SalaryDisbursementComponent implements OnInit {
     );
   }
 
-  onEmployeeSelectionChange(employeeId: number, event: Event): void {
-    const isChecked = (event.target as HTMLInputElement).checked;
+  // Change the parameter type to MatCheckboxChange
+  onEmployeeSelectionChange(employeeId: number, event: MatCheckboxChange): void {
+    const isChecked = event.checked; // Use event.checked instead of event.target.checked
     if (isChecked) {
       this.selectedEmployeeIds.push(employeeId);
     } else {
@@ -64,7 +70,9 @@ export class SalaryDisbursementComponent implements OnInit {
         alert('Salaries disbursed successfully!');
         this.selectedEmployeeIds = []; // Clear selected employees
         this.totalSalary = 0; // Reset total salary
-        this.getEmployees(); // Optionally refresh employee list
+        this.getEmployees();
+        this.router.navigate[('/Client')]
+         // Optionally refresh employee list
       },
       error => {
         console.error('Error disbursing salaries', error);

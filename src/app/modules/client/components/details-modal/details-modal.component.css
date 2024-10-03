@@ -1,0 +1,46 @@
+.modal-body {
+    font-family: Arial, sans-serif;
+}
+
+.details {
+    margin-bottom: 1rem; /* Space between sections */
+    background-color: #f8f9fa; /* Light background for details */
+    padding: 10px; /* Padding for better spacing */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.employee-list {
+    list-style-type: none; /* Remove default list styling */
+    padding-left: 0; /* Remove padding */
+}
+
+.transaction-list {
+    list-style-type: none; /* Remove default list styling */
+    padding-left: 20px; /* Indent transaction list */
+}
+
+.transaction-item {
+    border-bottom: 1px solid #dee2e6; /* Bottom border for separation */
+    margin-bottom: 10px; /* Space between transactions */
+    padding-bottom: 10px; /* Padding for better spacing */
+}
+
+.text-success {
+    color: green; /* Green for success */
+}
+
+.text-warning {
+    color: yellow; /* Yellow for pending */
+}
+
+.text-danger {
+    color: red; /* Red for failure */
+}
+
+.font-weight-bold {
+    font-weight: 600; /* Make headings bold */
+}
+
+.mt-4 {
+    margin-top: 1.5rem; /* More space above elements with mt-4 class */
+}

@@ -69,7 +69,7 @@ export class MakePaymentComponent implements OnInit {
     this.clientService.makePayment(payment, beneficiaryId).subscribe(
       response => {
         alert('Payment successful!');
-        this.router.navigate(['/Client/view-beneficiaries']);
+        this.router.navigate(['/Client']);
       },
       error => {
         console.error('Error making payment', error);
