@@ -1,27 +1,39 @@
 <app-navbar></app-navbar>
-<div class="dashboard">
-  <h1>Pending Requests</h1>
+<div class="dashboard container">
+  <h1 class="my-4 display-4 text-center">Pending Requests</h1>
 
-  <div *ngIf="loading" class="loading-message">Loading clients...</div>
+  <div *ngIf="loading" class="loading-message text-center my-5">Loading clients...</div>
 
-  <div *ngIf="!loading && clients.length > 0" class="client-card-container">
-      <ng-container *ngFor="let client of clients">
-          <ng-container *ngIf="client.status !== 'Success'">
-              <div class="client-card-wrapper">
-                  <mat-card class="client-card" (click)="onCardClick(client.id)">
-                      <mat-card-header>
-                          <mat-card-title class="client-card-title">{{ client.companyName }}</mat-card-title>
-                      </mat-card-header>
-                      <mat-card-content class="client-card-content">
-                          <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
-                      </mat-card-content>
-                  </mat-card>
-              </div>
-          </ng-container>
-      </ng-container>
+
+  <div class="search-container" style="width:18rem;">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by company name" />
+      </div>
+    </form>
   </div>
 
-  <div *ngIf="!loading && clients.length === 0" class="no-clients-message">
-      No clients found.
+  <div *ngIf="!loading && clients.length > 0" class="row justify-content-center">
+    <div *ngFor="let client of clients" class="col-md-6 mb-4">
+      <div class="card h-100 p-4" (click)="onCardClick(client.id)">
+        <div class="card-body">
+          <h3 class="card-title display-6">{{ client.companyName }}</h3>
+          <p class="card-text fs-5"><strong>Founder Name:</strong> {{ client.founderName }}</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div *ngIf="!loading && clients.length === 0" class="no-clients-message text-center mt-4">
+    No clients found.
+  </div>
+
+  <!-- Pagination Component -->
+  <mat-paginator 
+    [length]="totalClients" 
+    [pageSize]="pageSize" 
+    (page)="onPageChange($event)" 
+    [pageSizeOptions]="[8, 16, 24]"
+    showFirstLastButtons>
+  </mat-paginator>
 </div>

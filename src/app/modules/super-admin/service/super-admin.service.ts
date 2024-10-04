@@ -14,7 +14,12 @@ export class SuperAdminService {
 
   // Function to fetch the list of objects
   public getpaginationClients(page: number, pageSize: number): Observable<any> {
-    const requestUrl = `${this.apiUrl}?page=${page}&pageSize=${pageSize}`;
+    const requestUrl = `${this.apiUrl}/SuccessClients?page=${page}&pageSize=${pageSize}`;
+    return this.httpClient.get<any>(requestUrl);
+  }
+
+  public getpaginationPendingClients(page: number, pageSize: number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/PendingClients?page=${page}&pageSize=${pageSize}`;
     return this.httpClient.get<any>(requestUrl);
   }
 
@@ -29,8 +34,8 @@ export class SuperAdminService {
     return this.httpClient.get<any[]>(requestUrl)
   }
 
-  public getClientByName(companyName: string): Observable<any> {
-    const requestUrl = `${this.apiUrl}/ClientByName/${companyName}`;
+  public getClientByName(companyName: string, status:string): Observable<any> {
+    const requestUrl = `${this.apiUrl}/ClientByName/${companyName}/${status}`;
     return this.httpClient.get<any[]>(requestUrl)
   }
 

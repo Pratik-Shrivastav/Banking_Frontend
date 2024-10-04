@@ -1,13 +1,12 @@
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="loginImage d-flex justify-content-center align-items-center vh-100">
   <div class="row w-100">
     <!-- Image Section -->
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-  <img [src]="imagePath" alt="Description of the image" />    
    
     </div>
 
     <!-- Login Form Section -->
-    <div class="col-md-6 d-flex justify-content-center align-items-center">
+    <div class="col-md-5 d-flex justify-content-center align-items-center">
       <mat-card class="w-100 login-card">
         <mat-card-content>
           <h2 class="login-title">Welcome Back!</h2>
@@ -36,7 +35,11 @@
               </mat-error>
             </div>
 
-            <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+            <div class="d-flex justify-content-center" style="gap: 1rem;">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+              <button mat-raised-button color="primary" routerLink="Register">Register</button>
+            </div>
+            
           </form>
         </mat-card-content>
       </mat-card>

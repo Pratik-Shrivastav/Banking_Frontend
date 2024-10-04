@@ -58,7 +58,7 @@ export class ClientsComponent implements OnInit {
   onSearch(): void {
     const searchTerm = this.searchForm.get('searchTerm')?.value;
     if (searchTerm) {
-      this.superAdminService.getClientByName(searchTerm).subscribe((clientsByName) => {
+      this.superAdminService.getClientByName(searchTerm,"Success").subscribe((clientsByName) => {
         this.clients = clientsByName;
       });
     } else {

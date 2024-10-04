@@ -1,10 +1,18 @@
-<nav class="navbar">
-    <div class="navbar-title">Super Admin</div>
-    <div class="navbar-links">
-        <button mat-button routerLink="/SuperAdmin" class="nav-button">Go to Dashboard</button>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
+    <div class="navbar-brand">
+      <i class="fas fa-user-shield"></i> Super Admin
     </div>
-    <div class="navbar-profile">
-        <mat-icon class="profile-icon">account_circle</mat-icon>
-        <button mat-button (click)="logout()" class="logout-button">Logout</button>
+  
+    <div class=" ml-auto d-flex align-items-center">
+      <a class="btn anchorTag mr-3" routerLink="/SuperAdmin">
+        <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+      </a>
+  
+      <div class="navbar-profile d-flex align-items-center">
+        <button class="btn anchorTag" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
     </div>
-</nav>
+  </nav>
+  

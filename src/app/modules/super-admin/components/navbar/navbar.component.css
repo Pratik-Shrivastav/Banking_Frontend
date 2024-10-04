@@ -46,3 +46,7 @@
     background-color: transparent; /* No background on hover */
     text-decoration: underline; /* Underline text on hover */
 }
+
+.anchorTag{
+    color: white !important;
+}
