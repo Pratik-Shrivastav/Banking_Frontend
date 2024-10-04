@@ -15,6 +15,7 @@ import { ViewSuccessSalaryComponent } from './components/view-success-salary/vie
 import { ViewPendingSalaryComponent } from './components/view-pending-salary/view-pending-salary.component';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ViewpendingpaymentComponent,
     ViewsuccesspaymentComponent,
     ViewSuccessSalaryComponent,
-    ViewPendingSalaryComponent
+    ViewPendingSalaryComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
