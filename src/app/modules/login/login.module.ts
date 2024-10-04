@@ -12,7 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { DocumentComponent } from './components/document/document.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DocumentDisplayComponent } from './components/document-display/document-display.component';
-
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatIcon } from '@angular/material/icon';

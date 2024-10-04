@@ -11,13 +11,17 @@ import { ClientModule } from './modules/client/client.module';
 import { SuperAdminModule } from './modules/super-admin/super-admin.module';
 import { BankModule } from './modules/bank/bank.module';
 import { ToastComponent } from './components/toast/toast.component';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MatIcon } from '@angular/material/icon';
 export function tokenGetter() {
   return localStorage.getItem('Token');
 }
 @NgModule({
   declarations: [
     AppComponent,
-    ToastComponent
+    ToastComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,9 @@ export function tokenGetter() {
     LoginModule,
     ClientModule,
     SuperAdminModule,
-    
+    MatCard,
+    MatCardContent,
+    MatIcon,
     NgxCaptchaModule,
     JwtModule.forRoot({
       config: {

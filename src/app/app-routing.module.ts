@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './authentication/auth.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -29,8 +30,11 @@ const routes: Routes = [
     loadChildren: ()=>import("./modules/bank/bank.module").then(m=>m.BankModule),
     canActivate: [authGuard],  // Apply the authGuard here
     data: { role: 'Bank' } 
+  },
+  {
+    path:"**",
+    component:PageNotFoundComponent
   }
-
 ];
 
 @NgModule({
