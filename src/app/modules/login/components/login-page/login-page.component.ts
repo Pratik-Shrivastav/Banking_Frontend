@@ -15,6 +15,7 @@ import { ToastService } from '../../../../service/toast.service';
 export class LoginPageComponent {
   loginForm: FormGroup;
   recaptchaResponse: string | undefined;
+  imagePath: string = "/register.jpg"; // Path to your image
 
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router,private toastService: ToastService) {
     this.loginForm = this.fb.group({

@@ -2,14 +2,16 @@
   <div class="row w-100">
     <!-- Image Section -->
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-      <img src="../../../../models/loginBackGround.jpg" class="img-fluid" alt="Background Image">
+  <!-- <img [src]="imagePath" alt="Description of the image" /> -->    
+   <img src="">
     </div>
 
     <!-- Login Form Section -->
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-      <mat-card class="w-100">
+      <mat-card class="w-100 login-card">
         <mat-card-content>
-          <h2>Login</h2>
+          <h2 class="login-title">Welcome Back!</h2>
+          <p class="login-subtitle">Please enter your credentials to continue</p>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Username</mat-label>
@@ -28,8 +30,7 @@
             </mat-form-field>
 
             <div class="w-100 mb-3">
-              <ngx-recaptcha2 siteKey="6Lf151QqAAAAACVNLhJNZaJPUl1Z7aG4oVh9MP7W" (success)="handleSuccess($event)">
-              </ngx-recaptcha2>
+              <ngx-recaptcha2 siteKey="6Lf151QqAAAAACVNLhJNZaJPUl1Z7aG4oVh9MP7W" (success)="handleSuccess($event)"></ngx-recaptcha2>
               <mat-error *ngIf="loginForm.get('recaptcha')?.hasError('required')">
                 Please verify you are not a robot.
               </mat-error>
