@@ -1,91 +1,90 @@
 /* Card-style container for table */
 .table-card {
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    margin: 10px;
-  }
-  
-  /* Table styles */
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  margin: 10px;
+}
+
+/* Table styles */
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+}
+
+.table tbody tr:hover {
+  background-color: #f1f3f5;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Center align icons */
+.icon-action {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.icon-action i:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Tooltips */
+.icon-action[matTooltip]::after {
+  content: attr(matTooltip);
+  visibility: hidden;
+  opacity: 0;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  transition: opacity 0.3s;
+  font-size: 12px;
+}
+
+.icon-action:hover[matTooltip]::after {
+  visibility: visible;
+  opacity: 1;
+  top: -35px;
+}
+
+.table td {
+  text-align: center;
+  padding: 15px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+/* Add subtle shadow for hovering */
+.table tbody tr:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s;
+}
+
+.text-primary {
+  color: #007bff;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .table {
-    margin-bottom: 0;
-  }
-  
-  .table th {
-    background-color: #343a40;
-    color: #fff;
-    text-align: center;
-    padding: 12px;
-  }
-  
-  .table tbody tr:hover {
-    background-color: #f1f3f5;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  /* Center align icons */
-  .icon-action {
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .icon-action i:hover {
-    transform: scale(1.2);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  /* Tooltips */
-  .icon-action[matTooltip]::after {
-    content: attr(matTooltip);
-    visibility: hidden;
-    opacity: 0;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    transition: opacity 0.3s;
     font-size: 12px;
   }
-  
-  .icon-action:hover[matTooltip]::after {
-    visibility: visible;
-    opacity: 1;
-    top: -35px;
+
+  .icon-action {
+    font-size: 16px;
   }
-  
-  .table td {
-    text-align: center;
-    padding: 15px;
-    vertical-align: middle;
-    font-size: 14px;
-  }
-  
-  /* Add subtle shadow for hovering */
-  .table tbody tr:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.2s;
-  }
-  
-  .text-primary {
-    color: #007bff;
-  }
-  
-  .text-danger {
-    color: #dc3545;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .table {
-      font-size: 12px;
-    }
-  
-    .icon-action {
-      font-size: 16px;
-    }
-  }
-  
+}

@@ -31,6 +31,15 @@ export class ClientService {
     return this.http.get<Employee[]>(`${this.apiUrl}/Employees`);
   }
 
+  getEmployeesPaged(pageIndex: number, pageSize: number): Observable<any> {
+    const params = {
+      pageIndex,
+      pageSize
+    };
+    
+    return this.http.get<any>(`${this.apiUrl}/Employees`, { params });
+  }
+  
   // Get all beneficiaries (for future use)
   getBeneficiaries(): Observable<Beneficiary[]> {
     return this.http.get<Beneficiary[]>(`${this.apiUrl}/Beneficiaries`);
