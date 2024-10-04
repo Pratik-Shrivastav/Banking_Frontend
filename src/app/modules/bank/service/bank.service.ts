@@ -26,21 +26,9 @@ export class BankService {
     return this.httpClient.get<any[]>(requestUrl)   
   }
 
-  public downloadFile(fileName: string): void {
-    this.httpClient
-      .get(`${this.apiUrl}/Download/${fileName}`, { responseType: 'blob' })
-      .subscribe((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      }, error => {
-        console.error('Download error:', error);
-      });
+  public previewFile(fileName: string): Observable<any> {
+    return this.httpClient
+      .get<any>(`${this.apiUrl}/Download/${fileName}`);
   }
   public getClientSalaryDisbursementById(id:number): Observable<any> {
     const requestUrl = `${this.apiUrl}/SalaryDisbursement/${id}`;

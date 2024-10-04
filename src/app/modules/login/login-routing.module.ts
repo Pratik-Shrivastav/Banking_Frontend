@@ -4,6 +4,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { DocumentComponent } from './components/document/document.component';
 import { DocumentDisplayComponent } from './components/document-display/document-display.component';
+import { authGuard } from '../../authentication/auth.guard';
 
 const routes: Routes = [
   {
@@ -13,10 +14,14 @@ const routes: Routes = [
     path:"Register", component:RegisterPageComponent
   },
   {
-    path:"Document", component:DocumentComponent
+    path:"Document", component:DocumentComponent,
+    canActivate: [authGuard],  // Apply the authGuard here
+    data: { role: 'Client' }
   },
   {
-    path:"DocumentDisplay", component:DocumentDisplayComponent
+    path:"DocumentDisplay", component:DocumentDisplayComponent,
+    canActivate: [authGuard],  // Apply the authGuard here
+    data: { role: 'Client' }
   }
 ];
 

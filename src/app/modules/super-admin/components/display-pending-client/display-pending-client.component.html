@@ -19,24 +19,50 @@
         <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
         <p><strong>Phone:</strong> {{ client.phone }}</p>
         <p><strong>Address:</strong> {{ client.address }}, {{ client.city }}, {{ client.region }}, {{ client.country }}</p>
-        <p><strong>Status:</strong> <span [ngClass]="{'status-approved': client.status === 'Approved', 'status-rejected': client.status === 'Rejected'}">{{ client.status }}</span></p>
+        <p><strong>Status:</strong> 
+          <span [ngClass]="{'status-approved': client.status === 'Approved', 'status-rejected': client.status === 'Rejected'}">
+            {{ client.status }}
+          </span>
+        </p>
       </div>
     </mat-card-content>
   </mat-card>
 
-  <div *ngIf="documents.length > 0" class="documents-section">
-    <h3>Documents</h3>
-    <ul>
-      <li *ngFor="let doc of documents">
-        <strong>{{ doc.documentName }}:</strong>
-        <button mat-button class="download-button" (click)="downloadFile(doc.documentName)">
-          <mat-icon>download</mat-icon> Download
-        </button>
-        <p>Uploaded on: {{ doc.uploadedOn | date }}</p>
-      </li>
-    </ul>
-  </div>
+  <!-- Documents Section with Preview -->
+  <!-- Container for Documents and Preview Section -->
+<div *ngIf="documents.length > 0" class="container mt-5">
+  <div class="row">
+    <!-- Documents List Section -->
+    <div class="col-md-6">
+      <h3>Documents</h3>
+      <ul class="list-group">
+        <li *ngFor="let doc of documents" class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ doc.documentName }}</strong>
+            <p>Uploaded on: {{ doc.uploadedOn | date }}</p>
+          </div>
+          
+          <!-- Preview Button -->
+          <button mat-button class="btn btn-outline-primary btn-sm mr-2" (click)="previewFile(doc.documentName)">
+            <mat-icon>visibility</mat-icon> Preview
+          </button>
+        </li>
+      </ul>
+    </div>
 
+    <!-- Preview Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <!-- Display the preview only if previewUrl is available -->
+      <div *ngIf="previewUrl" class="image-preview text-center">
+        <h5>Document Preview:</h5>
+        <img [src]="previewUrl" alt="Document Preview" class="img-fluid" style="max-height: 400px; max-width: 100%;" />
+      </div>
+      <!-- Message if no preview is available -->
+      <div *ngIf="!previewUrl" class="text-muted">
+        <p>Select a document to preview.</p>
+      </div>
+    </div>
+  </div>
   <div class="action-buttons">
     <button mat-raised-button color="primary" (click)="ClientStatus('Success')">Approve</button>
     <button mat-raised-button color="warn" (click)="ClientStatus('Rejected')">Reject</button>

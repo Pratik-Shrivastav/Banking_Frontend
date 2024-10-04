@@ -13,6 +13,7 @@ export class ViewClientPendingComponent {
   documents!:any[];
   loading: boolean = true; // Loading indicator
   error: string | null = null; // Error message
+  previewUrl!:string;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,8 +57,17 @@ export class ViewClientPendingComponent {
     });
   }
 
-  downloadFile(fileName: string): void {
-    this.bankService.downloadFile(fileName);
+  previewFile(fileName: string): void {
+    this.bankService.previewFile(fileName).subscribe(
+      (response)=>{
+        console.log(response);
+        
+        this.previewUrl = response.documentUrl;
+      },
+      (err)=>{
+        console.log(err);    
+      }
+    );
   }
 
 }
