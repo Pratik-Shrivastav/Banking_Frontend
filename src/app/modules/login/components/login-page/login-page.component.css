@@ -1,5 +1,10 @@
-body {
-    background-color: #f5f5f5; /* Light background */
-    color: black; /* Dark text color */
-  }
+body{
+  background-color: black; /* Light background */
+
+}
+.login {
+  display: flex;
+  color: black; /* Dark text color */
+  position: relative;
+}
   
