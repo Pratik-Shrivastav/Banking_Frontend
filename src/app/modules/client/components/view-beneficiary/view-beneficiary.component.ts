@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ClientService } from '../../service/client.service';  // Adjust path if necessary
-import { Beneficiary } from '../../../../models/beneficiary'; // Import the beneficiary model
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ClientService } from '../../service/client.service';
+import { Beneficiary } from '../../../../models/beneficiary';
+import { MatPaginator } from '@angular/material/paginator'; // Import MatPaginator
+import { PageEvent } from '@angular/material/paginator'; // Import PageEvent
 
 @Component({
   selector: 'app-view-beneficiaries',
@@ -9,6 +11,11 @@ import { Beneficiary } from '../../../../models/beneficiary'; // Import the bene
 })
 export class ViewBeneficiariesComponent implements OnInit {
   beneficiaries: Beneficiary[] = [];
+  displayedBeneficiaries: Beneficiary[] = []; // To store the paginated data
+  pageSize = 5; // Number of entries per page
+  pageIndex = 0; // Current page index
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator; // Get the paginator reference
 
   constructor(private clientService: ClientService) {}
 
@@ -19,12 +26,24 @@ export class ViewBeneficiariesComponent implements OnInit {
   getBeneficiaries(): void {
     this.clientService.getBeneficiaries().subscribe(
       (data: Beneficiary[]) => {
-        this.beneficiaries = data.filter(beneficiary => beneficiary.isActive); // Filter by isActive === true
+        this.beneficiaries = data.filter(beneficiary => beneficiary.isActive);
+        this.updateDisplayedBeneficiaries(); // Update displayed beneficiaries after fetching
       },
       (error) => {
         console.error('Error fetching beneficiaries', error);
       }
     );
+  }
+
+  updateDisplayedBeneficiaries() {
+    const startIndex = this.pageIndex * this.pageSize;
+    this.displayedBeneficiaries = this.beneficiaries.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex; // Update page index
+    this.pageSize = event.pageSize; // Update page size
+    this.updateDisplayedBeneficiaries(); // Update displayed beneficiaries
   }
 
   deleteBeneficiary(id: number): void {

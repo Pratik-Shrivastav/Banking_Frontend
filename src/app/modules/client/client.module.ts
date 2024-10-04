@@ -33,6 +33,8 @@ import { AuditLogComponent } from './components/audit-logs/audit-logs.component'
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatTable } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatPaginatorModule
+import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -72,7 +74,10 @@ import { MatTable } from '@angular/material/table';
     MatIcon,
     NgChartjsModule,
     MatToolbarModule,
-    MatTable
+    MatTable,
+    MatPaginatorModule,
+    MatTableModule
+
     
     
 

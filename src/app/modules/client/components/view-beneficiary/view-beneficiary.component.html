@@ -2,42 +2,46 @@
 <div class="container mt-5">
     <div class="table-card">
         <h3 class="text-center">View Beneficiaries</h3>
-        <div class="table-responsive"> <!-- Added to make the table responsive -->
-          <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Account Number</th>
-                <th>IFSC</th>
-                <th>Branch</th>
-                <th>Actions</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let beneficiary of beneficiaries">
-                <td>{{ beneficiary.id }}</td>
-                <td>{{ beneficiary.benificiaryName }}</td>
-                <td>{{beneficiary.email}}</td>
-                <td>{{ beneficiary.accountDetailsObject?.accountNumber }}</td>
-                <td>{{ beneficiary.accountDetailsObject?.ifsc }}</td>
-                <td>{{ beneficiary.accountDetailsObject?.branch }}</td>
-                <td>
-                  <a [routerLink]="['/Client/edit-beneficiary', beneficiary.id]" class="btn btn-info">
-                    <i class="fas fa-edit"></i> <!-- Edit icon -->
-                  </a>
-                </td>
-                <td>
-                  <button (click)="deleteBeneficiary(beneficiary.id!)" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Account Number</th>
+                        <th>IFSC</th>
+                        <th>Branch</th>
+                        <th>Actions</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let beneficiary of displayedBeneficiaries">
+                        <td>{{ beneficiary.id }}</td>
+                        <td>{{ beneficiary.benificiaryName }}</td>
+                        <td>{{ beneficiary.email }}</td>
+                        <td>{{ beneficiary.accountDetailsObject?.accountNumber }}</td>
+                        <td>{{ beneficiary.accountDetailsObject?.ifsc }}</td>
+                        <td>{{ beneficiary.accountDetailsObject?.branch }}</td>
+                        <td>
+                            <a [routerLink]="['/Client/edit-beneficiary', beneficiary.id]" class="btn btn-info">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <button (click)="deleteBeneficiary(beneficiary.id!)" class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <mat-paginator [length]="beneficiaries.length"
+                           [pageSize]="pageSize"
+                           [pageSizeOptions]="[5]"
+                           (page)="onPageChange($event)">
+            </mat-paginator> <!-- Add paginator -->
         </div>
     </div>
-  </div>
-  
+</div>

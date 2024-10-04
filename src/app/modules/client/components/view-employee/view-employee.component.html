@@ -18,10 +18,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of employees">
+        <tr *ngFor="let employee of displayedEmployees">
           <td>{{ employee.employeeId }}</td>
           <td>{{ employee.name }}</td>
-          <td>{{employee.email}}</td>
+          <td>{{ employee.email }}</td>
           <td>{{ employee.designation }}</td>
           <td>{{ employee.salary | currency:'INR' }}</td>
           <td>{{ employee.accountDetailsObject?.accountNumber }}</td>
@@ -40,5 +40,10 @@
         </tr>
       </tbody>
     </table>
+    <mat-paginator [length]="employees.length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="[5]"
+                   (page)="onPageChange($event)">
+    </mat-paginator> <!-- Add paginator -->
   </div>
 </div>

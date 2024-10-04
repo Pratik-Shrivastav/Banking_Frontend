@@ -1,0 +1,48 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #0080ff; /* Dark background */
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+.navbar-title {
+    font-size: 1.8em; /* Increased font size for title */
+    font-weight: bold; /* Bold title */
+    flex-grow: 1; /* Allow title to grow */
+}
+
+.navbar-links {
+    margin-left: 20px; /* Space between title and button */
+}
+
+.nav-button {
+    color: #ffffff; /* Button text color */
+    transition: background-color 0.3s; /* Smooth transitions */
+}
+
+.nav-button:hover {
+    background-color: #007bff; /* Button hover color */
+}
+
+.navbar-profile {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.profile-icon {
+    font-size: 2em; /* Larger icon size */
+    color: white; /* Icon color */
+    margin-right: 10px; /* Space between icon and logout button */
+}
+
+.logout-button {
+    color: #ffffff; /* Logout button text color */
+}
+
+.logout-button:hover {
+    background-color: transparent; /* No background on hover */
+    text-decoration: underline; /* Underline text on hover */
+}

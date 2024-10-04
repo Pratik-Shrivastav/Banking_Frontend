@@ -68,7 +68,7 @@ export class MakePaymentComponent implements OnInit {
 
     this.clientService.makePayment(payment, beneficiaryId).subscribe(
       response => {
-        alert('Payment successful!');
+        alert('Payment sent for approval!');
         this.router.navigate(['/Client']);
       },
       error => {
