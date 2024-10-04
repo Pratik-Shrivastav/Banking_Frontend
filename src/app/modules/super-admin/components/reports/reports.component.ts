@@ -24,30 +24,21 @@ export class ReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadClientData();
-    this.loadBeneficiaryCount();
   }
 
   loadClientData(): void {
     this.superAdminService.getObjects().subscribe(data => {
-      this.clients = data;
+      this.clients = data.result;
+      let count:number=0
+      this.clients.map((client)=>{
+        count+= client.beneficiaryList.length;
+      })
+      this.beneficiariesCount=count;
       console.log('Data received from API:', data);
       this.prepareData();
       this.createClientChart();
       this.createSalaryChart(); // Create salary chart after data is prepared
     });
-  }
-
-  loadBeneficiaryCount(): void {
-    this.superAdminService.getObjects().subscribe(
-      (data: Client[]) => {
-        console.log('Beneficiary data received:', data);
-        this.beneficiariesCount = data.reduce((count, client) => count + client.beneficiaryList.length, 0);
-        console.log('Total Beneficiaries Count:', this.beneficiariesCount);
-      },
-      (error) => {
-        console.error('Error fetching beneficiaries', error);
-      }
-    );
   }
 
   prepareData() {

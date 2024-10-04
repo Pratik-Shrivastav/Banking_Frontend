@@ -20,7 +20,7 @@ export class PendingRequestComponent {
   loadClients(): void {
     this.superAdminService.getObjects().subscribe({
       next: (clients) => {
-        this.clients = clients.filter((client:any) => client.status !== "Success");
+        this.clients = clients.result.filter((client:any) => client.status !== "Success");
         this.loading = false; // Hide loading indicator
       },
       error: (error) => {

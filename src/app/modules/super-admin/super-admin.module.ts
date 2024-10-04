@@ -19,8 +19,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon'; // Correct import for MatIcon
 import { ReportsComponent } from './components/reports/reports.component';
 import { NgChartjsModule } from 'ng-chartjs';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatFormField, MatFormFieldControl, MatLabel } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     SuperAdminDashboardComponent,
@@ -45,7 +47,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatProgressSpinnerModule,
     MatIconModule, // Use MatIconModule instead of MatIcon
     NgChartjsModule,
-    FormsModule // No need to import Chart class here
+    FormsModule, // No need to import Chart class here
+    MatPaginator,
+    MatLabel,
+    MatFormField,
+    ReactiveFormsModule
   ]
 })
 export class SuperAdminModule { }

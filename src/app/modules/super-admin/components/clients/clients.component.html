@@ -4,23 +4,36 @@
 
   <div *ngIf="loading" class="loading-message">Loading clients...</div>
 
-  <div *ngIf="!loading && clients.length > 0" class="clients-container">
-      <div *ngFor="let client of clients" class="client-card-container">
-          <div *ngIf="client.status === 'Success'">
-              <mat-card class="client-card" (click)="onCardClick(client.id)">
-                  <mat-card-header class="client-card-header">
-                      <mat-card-title class="client-name">{{ client.companyName }}</mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content class="client-info">
-                      <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
-                      <p><strong>Email:</strong> {{ client.email }}</p>
-                  </mat-card-content>
-              </mat-card>
-          </div>
-      </div>
+  <div class="search-container">
+    <form [formGroup]="searchForm" (ngSubmit)="searchClient()">
+            <input type="text" formControlName="searchTerm" placeholder="Search by company name" />
+            <button type="submit">Search</button>
+    </form>
   </div>
 
-  <div *ngIf="!loading && clients.length === 0" class="no-clients-message">
-      No clients found.
+  <div *ngIf="!loading && clients && clients.length > 0" class="clients-container">
+    <div *ngFor="let client of clients" class="client-card-container">
+      <div *ngIf="client.status === 'Success'">
+        <mat-card class="client-card" (click)="onCardClick(client.id)">
+          <mat-card-header class="client-card-header">
+            <mat-card-title class="client-name">{{ client.companyName }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="client-info">
+            <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
+            <p><strong>Email:</strong> {{ client.email }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
   </div>
+
+  <div *ngIf="!loading && clients && clients.length === 0" class="no-clients-message">
+    No clients found.
+  </div>
+
+  <mat-paginator [length]="totalClients"
+                 [pageSize]="pageSize"
+                 (page)="onPageChange($event)"
+                 showFirstLastButtons>
+  </mat-paginator>
 </div>

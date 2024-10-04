@@ -63,10 +63,10 @@ export class LoginPageComponent {
               this.loginService.getUser().subscribe(
                 (response) => {
                   if ((response.clientObject.documentList).length == 0) {
-                    this.router.navigate(['Document'])
+                    this.router.navigate(['Login/Document'])
                   }
                   else {
-                    this.router.navigate(['DocumentDisplay'])
+                    this.router.navigate(['Login/DocumentDisplay'])
                   }
                 }
               )
