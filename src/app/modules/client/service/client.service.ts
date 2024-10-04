@@ -38,7 +38,23 @@ export class ClientService {
       pageSize
     };
     
-    return this.http.get<any>(`${this.apiUrl}/Employees`, { params });
+    return this.http.get<any>(`${this.apiUrl}/EmployeesPaged`, { params });
+  }
+
+  searchEmployeesPaged(searchTerm: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/SearchEmployees`, {
+      params: {
+        searchTerm,
+        
+      }
+    });
+  }
+  getBeneficiariesPaged(page: number, pageSize: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/BeneficiaryPaged?page=${page}&pageSize=${pageSize}`);
+  }
+  
+  searchBeneficiariesPaged(searchTerm: string): Observable<Beneficiary[]> {
+    return this.http.get<Beneficiary[]>(`${this.apiUrl}/SearchBeneficiary?searchTerm=${searchTerm}`);
   }
   
   // Get all beneficiaries (for future use)

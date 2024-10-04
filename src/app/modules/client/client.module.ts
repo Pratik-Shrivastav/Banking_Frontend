@@ -35,6 +35,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatTable } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatPaginatorModule
 import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -76,7 +77,8 @@ import { MatTableModule } from '@angular/material/table'; // Import MatTableModu
     MatToolbarModule,
     MatTable,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
 
     
     

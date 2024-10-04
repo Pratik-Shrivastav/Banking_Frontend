@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ClientService } from '../../service/client.service';  // Adjust path if necessary
-import { Employee } from '../../../../models/employee';  // Import the employee model
-import { MatPaginator } from '@angular/material/paginator';  // Import MatPaginator
-import { PageEvent } from '@angular/material/paginator';  // Import PageEvent
+import { ClientService } from '../../service/client.service';  
+import { Employee } from '../../../../models/employee';  
+import { MatPaginator } from '@angular/material/paginator';  
+import { PageEvent } from '@angular/material/paginator';  
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-employees',
@@ -11,52 +14,74 @@ import { PageEvent } from '@angular/material/paginator';  // Import PageEvent
 })
 export class ViewEmployeesComponent implements OnInit {
   employees: Employee[] = [];
-  displayedEmployees: Employee[] = [];  // To store the paginated data
-  totalEmployeesCount: number = 0;  // Total count of employees from the API
-  pageSize = 5;  // Number of entries per page
-  pageIndex = 1;  // Current page index
+  displayedEmployees: Employee[] = [];  
+  totalEmployeesCount: number = 0;  
+  pageSize = 5;  
+  pageIndex = 1;  
+  searchForm:FormGroup;
+  searchTerm: string = '';  // Declare searchTerm
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;  // Get the paginator reference
+  @ViewChild(MatPaginator) paginator!: MatPaginator;  
+  constructor(private fb:FormBuilder,private clientService: ClientService, private router:Router) 
+  {
+    this.searchForm = this.fb.group({
+      searchTerm: [''] 
+    });
+   }
 
-  constructor(private clientService: ClientService) {}
+ 
 
   ngOnInit(): void {
     this.getEmployeesPaged(this.pageIndex, this.pageSize);
+    this.searchForm.get('searchTerm')?.valueChanges
+      .pipe(debounceTime(500)) 
+      .subscribe(() => this.onSearch());
   }
 
-  // Modify to accept pagination parameters
+ 
+  
   getEmployeesPaged(pageIndex: number, pageSize: number): void {
     this.clientService.getEmployeesPaged(pageIndex, pageSize).subscribe(
       (data: any) => {
-        console.log('API Response:', data);  // Log the full API response
+        console.log(data)
+        this.employees = data.employees;
+        this.displayedEmployees = this.employees;
+        console.log((this.employees));
         
-        // Ensure data contains employees array and total count
-        if (data && Array.isArray(data.employees)) {
-          this.employees = data.employees.filter((employee: { isActive: boolean; }) => employee.isActive);
-          this.totalEmployeesCount = data.totalCount;  // Set the total count for pagination
-          this.displayedEmployees = this.employees;  // Display current page employees
-        } else {
-          console.error('Error: Expected employees array but received', data);
-        }
+        this.totalEmployeesCount = data.totalCount;  
+        this.displayedEmployees = this.employees;  
       },
       (error) => {
         console.error('Error fetching employees', error);
       }
     );
   }
+  
+  onSearch(): void {
+    const searchTerm = this.searchForm.get('searchTerm')?.value;
+    if (searchTerm) {
+      this.clientService.searchEmployeesPaged(searchTerm).subscribe((clientsByName) => {
+        console.log(clientsByName);
+        
+        this.employees = clientsByName;
+      });
+    } else {
+      this.employees = this.displayedEmployees;
+    }
+  }
+  
 
-  // Handle page change and fetch data for that page
   onPageChange(event: PageEvent) {
-    this.pageIndex = event.pageIndex + 1;  // Update page index
-    this.pageSize = event.pageSize;  // Update page size
-    this.getEmployeesPaged(this.pageIndex, this.pageSize);  // Fetch the new page data
+    this.pageIndex = event.pageIndex + 1;  
+    this.pageSize = event.pageSize;  
+    this.getEmployeesPaged(this.pageIndex, this.pageSize);  
   }
 
   deleteEmployee(id: number): void {
     if (confirm("Are you sure you want to delete this employee?")) {
       this.clientService.deleteEmployee(id).subscribe(() => {
         alert("Employee deleted successfully");
-        this.getEmployeesPaged(this.pageIndex, this.pageSize);  // Refresh the list
+        this.getEmployeesPaged(this.pageIndex, this.pageSize);  
       }, error => {
         console.error("Error deleting employee", error);
       });

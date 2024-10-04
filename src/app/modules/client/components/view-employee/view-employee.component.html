@@ -1,7 +1,15 @@
-<app-navbar></app-navbar>
 <div class="container mt-5">
   <div class="card table-card shadow-sm">
     <h3 class="text-center mb-4">View Employees</h3>
+    
+    <!-- Search Input -->
+    <div class="search-container" style="width:18rem;">
+      <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="form-inline">
+        <div class="form-group mb-2">
+          <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by company name" />
+        </div>
+      </form>
+    </div>
     <table class="table table-hover table-striped">
       <thead class="thead-dark">
         <tr>
@@ -18,8 +26,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let employee of displayedEmployees; let i = index">
-          <td>{{ pageIndex  }}</td> <!-- Adjust Sr.No for pagination -->
+        <tr *ngFor="let employee of employees; let i = index">
+          <td>{{ (pageIndex - 1) * pageSize + (i + 1) }}</td>
           <td>{{ employee.name }}</td>
           <td>{{ employee.email }}</td>
           <td>{{ employee.designation }}</td>

@@ -88,3 +88,11 @@
     font-size: 16px;
   }
 }
+.search-container {
+  margin-bottom: 20px; /* Space between search input and table */
+}
+
+.input-group {
+  width: 300px; /* Adjust width to keep it compact */
+  margin: 0 auto; /* Center the search input */
+}
