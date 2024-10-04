@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let employee of displayedEmployees; let i = index">
-          <td>{{ pageIndex * pageSize + i + 1 }}</td> <!-- Adjust Sr.No for pagination -->
+          <td>{{ pageIndex  }}</td> <!-- Adjust Sr.No for pagination -->
           <td>{{ employee.name }}</td>
           <td>{{ employee.email }}</td>
           <td>{{ employee.designation }}</td>
