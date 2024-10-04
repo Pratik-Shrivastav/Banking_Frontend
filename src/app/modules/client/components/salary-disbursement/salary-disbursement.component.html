@@ -10,9 +10,19 @@
     <mat-card-content>
       <div class="form-group">
         <label class="font-weight-bold">Select Employees:</label>
+        <!-- "Select All" checkbox -->
+        <mat-checkbox 
+          (change)="toggleSelectAll()" 
+          [checked]="selectAll" 
+          class="select-all-checkbox"
+        >
+          Select All
+        </mat-checkbox>
+
         <div class="employee-list">
           <div *ngFor="let employee of employees" class="employee-item">
             <mat-checkbox 
+              [checked]="selectedEmployeeIds.includes(employee.employeeId!)" 
               (change)="onEmployeeSelectionChange(employee.employeeId!, $event)" 
               class="employee-checkbox"
             >

@@ -1,4 +1,5 @@
 export interface Employee {
+    selected:any;
     employeeId?: number; // Optional for new employees
     name: string;
     email:string;
