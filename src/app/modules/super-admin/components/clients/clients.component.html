@@ -4,10 +4,11 @@
 
   <div *ngIf="loading" class="loading-message">Loading clients...</div>
 
-  <div class="search-container">
-    <form [formGroup]="searchForm" (ngSubmit)="searchClient()">
-            <input type="text" formControlName="searchTerm" placeholder="Search by company name" />
-            <button type="submit">Search</button>
+  <div class="search-container" style="width:18rem;">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by company name" />
+      </div>
     </form>
   </div>
 
