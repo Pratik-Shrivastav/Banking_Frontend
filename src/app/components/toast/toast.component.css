@@ -1,0 +1,15 @@
+/* src/app/toast/toast.component.css */
+.toast {
+    position: fixed;
+    display: flex;
+    top: 20px;
+    right: 20px;
+    background-color: #000000;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  

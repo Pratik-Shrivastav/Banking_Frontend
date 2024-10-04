@@ -5,6 +5,7 @@ import { Login } from '../../../../models/login';
 import { LoginResponse } from '../../../../models/login-response';
 import { Router } from '@angular/router';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ToastService } from '../../../../service/toast.service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,7 +16,7 @@ export class LoginPageComponent {
   loginForm: FormGroup;
   recaptchaResponse: string | undefined;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router) {
+  constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router,private toastService: ToastService) {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required],
@@ -41,11 +42,11 @@ export class LoginPageComponent {
       this.loginService.login(loginData).subscribe(
         (response: LoginResponse) => {
           console.log(response);
-          if (response.role == "SuperAdmin") {
+          if (response.role == "SuperAdmin"&& response.status == "Success") {
             localStorage.setItem("Token", response.token);
             this.router.navigate(['SuperAdmin']);
           }
-          else if(response.role == "Bank" ){
+          else if(response.role == "Bank" && response.status == "Success"){
             localStorage.setItem("Token", response.token);
             this.router.navigate(['Bank']);
           }
@@ -71,6 +72,7 @@ export class LoginPageComponent {
               )
             }
             else {
+              this.toastService.showToast(response.message);
               console.log("Rejected");
 
             }
@@ -83,5 +85,7 @@ export class LoginPageComponent {
       );
     }
   }
+
+  
 
 }

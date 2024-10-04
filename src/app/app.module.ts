@@ -10,12 +10,14 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { ClientModule } from './modules/client/client.module';
 import { SuperAdminModule } from './modules/super-admin/super-admin.module';
 import { BankModule } from './modules/bank/bank.module';
+import { ToastComponent } from './components/toast/toast.component';
 export function tokenGetter() {
   return localStorage.getItem('Token');
 }
 @NgModule({
   declarations: [
     AppComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,7 @@ export function tokenGetter() {
     LoginModule,
     ClientModule,
     SuperAdminModule,
-    BankModule,
+    
     NgxCaptchaModule,
     JwtModule.forRoot({
       config: {
