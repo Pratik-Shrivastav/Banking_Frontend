@@ -16,6 +16,7 @@ export class ClientService {
 
   // Method to add a new employee
   addEmployee(employee: Employee): Observable<Employee> {
+    console.log(employee);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<Employee>(`${this.apiUrl}/Employee`, employee, { headers });
   }
@@ -31,9 +32,9 @@ export class ClientService {
     return this.http.get<Employee[]>(`${this.apiUrl}/Employees`);
   }
 
-  getEmployeesPaged(pageIndex: number, pageSize: number): Observable<any> {
+  getEmployeesPaged(page: number, pageSize: number): Observable<any> {
     const params = {
-      pageIndex,
+      page,
       pageSize
     };
     
