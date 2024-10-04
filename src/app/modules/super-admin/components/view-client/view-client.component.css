@@ -1,172 +1,195 @@
+/* Loading Spinner */
 .loading-spinner {
     text-align: center;
     padding: 20px;
 }
 
+/* Error Message */
 .error-message {
-    color: #dc3545; /* Bootstrap danger color */
+    color: #dc3545;
     text-align: center;
     font-size: 16px;
     margin: 20px;
 }
 
+/* Client Details */
 .client-details {
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
+/* Client Card */
 .client-card {
     width: 100%;
-    max-width: 600px; /* Limit card width */
+    max-width: 600px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .client-card-header {
-    background-color: #007bff; /* Background color for header */
-    color: white; /* Text color */
-    padding: 16px; /* Header padding */
-    border-top-left-radius: 10px; /* Rounded corners */
-    border-top-right-radius: 10px; /* Rounded corners */
+    background-color: #007bff;
+    color: white;
+    padding: 16px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .client-card-content {
     padding: 16px;
 }
 
+/* Client Info */
 .client-info {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Space between elements */
+    gap: 12px;
 }
 
 .client-info p {
-    margin: 0; /* Remove default margin */
-    font-size: 16px; /* Font size */
+    margin: 0;
+    font-size: 16px;
 }
 
+/* Tables Container */
+.tables-container {
+    display: flex;                  /* Use flexbox for side-by-side layout */
+    justify-content: space-between; /* Space between sections */
+    margin-top: 20px;
+}
 
-.beneficiary-section {
+/* Table Section */
+.table-section {
+    width: 48%; /* Each section takes 48% of the width */
+    background-color: #f8f9fa;
     padding: 20px;
-    background-color: #f8f9fa; /* Light background for better visibility */
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.beneficiary-heading {
-    font-size: 24px;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tables-container {
+        flex-direction: column; /* Stack tables on smaller screens */
+        align-items: center; /* Center items */
+    }
+    
+    .table-section {
+        width: 100%; /* Full width for each table */
+        margin-bottom: 20px; /* Space between stacked tables */
+    }
+}
+
+/* Table Heading */
+.table-heading {
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #343a40; /* Dark text color */
-    position: sticky; /* Make the heading sticky */
-    top: 0; /* Stick to the top of the container */
-    background: #ffffff; /* White background for the heading */
-    padding: 10px 0; /* Padding for spacing */
-    z-index: 1; /* Ensure it stays above other content */
+    color: #343a40;
+    text-align: center;
 }
 
-.payment-info {
-    display: flex; /* Use flexbox to align items in a row */
-    align-items: center; /* Center items vertically */
-    margin: 10px 0;
-    font-size: 18px; /* Space around the paragraph */
-}
-
-.beneficiary-name {
-    font-weight: bold; /* Emphasize the beneficiary name */
-    margin-left: 5px; /* Space between label and name */
-}
-
-.payment-table {
+/* Payment and Salary Tables */
+.payment-table,
+.salary-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px; /* Space between tables */
+}
+.filters-section {
+    margin: 20px 0;
 }
 
-.payment-table th, .payment-table td {
+.filters-section label {
+    margin-right: 10px;
+}
+
+.payment-table th,
+.salary-table th,
+.payment-table td,
+.salary-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.payment-table th,
+.salary-table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.payment-table tbody tr:hover,
+.salary-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Button Styles */
+mat-button {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 6px 12px;
+}
+
+mat-button:hover {
+    background-color: #0056b3;
+}
+
+/* Beneficiary Name */
+.beneficiary-name {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* Status Column Styling */
+.status-success {
+    color: #28a745; /* Bootstrap success color */
+}
+
+.status-pending {
+    color: #ffc107; /* Bootstrap warning color */
+}
+
+.status-rejected {
+    color: #dc3545; /* Bootstrap danger color */
+}
+
+/* Align icons and text */
+.status-success i,
+.status-pending i,
+.status-rejected i {
+    margin-right: 5px; /* Add space between icon and text */
+}
+
+/* General Table Section */
+.beneficiary-section,
+.salary-section {
+    width: 48%; /* Split the two sections into halves */
+}
+
+/* General table header and cell styles */
+.payment-table th,
+.payment-table td,
+.salary-table th,
+.salary-table td {
     padding: 12px;
     text-align: left; /* Align text to the left */
     border-bottom: 1px solid #ddd; /* Border for table rows */
 }
 
-.payment-table th {
-    background-color: #343a40; /* Dark background for header */
-    color: white; /* White text for header */
-}
-
-.payment-table tr:hover {
+/* Table Row Hover Effect */
+.payment-table tr:hover,
+.salary-table tr:hover {
     background-color: #f1f3f5; /* Highlight on hover */
 }
-
-
-h3 {
-    color: #333; /* Darker text for headings */
-    margin-bottom: 10px;
-}
-
-
-
-button {
-    margin: 0 5px; /* Margin for buttons */
-}
-
-mat-button {
-    background-color: #007bff; /* Button background color */
-    color: white;
-    border-radius: 5px; /* Rounded corners */
-    padding: 6px 12px;
-    transition: background-color 0.2s; /* Smooth transition */
-}
-
-mat-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-}
-.salary-section {
-    margin: 20px 0; /* Space above and below the section */
-    padding: 0 15px; /* Add horizontal padding */
-}
-
-.salary-heading {
-    margin-bottom: 10px; /* Space below the heading */
-    font-size: 1.5rem; /* Increase font size */
-    color: #333; /* Dark color for better contrast */
-}
-
-.table-container {
-    overflow-x: auto; /* Enable horizontal scrolling for small screens */
-    margin: 0 auto; /* Center the container */
-    max-width: 800px; /* Set a maximum width for the table */
-}
-
-.salary-table {
-    width: 100%;
-    border-collapse: collapse; /* Remove gaps between table cells */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
-    background-color: #fff; /* Background color for table */
-}
-
-.salary-table-header {
-    background-color: #007bff; /* Blue background for header */
-    color: #fff; /* White text for header */
-}
-
-.salary-table th, .salary-table td {
-    padding: 12px 15px; /* Add padding for cells */
-    text-align: left; /* Align text to the left */
-}
-
-.salary-table tbody tr {
-    transition: background-color 0.2s; /* Smooth transition for hover effect */
-}
-
-.salary-table tbody tr:hover {
-    background-color: #f1f1f1; /* Highlight row on hover */
-}
-
-.salary-table td {
-    border-top: 1px solid #e0e0e0; /* Add border to table cells */
-}
-
-.salary-table td button {
-    margin-right: 5px; /* Space between buttons */
+@media (max-width: 768px) {
+    .tables-container {
+        flex-direction: column; /* Stack tables on smaller screens */
+        align-items: center; /* Center items */
+    }
+    
+    .table-section {
+        width: 100%; /* Full width for each table */
+        margin-bottom: 20px; /* Space between stacked tables */
+    }
 }

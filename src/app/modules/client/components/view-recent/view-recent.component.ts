@@ -76,44 +76,34 @@ export class ViewRecentComponent implements OnInit {
   }
   
   // Methods to open modals and handle clicks
-  onPaymentClick(payment: any,beneficiary:any): void {
-    let paymentDetails={};
-    if(payment.transactions.length > 0){
+  onPaymentClick(payment: any, beneficiary: any): void {
+    let paymentDetails = {};
+    if (payment.transactions.length > 0) {
        paymentDetails = {
-        type: 'payment',
-        id: payment.id,
-        beneficiaryName: beneficiary.benificiaryName, 
-        amount: payment.amount,
-        status: payment.status,
-        createdAt: payment.createdAt,
-        
-        transactionId:payment.transactions[0].id,
-        transactionAmount:payment.transactions[0].transactionAmount,
-        transactionStatus:payment.transactions[0].transactionStatus,
-        transactionDate:payment.transactions[0].transactionDate,
-      }; 
+          type: 'payment',
+          id: payment.id,
+          beneficiaryName: beneficiary.benificiaryName, 
+          amount: payment.amount,
+          status: payment.status,
+          createdAt: payment.createdAt,
+          transactionId: payment.transactions[0].id,
+          transactionAmount: payment.transactions[0].transactionAmount,
+          transactionStatus: payment.transactions[0].transactionStatus,
+          transactionDate: payment.transactions[0].transactionDate,
+       };
+    } else {
+       paymentDetails = {
+          type: 'payment',
+          id: payment.id,
+          beneficiaryName: beneficiary.benificiaryName, 
+          amount: payment.amount,
+          status: payment.status,
+          createdAt: payment.createdAt,
+       };
     }
-    else{ paymentDetails = {
-      type: 'payment',
-      id: payment.id,
-      beneficiaryName: beneficiary.benificiaryName, 
-      amount: payment.amount,
-      status: payment.status,
-      createdAt: payment.createdAt,
-      
-      // transactionId:payment.transactions[0].id,
-      // transactionAmount:payment.transactions[0].transactionAmount,
-      // transactionStatus:payment.transactions[0].transactionStatus,
-      // transactionDate:payment.transactions[0].transactionDate,
-
-
-    };}
-    
-    console.log(payment);
-    
     this.openDetails(paymentDetails);
-  }
-
+ }
+ 
 
 
   onSalaryClick(salary: any): void {

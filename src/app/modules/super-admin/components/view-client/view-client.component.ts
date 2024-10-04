@@ -18,7 +18,8 @@ export class ViewClientComponent implements OnInit {
   loading: boolean = true; // Loading indicator
   error: string | null = null; // Error message
 
-
+  paymentFilter: string = 'All';
+salaryFilter: string = 'All';
   constructor(
     private route: ActivatedRoute,
     private superAdminService: SuperAdminService,
@@ -32,7 +33,47 @@ export class ViewClientComponent implements OnInit {
       this.loadSalaryDisburseemntCLient(parseInt(clientId))
     }
   }
+  
 
+  // Method to filter salary disbursements based on selected filter
+  getFilteredPayments(beneficiary: any): any[] {
+    if (this.paymentFilter === 'All') {
+        return beneficiary.paymentsList;
+    }
+    return beneficiary.paymentsList.filter((payment: any) => payment.status === this.paymentFilter);
+}
+
+getFilteredSalaryDisbursements(): any[] {
+    if (this.salaryFilter === 'All') {
+        return this.salaryDisbursementList;
+    }
+    return this.salaryDisbursementList.filter((salary: any) => salary.status === this.salaryFilter);
+}
+  getStatusClass(status: string): string {
+    switch (status) {
+        case 'Success':
+            return 'status-success';
+        case 'Pending':
+            return 'status-pending';
+        case 'Reject':
+            return 'status-rejected';
+        default:
+            return '';
+    }
+}
+
+getStatusIcon(status: string): string {
+    switch (status) {
+        case 'Success':
+            return 'fas fa-check-circle';
+        case 'Pending':
+            return 'fas fa-hourglass-half';
+        case 'Reject':
+            return 'fas fa-times-circle';
+        default:
+            return '';
+    }
+}
 
   loadClientDetails(id: number): void {
     this.superAdminService.getClientById(id).subscribe({

@@ -1,70 +1,50 @@
-/* General container spacing */
 .container {
     margin-top: 30px;
-}
-
-.heading {
-    font-size: 2rem; /* Larger font size */
-    font-weight: 500; /* Bold text */
-    color: #000000; /* Blue color for the text */
-    text-shadow: 2px 2px 4px rgba(105, 105, 105, 0.2); /* Subtle shadow effect */
-    margin-top: 20px; /* Space above the heading */
-    margin-bottom: 50px; /* Space below the heading */
-}
-
-/* Optional: Add some responsive styling */
-@media (max-width: 576px) {
-    .heading {
-        font-size: 2rem; /* Smaller font size on smaller screens */
+  }
+  
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(105, 105, 105, 0.2);
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .mat-elevation-z8 {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .mat-header-cell, .mat-cell {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .mat-header-cell {
+    background-color: #3f51b5;
+    color: white;
+  }
+  
+  .clickable-row:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-warning {
+    color: orange;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  @media (max-width: 768px) {
+    .mat-cell {
+      font-size: 14px;
     }
-}
-
-/* General table styles */
-.table {
-    border-radius: 8px; /* Rounded corners for tables */
-    overflow: hidden; /* To clip the corners of the table */
-}
-
-.table th, .table td {
-    padding: 12px; /* Increased padding for better spacing */
-}
-
-.table th {
-    background-color: #343a40; /* Dark background for table header */
-    color: white; /* White text for contrast */
-    text-align: center; /* Center-align table headers */
-}
-
-.table td {
-    vertical-align: middle; /* Center-align text vertically */
-    text-align: center; /* Center-align table data */
-}
-
-/* Styling for clickable rows */
-.clickable-row {
-    cursor: pointer; /* Indicate that the row is clickable */
-}
-
-.clickable-row:hover {
-    background-color: #e9ecef; /* Light gray background on hover */
-}
-
-/* Status text colors */
-.text-success {
-    color: green; /* Color for success */
-}
-
-.text-warning {
-    color: yellow; /* Color for pending */
-}
-
-.text-danger {
-    color: red; /* Color for failed */
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-    .table {
-        font-size: 14px; /* Adjust font size on smaller screens */
-    }
-}
+  }

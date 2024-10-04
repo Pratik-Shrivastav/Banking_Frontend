@@ -19,7 +19,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon'; // Correct import for MatIcon
 import { ReportsComponent } from './components/reports/reports.component';
 import { NgChartjsModule } from 'ng-chartjs';
-
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 @NgModule({
   declarations: [
     SuperAdminDashboardComponent,
@@ -32,7 +33,8 @@ import { NgChartjsModule } from 'ng-chartjs';
     ViewSuccessPaymentComponent,
     ViewSuccessSalaryDisbursementComponent,
     ViewSalaryDisbursementComponent,
-    ReportsComponent
+    ReportsComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { NgChartjsModule } from 'ng-chartjs';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatIconModule, // Use MatIconModule instead of MatIcon
-    NgChartjsModule // No need to import Chart class here
+    NgChartjsModule,
+    FormsModule // No need to import Chart class here
   ]
 })
 export class SuperAdminModule { }

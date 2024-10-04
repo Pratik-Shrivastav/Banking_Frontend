@@ -31,6 +31,8 @@ import { ReportsStatisticsComponent } from './components/reports-statistics/repo
 import { NgChartjsModule } from 'ng-chartjs';
 import { AuditLogComponent } from './components/audit-logs/audit-logs.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatTable } from '@angular/material/table';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -68,7 +70,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatCardModule,
     MatSelect,
     MatIcon,
-    NgChartjsModule
+    NgChartjsModule,
+    MatToolbarModule,
+    MatTable
     
     
 
