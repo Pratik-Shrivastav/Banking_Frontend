@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../../service/login.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-document',
@@ -13,7 +14,7 @@ export class DocumentComponent {
   // Use a union type for keys
   files: { cin?: File, aoa?: File, pan?: File } = {};
 
-  constructor(private fb: FormBuilder, private loginService:LoginService) {
+  constructor(private fb: FormBuilder, private loginService:LoginService, private router:Router) {
     this.fileForm = this.fb.group({
       cin: [null, Validators.required],
       aoa: [null, Validators.required],
@@ -33,8 +34,6 @@ export class DocumentComponent {
   uploadFiles(): void {
     if (this.fileForm.valid) {
       const formData = new FormData();
-      
-
       // Append the files to the FormData object
       if (this.files.cin) {
         formData.append('cin', this.files.cin, this.files.cin.name);
@@ -53,8 +52,10 @@ export class DocumentComponent {
         error => 
           {console.error('File upload failed', error)}
       );
+      this.router.navigate(['Login/DocumentDisplay'])
     } else {
       console.log('Please select all required files.');
     }
+
   }
 }
