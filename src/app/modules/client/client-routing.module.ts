@@ -13,6 +13,7 @@ import { ViewRecentComponent } from './components/view-recent/view-recent.compon
 import { ReportsStatisticsComponent } from './components/reports-statistics/reports-statistics.component';
 import { AuditLogComponent } from './components/audit-logs/audit-logs.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ViewRecentPaymentComponent } from './components/view-recent-payment/view-recent-payment.component';
 const routes: Routes = [
   { path: '', component: ClientdashboardComponent },
   { path: 'add-employee', component: AddEmployeeComponent },
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path:'reports-statistics',component:ReportsStatisticsComponent},
   {path:'audit-logs',component:AuditLogComponent},
   {path:'navbar',component:NavbarComponent},
+  {path:'view-recent-payment',component:ViewRecentPaymentComponent
+  },
   { path: 'edit-employee/:id', component: EditEmployeeComponent }, // New route for editing employee
   { path: 'edit-beneficiary/:id', component: EditBeneficiaryComponent }
   

@@ -11,6 +11,7 @@ import { DetailsModalComponent } from '../details-modal/details-modal.component'
 export class ViewRecentComponent implements OnInit {
   salaryDisbursements: any[] = [];
   recentPayments: any[] = [];
+  beneficiaryList:any[]=[];
   filteredSalaryDisbursements: any[] = [];
   filteredRecentPayments: any[] = [];
 
@@ -29,7 +30,7 @@ export class ViewRecentComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadPaginatedSalaryDisbursements(this.salaryPageNumber, this.salaryPageSize);
-    this.loadPaginatedRecentPayments(this.paymentPageNumber, this.paymentPageSize);
+    this.loadBeneficiaryOptions(this.paymentPageNumber, this.paymentPageSize);
   }
 
   // Load paginated Salary Disbursements
@@ -50,13 +51,12 @@ export class ViewRecentComponent implements OnInit {
   }
 
   // Load paginated Recent Payments
-  loadPaginatedRecentPayments(pageNumber: number, pageSize: number): void {
-    this.clientService.getPaginatedRecentPayments(pageNumber, pageSize).subscribe(
+  loadBeneficiaryOptions(pageNumber: number, pageSize: number): void {
+    this.clientService.getBeneficiariesForOptions(pageNumber, pageSize).subscribe(
       (data: any) => {
         console.log(data);
-        this.recentPayments = data;        
-        this.paymentTotalPages = data.totalPages || 1;
-        this.filteredRecentPayments = [...this.recentPayments];
+        this.beneficiaryList = data.paginatedBeneficiary;
+        this.paymentTotalPages = data.count || 1;
         
       },
       error => {
@@ -74,7 +74,7 @@ export class ViewRecentComponent implements OnInit {
   // Handle payment pagination change
   onPaymentPageChange(newPage: number): void {
     this.paymentPageNumber = newPage;
-    this.loadPaginatedRecentPayments(this.paymentPageNumber, this.paymentPageSize);
+    this.loadBeneficiaryOptions(this.paymentPageNumber, this.paymentPageSize);
   }
 
   // Handle filter change event

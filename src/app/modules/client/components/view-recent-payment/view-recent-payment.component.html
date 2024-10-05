@@ -1,0 +1,50 @@
+<div class="col-md-6">
+    <h4 class="font-weight-bold mb-3">Beneficiary List</h4>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Beneficiary Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let beneficiary of beneficiaryList" (click)="getPaymentsOfBeneficiary(beneficiary.id)" >
+                <td>{{ beneficiary.benificiaryName }}</td> <!-- Fixed spelling mistake -->
+            </tr>
+        </tbody>
+    </table>
+
+
+    <mat-paginator 
+        [length]="count"
+        [pageSize]="pageSize"
+        
+        showFirstLastButtons
+        (page)="onPageChange($event)">
+    </mat-paginator>
+
+
+<table *ngIf="payments">
+    <thead>
+        <th>
+            Payment Type: 
+        </th>
+        <th>Amount </th>
+        <th>Status</th>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let payment of payments">
+            <td>{{payment.paymentType}}</td>
+            <td>{{payment.amount}}</td>
+            <td>{{payment.status}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+</div>

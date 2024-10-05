@@ -36,6 +36,7 @@ import { MatTable } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatPaginatorModule
 import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
 import { FormsModule } from '@angular/forms';
+import { ViewRecentPaymentComponent } from './components/view-recent-payment/view-recent-payment.component';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -52,6 +53,7 @@ import { FormsModule } from '@angular/forms';
     ReportsStatisticsComponent,
     AuditLogComponent,
     NavbarComponent,
+    ViewRecentPaymentComponent,
     
     
   ],

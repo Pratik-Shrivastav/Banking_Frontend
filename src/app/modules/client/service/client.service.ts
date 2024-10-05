@@ -62,6 +62,17 @@ export class ClientService {
     return this.http.get<Beneficiary[]>(`${this.apiUrl}/Beneficiaries`);
   }
 
+  getBeneficiariesForOptions(pageIndex: number, pageSize: number): Observable<Beneficiary[]> {
+    return this.http.get<Beneficiary[]>(`${this.apiUrl}/Beneficiary/get`,{
+      params: {
+        pageIndex,
+        pageSize
+      }
+    });
+  }
+
+  
+
   // Get employee by ID (for future use)
   getEmployeeById(id: number): Observable<Employee> {
     return this.http.get<Employee>(`${this.apiUrl}/Employee/${id}`);
@@ -71,6 +82,8 @@ export class ClientService {
   getBeneficiaryById(id: number): Observable<Beneficiary> {
     return this.http.get<Beneficiary>(`${this.apiUrl}/Beneficiary/${id}`);
   }
+
+  
 
   // Update employee (for future use)
   updateEmployee(id: number, employee: Employee): Observable<Employee> {
