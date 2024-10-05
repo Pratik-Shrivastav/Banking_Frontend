@@ -34,8 +34,8 @@ export class SuperAdminService {
     return this.httpClient.get<any[]>(requestUrl)
   }
 
-  public getClientByName(companyName: string, status:string): Observable<any> {
-    const requestUrl = `${this.apiUrl}/ClientByName/${companyName}/${status}`;
+  public getClientByName(companyName: string, status:string, page: number, pageSize: number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/ClientByName/${companyName}/${status}?page=${page}&pageSize=${pageSize}`;
     return this.httpClient.get<any[]>(requestUrl)
   }
 
@@ -61,8 +61,8 @@ export class SuperAdminService {
     return this.httpClient.put(requestUrl, JSON.stringify(status), { headers });
   }
 
-  public getClientSalaryDisbursementById(id: number): Observable<any> {
-    const requestUrl = `${this.apiUrl}/SalaryDisbursement/${id}`;
+  public getClientSalaryDisbursementById(id: number, page:number, pageSize:number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/SalaryDisbursement/${id}?page=${page}&pageSize=${pageSize}`;
     return this.httpClient.get<any[]>(requestUrl)
   }
 

@@ -11,32 +11,39 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class ClientsComponent implements OnInit {
   searchForm!: FormGroup;
-  clientsAll: any; // Hold the clients found by search
-  clients: any[] = []; // Array to hold the list of clients
-  loading: boolean = true; // Flag to show loading state
-  currentPage = 1; // Track the current page
-  totalClients = 0; // Total number of clients from the backend
-  pageSize = 8; // Number of clients per page
+  allClients: any[] = []; // Hold all clients returned from the backend
+  clients: any[] = []; // Hold the list of clients (filtered or paginated)
+  loading: boolean = true; // Loading state
+  currentPage = 1; // Current page number
+  totalClients = 0; // Total number of clients
+  pageSize = 8; // Clients per page
+  searchCurrentPage = 1;
+  filterType = 'All'; // Track if search is active or not
 
-  constructor(private fb: FormBuilder, private superAdminService: SuperAdminService, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private superAdminService: SuperAdminService, 
+    private router: Router
+  ) {
     this.searchForm = this.fb.group({
-      searchTerm: [''] 
+      searchTerm: ['']
     });
   }
 
   ngOnInit(): void {
-    this.loadClients(); // Fetch clients when the component initializes
+    this.loadClients(); // Load clients on initialization
     this.searchForm.get('searchTerm')?.valueChanges
-      .pipe(debounceTime(500)) // Wait for 300ms pause in events
-      .subscribe(() => this.onSearch()); // Trigger search on value changes
+      .pipe(debounceTime(500)) // Debounce search input
+      .subscribe(() => this.onSearch()); // Trigger search
   }
 
   loadClients(): void {
+    this.loading = true; // Show loading indicator
     this.superAdminService.getpaginationClients(this.currentPage, this.pageSize).subscribe({
       next: (response) => {
-        this.clientsAll = response.clients;
-        this.clients = this.clientsAll // Store the clients returned from the backend
-        this.totalClients = response.totalCount; // Store the total count of clients
+        this.allClients = response.clients;
+        this.clients = [...this.allClients]; // Clone the array to prevent reference issues
+        this.totalClients = response.totalCount;
         this.loading = false; // Hide loading indicator
       },
       error: (error) => {
@@ -47,22 +54,42 @@ export class ClientsComponent implements OnInit {
   }
 
   onPageChange(event: any): void {
-    this.currentPage = event.pageIndex + 1; // Angular Material paginator uses zero-based index
-    this.loadClients(); // Fetch clients for the new page
+    if (this.filterType === 'All') {
+      this.currentPage = event.pageIndex + 1; // Adjust for zero-indexing
+      this.loadClients();
+    } else {
+      this.searchCurrentPage = event.pageIndex + 1;
+      this.onSearch();
+    }
   }
 
-  onCardClick(id: number) {
+  onCardClick(id: number): void {
     this.router.navigate(['SuperAdmin/ViewClient', id]);
   }
 
   onSearch(): void {
-    const searchTerm = this.searchForm.get('searchTerm')?.value;
+    const searchTerm = this.searchForm.get('searchTerm')?.value.trim();
     if (searchTerm) {
-      this.superAdminService.getClientByName(searchTerm,"Success").subscribe((clientsByName) => {
-        this.clients = clientsByName;
+      this.loading = true; // Show loading indicator during search
+      this.filterType = 'Search';
+      this.superAdminService.getClientByName(searchTerm, 'Success', this.searchCurrentPage, this.pageSize).subscribe({
+        next: (response) => {
+
+          this.clients = response.paginatedUser.map((user: any) => user.clientObject);   
+          console.log(this.clients);
+          
+          this.totalClients = response.count;
+          this.loading = false; // Hide loading indicator
+        },
+        error: (error) => {
+          console.error('Error searching clients:', error);
+          this.loading = false; // Hide loading indicator in case of error
+        }
       });
     } else {
-      this.clients = this.clientsAll;
+      this.filterType = 'All';
+      this.clients = [...this.allClients]; // Reset clients to all
+      this.totalClients = this.allClients.length; // Reset total client count
     }
   }
 }

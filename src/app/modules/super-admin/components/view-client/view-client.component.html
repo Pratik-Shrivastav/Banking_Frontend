@@ -9,7 +9,8 @@
             <div class="client-info">
                 <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
                 <p><strong>Phone:</strong> {{ client.phone }}</p>
-                <p><strong>Address:</strong> {{ client.address }}, {{ client.city }}, {{ client.region }}, {{ client.country }}</p>
+                <p><strong>Address:</strong> {{ client.address }}, {{ client.city }}, {{ client.region }}, {{
+                    client.country }}</p>
                 <p><strong>Status:</strong> {{ client.status }}</p>
                 <p><strong>Balance:</strong> {{ client.accountDetailsObject.accountBalance | currency: "INR" }}</p>
             </div>
@@ -19,8 +20,16 @@
 
 <!-- Tables Container -->
 <div class="tables-container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" (click)="selectTab('tab1')">
+            <a class="nav-link" [class.active]="selectedTab === 'tab1'">Benificiary Payments</a>
+        </li>
+        <li class="nav-item" (click)="selectTab('tab2')">
+            <a class="nav-link" [class.active]="selectedTab === 'tab2'">Salary Disbursement</a>
+        </li>
+    </ul>
     <!-- Beneficiary Payment List -->
-    <div *ngIf="client.beneficiaryList" class="table-section beneficiary-section">
+    <div *ngIf="client.beneficiaryList && selectedTab==='tab1'" class="table-section beneficiary-section">
         <h4 class="beneficiary-heading">Payment List</h4>
         <!-- Filter Section for Payments -->
         <div class="filters-section">
@@ -35,7 +44,8 @@
         <div *ngFor="let beneficiary of client.beneficiaryList">
             <div *ngIf="getFilteredPayments(beneficiary).length">
                 <p class="payment-info">
-                    <strong>Payment For:</strong> <span class="beneficiary-name">{{ beneficiary.benificiaryName }}</span>
+                    <strong>Payment For:</strong> <span class="beneficiary-name">{{ beneficiary.benificiaryName
+                        }}</span>
                 </p>
                 <table class="payment-table">
                     <thead>
@@ -60,8 +70,10 @@
                                 </td>
                                 <td>{{ payment.createdAt | date: 'short' }}</td>
                                 <td>
-                                    <button mat-button *ngIf="payment.status === 'Pending'" (click)="viewPaymentDetails(beneficiary, payment)">View</button>
-                                    <button mat-button *ngIf="payment.status === 'Success'" (click)="viewCompletedPayment(payment)">View</button>
+                                    <button mat-button *ngIf="payment.status === 'Pending'"
+                                        (click)="viewPaymentDetails(beneficiary, payment)">View</button>
+                                    <button mat-button *ngIf="payment.status === 'Success'"
+                                        (click)="viewCompletedPayment(payment)">View</button>
                                 </td>
                             </tr>
                         </ng-container>
@@ -72,7 +84,7 @@
     </div>
 
     <!-- Salary Disbursement List -->
-    <div *ngIf="salaryDisbursementList" class="table-section salary-section">
+    <div *ngIf="salaryDisbursementList && selectedTab==='tab2'" class="table-section salary-section">
         <h3 class="salary-heading">Salary Disbursement List</h3>
         <!-- Filter Section for Salary Disbursements -->
         <div class="filters-section">
@@ -106,13 +118,18 @@
                             </td>
                             <td>{{ salaryDisbursement.processedAt | date: 'short' }}</td>
                             <td>
-                                <button mat-button *ngIf="salaryDisbursement.status === 'Pending'" (click)="viewSalaryDisbursementDetails(salaryDisbursement)">View</button>
-                                <button mat-button *ngIf="salaryDisbursement.status === 'Success'" (click)="viewCompletedSalaryDisbursement(salaryDisbursement)">View</button>
+                                <button mat-button *ngIf="salaryDisbursement.status === 'Pending'"
+                                    (click)="viewSalaryDisbursementDetails(salaryDisbursement)">View</button>
+                                <button mat-button *ngIf="salaryDisbursement.status === 'Success'"
+                                    (click)="viewCompletedSalaryDisbursement(salaryDisbursement)">View</button>
                             </td>
                         </tr>
                     </ng-container>
                 </tbody>
             </table>
+            <mat-paginator [length]="totalSalary" [pageSize]="pageSize" (page)="onPageChangeSalary($event)"
+                 showFirstLastButtons>
+            </mat-paginator>
         </div>
     </div>
 </div>

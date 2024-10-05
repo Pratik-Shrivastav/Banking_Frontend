@@ -17,6 +17,8 @@ export class PendingRequestComponent {
   currentPage = 1; // Current page index (starts at 1)
   pageSize = 8; // Flag to show loading state
   clientsAll: any;
+  searchCurrentPage =1;
+  getType = "All";
 
   constructor(private fb:FormBuilder,private superAdminService: SuperAdminService, private router:Router) 
   {
@@ -53,20 +55,30 @@ export class PendingRequestComponent {
     }
 
     onPageChange(event: any): void {
-      this.currentPage = event.pageIndex + 1; // Material paginator is zero-indexed
-      this.pageSize = event.pageSize; // Update page size
-      this.loadClients(); // Fetch the new page of clients
+      if(this.getType=="All"){
+        this.currentPage = event.pageIndex + 1; // Material paginator is zero-indexed
+      }
+      else{
+        this.searchCurrentPage = event.pageIndex +1;
+        this.onSearch();
+      }
+      this.loadClients();
+
     }
 
     onSearch(): void {
       const searchTerm = this.searchForm.get('searchTerm')?.value;
+      this.getType = "Search";
       if (searchTerm) {
-        this.superAdminService.getClientByName(searchTerm,"Pending").subscribe((clientsByName) => {
-          console.log(clientsByName);
+        this.superAdminService.getClientByName(searchTerm,"Pending",this.searchCurrentPage,this.pageSize ).subscribe((clientsByName) => {
+          console.log(clientsByName); 
+          this.clients = clientsByName.paginatedUser;
+          console.log(this.clients);
           
-          this.clients = clientsByName;
+          this.totalClients = clientsByName.count;
         });
       } else {
+        this.getType = "All";
         this.clients = this.clientsAll;
       }
     }

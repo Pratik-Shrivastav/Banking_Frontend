@@ -14,7 +14,7 @@
 
   <div *ngIf="!loading && clients && clients.length > 0" class="clients-container">
     <div *ngFor="let client of clients" class="client-card-container">
-      <div *ngIf="client.status === 'Success'">
+      <div>
         <mat-card class="client-card" (click)="onCardClick(client.id)">
           <mat-card-header class="client-card-header">
             <mat-card-title class="client-name">{{ client.companyName }}</mat-card-title>

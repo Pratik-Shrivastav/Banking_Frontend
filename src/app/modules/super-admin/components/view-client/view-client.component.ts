@@ -17,14 +17,29 @@ export class ViewClientComponent implements OnInit {
   salaryDisbursementList:any;
   loading: boolean = true; // Loading indicator
   error: string | null = null; // Error message
-
   paymentFilter: string = 'All';
-salaryFilter: string = 'All';
+  salaryFilter: string = 'All';
+
+  totalSalary!:number;
+  currentPageSalary:number = 1;
+  pageSize:number = 5;
+
+  onPageChangeSalary($event:any){
+    this.currentPageSalary = $event.pageIndex + 1;
+    this.loadSalaryDisburseemntCLient(this.client.id);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private superAdminService: SuperAdminService,
     private dialog: MatDialog,
   ) { }
+
+  selectedTab: string = 'tab1'; // Default selected tab
+
+  selectTab(tab: string): void {
+    this.selectedTab = tab; // Update the selected tab
+  }
 
   ngOnInit(): void {
     const clientId = this.route.snapshot.paramMap.get('clientId');
@@ -92,9 +107,12 @@ getStatusIcon(status: string): string {
   }
 
   loadSalaryDisburseemntCLient(id:number):void{
-    this.superAdminService.getClientSalaryDisbursementById(id).subscribe({
+    console.log(this.currentPageSalary);
+    
+    this.superAdminService.getClientSalaryDisbursementById(id, this.currentPageSalary, this.pageSize).subscribe({
       next: (salaryDisbursement) => {
-        this.salaryDisbursementList = salaryDisbursement;
+        this.salaryDisbursementList = salaryDisbursement.paginatedSalary;
+        this.totalSalary = salaryDisbursement.count;
         console.log(salaryDisbursement);
 
         this.loading = false;
