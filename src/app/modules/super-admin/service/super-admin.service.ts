@@ -23,6 +23,18 @@ export class SuperAdminService {
     return this.httpClient.get<any>(requestUrl);
   }
 
+  public getpaginationBeneficiary(clientId:number,page: number, pageSize: number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/GetBefiniciaryOption/${clientId}?page=${page}&pageSize=${pageSize}`;
+    return this.httpClient.get<any>(requestUrl);
+  }
+
+  public getpaginationPaymentsByBeneficiaryId(beneficiaryId:number,page: number, pageSize: number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/GetPaymentByBenEficiaryId/${beneficiaryId}?page=${page}&pageSize=${pageSize}`;
+    return this.httpClient.get<any>(requestUrl);
+  }
+
+
+
   public getObjects(): Observable<any> {
     const requestUrl = `${this.apiUrl}/AllClients`;
     return this.httpClient.get<any>(requestUrl);

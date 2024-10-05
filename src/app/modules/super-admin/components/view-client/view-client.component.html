@@ -29,8 +29,28 @@
         </li>
     </ul>
     <!-- Beneficiary Payment List -->
-    <div *ngIf="client.beneficiaryList && selectedTab==='tab1'" class="table-section beneficiary-section">
-        <h4 class="beneficiary-heading">Payment List</h4>
+    <div *ngIf="beneficiaryList && selectedTab==='tab1'" class="table-section beneficiary-section">
+
+        <div>
+            <h4>Beneficiary List</h4>
+        <table>
+            <thead>
+                <th>Beneficiary Name</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let beneficiary of beneficiaryList" (click)="loadPaymentsOfBeneficiary(beneficiary)">
+                    <td>{{beneficiary.benificiaryName}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [length]="totalBeneficiary" [pageSize]="pageSize" (page)="onPageChangeBeneficiary($event)"
+                 showFirstLastButtons>
+            </mat-paginator>
+        </div>
+        
+
+        <div *ngIf="paymentList">
+            <h4 class="beneficiary-heading">Payment List</h4>
         <!-- Filter Section for Payments -->
         <div class="filters-section">
             <label for="paymentFilter">Filter Payments:</label>
@@ -41,12 +61,8 @@
                 <option value="Reject">Reject</option>
             </select>
         </div>
-        <div *ngFor="let beneficiary of client.beneficiaryList">
-            <div *ngIf="getFilteredPayments(beneficiary).length">
-                <p class="payment-info">
-                    <strong>Payment For:</strong> <span class="beneficiary-name">{{ beneficiary.benificiaryName
-                        }}</span>
-                </p>
+        <div >
+            <div>
                 <table class="payment-table">
                     <thead>
                         <tr>
@@ -58,8 +74,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <ng-container *ngFor="let payment of getFilteredPayments(beneficiary)">
-                            <tr>
+                        <ng-container>
+                            <tr *ngFor="let payment of getFilteredPayments(paymentList)">
                                 <td>{{ payment.paymentType }}</td>
                                 <td>{{ payment.amount | currency: "INR" }}</td>
                                 <td>
@@ -71,7 +87,7 @@
                                 <td>{{ payment.createdAt | date: 'short' }}</td>
                                 <td>
                                     <button mat-button *ngIf="payment.status === 'Pending'"
-                                        (click)="viewPaymentDetails(beneficiary, payment)">View</button>
+                                        (click)="viewPaymentDetails(payment)">View</button>
                                     <button mat-button *ngIf="payment.status === 'Success'"
                                         (click)="viewCompletedPayment(payment)">View</button>
                                 </td>
@@ -79,13 +95,19 @@
                         </ng-container>
                     </tbody>
                 </table>
+                <mat-paginator [length]="totalPayments" [pageSize]="pageSize" (page)="onPageChangePayment($event)"
+                 showFirstLastButtons>
+            </mat-paginator>
             </div>
         </div>
+        </div>
+        
     </div>
 
     <!-- Salary Disbursement List -->
-    <div *ngIf="salaryDisbursementList && selectedTab==='tab2'" class="table-section salary-section">
-        <h3 class="salary-heading">Salary Disbursement List</h3>
+    <div *ngIf="salaryDisbursementList && selectedTab==='tab2'" class="container table-section salary-section">
+        <div class="d-flex justify-content-center" style="flex-direction: column; align-items: center;">
+            <h3 class="salary-heading">Salary Disbursement List</h3>
         <!-- Filter Section for Salary Disbursements -->
         <div class="filters-section">
             <label for="salaryFilter">Filter Salary Disbursements:</label>
@@ -131,5 +153,8 @@
                  showFirstLastButtons>
             </mat-paginator>
         </div>
+
+        </div>
+        
     </div>
 </div>
