@@ -4,8 +4,7 @@
 
   <div *ngIf="loading" class="loading-message text-center my-5">Loading clients...</div>
 
-
-  <div class="search-container" style="width:18rem;">
+  <div class="search-container mb-4" style="width: 18rem;">
     <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="form-inline">
       <div class="form-group mb-2">
         <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by company name" />
@@ -14,11 +13,12 @@
   </div>
 
   <div *ngIf="!loading && clients.length > 0" class="row justify-content-center">
-    <div *ngFor="let client of clients" class="col-md-6 mb-4">
-      <div class="card h-100 p-4" (click)="onCardClick(client.id)">
+    <div *ngFor="let client of clients" class="col-md-3 mb-4"> <!-- Adjusting the column size for 4 cards per row -->
+      <div class="card h-100 client-card" (click)="onCardClick(client.id)">
         <div class="card-body">
-          <h3 class="card-title display-6">{{ client.companyName }}</h3>
-          <p class="card-text fs-5"><strong>Founder Name:</strong> {{ client.founderName }}</p>
+          <h3 class="card-title display-6 client-card-title">{{ client.clientObject.companyName }}</h3>
+          <p class="card-text fs-6"><strong>Founder Name: </strong> {{ client.clientObject.founderName }}</p>
+          <p class="card-text fs-7"><strong>Pending From: </strong>{{ client.createdOn | date:"short" }}</p>
         </div>
       </div>
     </div>
