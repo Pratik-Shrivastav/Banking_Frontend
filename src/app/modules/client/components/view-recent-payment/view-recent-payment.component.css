@@ -1,0 +1,106 @@
+/* Wrapper for the Tables */
+.table-wrapper {
+  display: flex; /* Use flex to allow dynamic resizing */
+  background-color: #e0e0e0; /* Highlight the wrapper */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+}
+
+/* Beneficiary Table Wrapper */
+.beneficiary-wrapper,
+.payment-wrapper {
+  flex: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Align content evenly */
+  margin: 0 10px; /* Space between the two tables */
+  height: 100%; /* Ensure full height usage */
+}
+
+/* Divider */
+.divider {
+  width: 8px; /* Width of the divider */
+  background-color: #ffffff; /* White background for the divider */
+  height: max-content; /* Allow it to stretch with content */
+}
+
+/* General Table Styling */
+.table {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Spacing between rows */
+}
+
+/* Row height for consistency */
+.beneficiary-row, .payment-table tr {
+  height: 50px; /* Set a fixed height for rows */
+}
+.beneficiary-table th{
+  background-color: #343a40; /* Dark background for header */
+  color: white;
+}
+/* Beneficiary Table */
+.beneficiary-table th, .beneficiary-table tr {
+  height: 40px;
+}
+
+.beneficiary-row {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.beneficiary-row:hover {
+  background-color: #e0f7fa;
+}
+
+/* Payment Table */
+.payment-table {
+  /* Additional specific styling for payment table can go here */
+}
+
+.payment-table th,
+.payment-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.payment-table th {
+  background-color: #343a40; /* Dark background for header */
+  color: white; /* White text for header */
+}
+.payment-table tr {
+ height: 40px;
+}
+
+/* Status Column Styling */
+.status-success {
+  color: #28a745; /* Bootstrap success color */
+}
+
+.status-pending {
+  color: #ffc107; /* Bootstrap warning color */
+}
+
+.status-reject {
+  color: #dc3545; /* Bootstrap danger color */
+}
+
+/* Close Button Style */
+.close-btn {
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.close-btn:hover {
+  background-color: #c82333; /* Darker shade on hover */
+}

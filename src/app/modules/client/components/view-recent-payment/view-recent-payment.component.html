@@ -1,50 +1,73 @@
-<div class="col-md-6">
-    <h4 class="font-weight-bold mb-3">Beneficiary List</h4>
+<div class="table-wrapper mb-5">
+    <div class="beneficiary-wrapper">
+        <h4 class="font-weight-bold mb-2">Beneficiary List</h4>
+  
+        <table class="table table-striped table-hover beneficiary-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Account Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let beneficiary of beneficiaryList"
+                    class="beneficiary-row"
+                    (click)="togglePaymentPanel(beneficiary.id)"
+                >
+                    <td>{{ beneficiary.benificiaryName }}</td>
+                    <td>{{ beneficiary.email }}</td>
+                    <td>{{ beneficiary.accountDetailsObject?.accountNumber }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Beneficiary Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let beneficiary of beneficiaryList" (click)="getPaymentsOfBeneficiary(beneficiary.id)" >
-                <td>{{ beneficiary.benificiaryName }}</td> <!-- Fixed spelling mistake -->
-            </tr>
-        </tbody>
-    </table>
+        <mat-paginator
+            [length]="count"
+            [pageSize]="pageSize"
+            showFirstLastButtons
+            (page)="onPageChange($event)"
+        ></mat-paginator>
+    </div>
 
+    <!-- Divider -->
+    <div class="divider" *ngIf="selectedBeneficiary"></div>
 
-    <mat-paginator 
-        [length]="count"
-        [pageSize]="pageSize"
-        
-        showFirstLastButtons
-        (page)="onPageChange($event)">
-    </mat-paginator>
-
-
-<table *ngIf="payments">
-    <thead>
-        <th>
-            Payment Type: 
-        </th>
-        <th>Amount </th>
-        <th>Status</th>
-        
-    </thead>
-    <tbody>
-        <tr *ngFor="let payment of payments">
-            <td>{{payment.paymentType}}</td>
-            <td>{{payment.amount}}</td>
-            <td>{{payment.status}}</td>
-        </tr>
-    </tbody>
-</table>
-
-
-
-
-
-
+    <!-- Payments List, conditionally displayed beside the Beneficiary List -->
+    <div class="payment-wrapper" *ngIf="selectedBeneficiary">
+        <h4 class="font-weight-bold mb-2">
+            Payments for {{ selectedBeneficiary.benificiaryName }}
+        </h4>
+  
+        <table class="table table-striped table-hover payment-table">
+            <thead>
+                <tr>
+                    <th>Payment Type</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let payment of payments" (click)="onPaymentClick(payment,beneficiaryList)" >
+                    <td>{{ payment.paymentType }}</td>
+                    <td>{{ payment.amount | currency: 'INR' }}</td>
+                    <td>
+                        <span
+                            [ngClass]="{
+                                'status-success': payment.status === 'Approved',
+                                'status-pending': payment.status === 'Pending',
+                                'status-reject': payment.status === 'Reject'
+                            }"
+                        >
+                            {{ payment.status }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+  
+        <button class="close-btn" (click)="closePaymentPanel()">Close</button>
+    </div>
 </div>
+<div> </div>

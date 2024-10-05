@@ -3,50 +3,51 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #0080ff; /* Dark background */
+    background-color: #0080ff;
     color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
 }
 
 .navbar-title {
-    font-size: 1.8em; /* Increased font size for title */
-    font-weight: bold; /* Bold title */
-    flex-grow: 1; /* Allow title to grow */
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-message {
+    margin-left: 10px;
 }
 
 .navbar-links {
-    margin-left: 20px; /* Space between title and button */
+    display: flex;
+    align-items: center;
 }
 
 .nav-button {
-    color: #ffffff; /* Button text color */
-    transition: background-color 0.3s; /* Smooth transitions */
+    color: #ffffff;
+    transition: background-color 0.3s;
+    margin-right: 20px;
 }
 
 .nav-button:hover {
-    background-color: #007bff; /* Button hover color */
-}
-
-.navbar-profile {
-    display: flex;
-    align-items: center; /* Align items vertically */
-}
-
-.profile-icon {
-    font-size: 2em; /* Larger icon size */
-    color: white; /* Icon color */
-    margin-right: 10px; /* Space between icon and logout button */
+    background-color: #007bff;
 }
 
 .logout-button {
-    color: #ffffff; /* Logout button text color */
+    color: white;
 }
 
 .logout-button:hover {
-    background-color: transparent; /* No background on hover */
-    text-decoration: underline; /* Underline text on hover */
+    background-color: transparent;
+    text-decoration: underline;
 }
 
-.anchorTag{
+.anchorTag {
     color: white !important;
 }

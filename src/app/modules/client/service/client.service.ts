@@ -71,7 +71,7 @@ export class ClientService {
     });
   }
 
-  
+
 
   // Get employee by ID (for future use)
   getEmployeeById(id: number): Observable<Employee> {
@@ -133,8 +133,8 @@ getSalaryDisbursements(): Observable<any[]> {
 getPaginatedSalaryDisbursements(pageNumber: number, pageSize: number): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/salary-disbursements-paginated`, {
     params: {
-      pageNumber: pageNumber.toString(),
-      pageSize: pageSize.toString()
+      pageNumber,
+      pageSize
     }
   });
 }

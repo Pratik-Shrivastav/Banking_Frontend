@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
     constructor(private router: Router) {}
 
+    companyName:string | null = localStorage.getItem('companyName');
+
     logout() {
        localStorage.removeItem('Token');
         this.router.navigate(['/Login']);

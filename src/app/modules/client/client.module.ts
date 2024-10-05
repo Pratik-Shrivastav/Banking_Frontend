@@ -12,7 +12,7 @@ import { EditBeneficiaryComponent } from './components/edit-beneficiary/edit-ben
 import { EditEmployeeComponent } from './components/edit-employee/edit-employee.component';
 import { SalaryDisbursementComponent } from './components/salary-disbursement/salary-disbursement.component';
 import { MakePaymentComponent } from './components/make-payment/make-payment.component';
-import { ViewRecentComponent } from './components/view-recent/view-recent.component';
+import { ViewRecentSalaryComponent } from './components/view-recent-salary/view-recent-salary.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,6 +37,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatP
 import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
 import { FormsModule } from '@angular/forms';
 import { ViewRecentPaymentComponent } from './components/view-recent-payment/view-recent-payment.component';
+import { ViewRecentComponent } from './components/view-recent/view-recent.component';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -48,12 +49,13 @@ import { ViewRecentPaymentComponent } from './components/view-recent-payment/vie
     EditEmployeeComponent,
     SalaryDisbursementComponent,
     MakePaymentComponent,
-    ViewRecentComponent,
+   ViewRecentSalaryComponent,
     DetailsModalComponent,
     ReportsStatisticsComponent,
     AuditLogComponent,
     NavbarComponent,
     ViewRecentPaymentComponent,
+    ViewRecentComponent,
     
     
   ],

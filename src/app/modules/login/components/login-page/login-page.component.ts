@@ -51,6 +51,7 @@ export class LoginPageComponent {
           }
           else 
           {
+            localStorage.setItem("companyName",response.userName);
             if (response.success && response.status == "Success") {
               console.log('Login successful!', response);
               localStorage.setItem("Token", response.token);

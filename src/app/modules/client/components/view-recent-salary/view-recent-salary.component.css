@@ -1,0 +1,73 @@
+.container {
+    margin-top: 30px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(105, 105, 105, 0.2);
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+ 
+  .mat-elevation-z8 {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .mat-header-cell, .mat-cell {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .mat-header-cell {
+    background-color: #3f51b5;
+    color: white;
+  }
+  
+  .clickable-row:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-warning {
+    color: orange;
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  @media (max-width: 768px) {
+    .mat-cell {
+      font-size: 14px;
+    }
+  }
+  /* Wrapper for the Tables */
+.table-wrapper {
+  display: flex; /* Use flex to allow dynamic resizing */
+  background-color: #e0e0e0; /* Highlight the wrapper */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(253, 249, 249, 0.1);
+}
+
+/* General Table Styling */
+.table {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Spacing between rows */
+}
+
+/* Row height for consistency */
+.beneficiary-row, .payment-table tr, .salary-table tr {
+  height: 50px; /* Set a fixed height for rows */
+}
+
+/* Additional table styling for other tables if needed */

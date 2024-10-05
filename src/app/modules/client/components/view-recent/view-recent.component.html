@@ -1,96 +1,23 @@
 <app-navbar></app-navbar>
-<div class="container mt-5">
-  <h2 class="text-center font-weight-bold mb-4">Recent Transactions</h2>
+<div class="container mt-4">
+  <h2 class="text-center font-weight-bold mb-3">View Your Recent Transactions - Payments & Salary Disbursements</h2>
 
-  <!-- Salary Disbursement Payments Table -->
-  <div class="col-md-6">
-    <h4 class="font-weight-bold mb-3">Salary Disbursement Payments</h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th>Date</th>
-          <th>Amount</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let salary of filteredSalaryDisbursements" (click)="onSalaryClick(salary)" class="clickable-row">
-          <td>{{ salary.processedAt | date:'short' }}</td>
-          <td>{{ salary.amount | currency:'INR' }}</td>
-          <td>
-            <span [ngClass]="{
-                'text-success': salary.status === 'Success',
-                'text-warning': salary.status === 'Pending',
-                'text-danger': salary.status === 'Reject'
-              }">
-              {{ salary.status }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Pagination controls for salary disbursements -->
-    <nav *ngIf="salaryTotalPages > 1">
-      <ul class="pagination">
-        <li class="page-item" [class.disabled]="salaryPageNumber === 1">
-          <a class="page-link" (click)="onSalaryPageChange(salaryPageNumber - 1)">Previous</a>
-        </li>
-        <li class="page-item" *ngFor="let page of [].constructor(salaryTotalPages); let i = index">
-          <a class="page-link" (click)="onSalaryPageChange(i + 1)" [class.active]="salaryPageNumber === i + 1">{{ i + 1 }}</a>
-        </li>
-        <li class="page-item" [class.disabled]="salaryPageNumber === salaryTotalPages">
-          <a class="page-link" (click)="onSalaryPageChange(salaryPageNumber + 1)">Next</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="d-flex justify-content-center align-items-center mb-4">
+    <span class="toggle-label">Recent Payments</span>
+    <label class="toggle-switch mx-3">
+      <input type="checkbox" (change)="toggleComponents()" [checked]="!displayFirstComponent" />
+      <span class="slider round"></span>
+    </label>
+    <span class="toggle-label">Recent Salary Disbursements</span>
   </div>
 
-  <!-- Recent Payments Table -->
-  <div class="col-md-6">
-    <h4 class="font-weight-bold mb-3">Recent Payments</h4>
-    <table class="table table-striped table-bordered table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th>Payment Title</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Created At</th>
-        </tr>
-      </thead>
-      <tbody>
-        <ng-container *ngFor="let beneficiary of filteredRecentPayments">
-          <tr *ngFor="let payment of beneficiary.paymentsList" (click)="onPaymentClick(payment, beneficiary)" class="clickable-row">
-            <td>{{ payment.paymentType }}</td>
-            <td>{{ payment.amount | currency:'INR' }}</td>
-            <td>
-              <span [ngClass]="{
-                  'text-success': payment.status === 'Success',
-                  'text-warning': payment.status === 'Pending',
-                  'text-danger': payment.status === 'Reject'
-                }">
-                {{ payment.status }}
-              </span>
-            </td>
-            <td>{{ payment.createdAt | date:'short' }}</td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
+  <div class="component-container">
+    <div *ngIf="displayFirstComponent">
+      <app-view-recent-payment></app-view-recent-payment>
+    </div>
 
-    <!-- Pagination controls for recent payments -->
-    <nav *ngIf="paymentTotalPages > 1">
-      <ul class="pagination">
-        <li class="page-item" [class.disabled]="paymentPageNumber === 1">
-          <a class="page-link" (click)="onPaymentPageChange(paymentPageNumber - 1)">Previous</a>
-        </li>
-        <li class="page-item" *ngFor="let page of [].constructor(paymentTotalPages); let i = index">
-          <a class="page-link" (click)="onPaymentPageChange(i + 1)" [class.active]="paymentPageNumber === i + 1">{{ i + 1 }}</a>
-        </li>
-        <li class="page-item" [class.disabled]="paymentPageNumber === paymentTotalPages">
-          <a class="page-link" (click)="onPaymentPageChange(paymentPageNumber + 1)">Next</a>
-        </li>
-      </ul>
-    </nav>
+    <div *ngIf="!displayFirstComponent">
+      <app-view-recent-salary></app-view-recent-salary>
+    </div>
   </div>
 </div>

@@ -16,15 +16,15 @@
     <table *ngIf="auditLogs.length" class="audit-log-table">
       <thead>
         <tr>
-          <th>ID</th>
+          <th>Sr.No</th>
           <th>Action</th>
           <th>Timestamp</th>
           <th>Details</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let log of auditLogs">
-          <td>{{ log.id }}</td>
+        <tr *ngFor="let log of auditLogs; let i = index">
+          <td>{{ i + 1}}</td>
           <td>{{ log.action }}</td>
           <td>{{ log.timestamp | date:'medium' }}</td>
           <td>{{ log.details }}</td>

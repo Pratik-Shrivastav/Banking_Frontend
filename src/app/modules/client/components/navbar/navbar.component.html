@@ -1,18 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
-    <div class="navbar-brand">
-      <i class="fas fa-user-shield"></i> CLient
+<nav class="navbar">
+  <div class="left-section d-flex align-items-center">
+    <div class="navbar-title">
+      <i class="fas fa-user-shield mr-2" style="margin-right: 10px;"></i>
+      <span>Client</span>
     </div>
-  
-    <div class=" ml-auto d-flex align-items-center">
-      <a class="btn anchorTag mr-3" routerLink="/Client">
-        <i class="fas fa-tachometer-alt"></i> Go to Dashboard
-      </a>
-  
-      <div class="navbar-profile d-flex align-items-center">
-        <button class="btn anchorTag" (click)="logout()">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
-      </div>
+    <div class="welcome-message ml-3">
+      <p class="mb-0 font-weight-bold">Welcome Back: {{companyName}}</p>
     </div>
-  </nav>
-  
+  </div>
+
+  <div class="navbar-links d-flex align-items-center">
+    <a class="nav-button btn anchorTag mr-3" routerLink="/Client">
+      <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+    </a>
+    <div class="navbar-profile">
+      <button class="logout-button btn" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </div>
+</nav>
