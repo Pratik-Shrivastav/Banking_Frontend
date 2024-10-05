@@ -117,6 +117,24 @@ getRecentPayments(): Observable<any[]> {
 getSalaryDisbursements(): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/Payments/SalaryDisbursements`); // Adjust the URL as needed
 }
+getPaginatedSalaryDisbursements(pageNumber: number, pageSize: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/salary-disbursements-paginated`, {
+    params: {
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    }
+  });
+}
+
+getPaginatedRecentPayments(pageNumber: number, pageSize: number): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/recent-payments-paginated`, {
+    params: {
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    }
+  });
+}
+
 getAuditLogs(): Observable<AuditLog[]> {
   return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`).pipe(
     catchError(this.handleError)
