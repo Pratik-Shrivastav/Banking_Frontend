@@ -53,14 +53,14 @@
 
 /* Tables Container */
 .tables-container {
-    display: flex;                  /* Use flexbox for side-by-side layout */
-    justify-content: space-between; /* Space between sections */
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
 /* Table Section */
 .table-section {
-    width: 48%; /* Each section takes 48% of the width */
+    width: 48%;
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
@@ -70,13 +70,13 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .tables-container {
-        flex-direction: column; /* Stack tables on smaller screens */
-        align-items: center; /* Center items */
+        flex-direction: column;
+        align-items: center;
     }
     
     .table-section {
-        width: 100%; /* Full width for each table */
-        margin-bottom: 20px; /* Space between stacked tables */
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 
@@ -95,6 +95,7 @@
     width: 100%;
     border-collapse: collapse;
 }
+
 .filters-section {
     margin: 20px 0;
 }
@@ -129,6 +130,7 @@ mat-button {
     color: white;
     border-radius: 5px;
     padding: 6px 12px;
+    transition: background-color 0.3s ease;  /* Smooth transition */
 }
 
 mat-button:hover {
@@ -164,7 +166,7 @@ mat-button:hover {
 /* General Table Section */
 .beneficiary-section,
 .salary-section {
-    width: 48%; /* Split the two sections into halves */
+    width: 48%;
 }
 
 /* General table header and cell styles */
@@ -173,23 +175,120 @@ mat-button:hover {
 .salary-table th,
 .salary-table td {
     padding: 12px;
-    text-align: left; /* Align text to the left */
-    border-bottom: 1px solid #ddd; /* Border for table rows */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
 /* Table Row Hover Effect */
 .payment-table tr:hover,
 .salary-table tr:hover {
-    background-color: #f1f3f5; /* Highlight on hover */
+    background-color: #f1f3f5;
 }
+
+
+
+/* Main Container for the entire layout */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Beneficiary and Payment containers to increase width */
+.beneficiary-container,
+.payment-container {
+    flex: 1; /* This ensures both tables take up equal space */
+    margin: 0 10px; /* Add some space between the containers */
+}
+
+/* Table containers to increase the width of each table */
+.table-container {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .tables-container {
-        flex-direction: column; /* Stack tables on smaller screens */
-        align-items: center; /* Center items */
+    .main-container {
+        flex-direction: column; /* Stack the tables on smaller screens */
     }
-    
-    .table-section {
-        width: 100%; /* Full width for each table */
+
+    .beneficiary-container,
+    .payment-container {
+        width: 100%; /* Full width for each container */
         margin-bottom: 20px; /* Space between stacked tables */
     }
 }
+
+/* Filter Section */
+.filters-section {
+    margin: 20px 0;
+}
+
+.filters-section label {
+    margin-right: 10px;
+}
+
+/* Table Row Hover Effect */
+.table tr:hover {
+    background-color: #f1f3f5; /* Highlight on hover */
+}
+
+/* Button Styles */
+mat-button {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 6px 12px;
+    transition: background-color 0.3s ease;
+}
+
+mat-button:hover {
+    background-color: #0056b3;
+}
+
+/* Status Column Styling */
+.status-success {
+    color: #28a745;
+}
+
+.status-pending {
+    color: #ffc107;
+}
+
+.status-rejected {
+    color: #dc3545;
+}
+
+.status-success i,
+.status-pending i,
+.status-rejected i {
+    margin-right: 5px;
+}
+
+.highlighted {
+    background-color: #37b9ffe5; /* Light blue background */
+    color: white;
+  }

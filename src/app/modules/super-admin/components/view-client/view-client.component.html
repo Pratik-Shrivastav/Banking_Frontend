@@ -1,5 +1,19 @@
 <app-navbar></app-navbar>
-<div *ngIf="!loading && client" class="client-details">
+<!-- Tables Container -->
+<div class="tables-container">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" (click)="selectTab('tab3')">
+            <a class="nav-link" [class.active]="selectedTab === 'tab3'">Client Details</a>
+        </li>
+        <li class="nav-item" (click)="selectTab('tab1')">
+            <a class="nav-link" [class.active]="selectedTab === 'tab1'">Benificiary Payments</a>
+        </li>
+        <li class="nav-item" (click)="selectTab('tab2')">
+            <a class="nav-link" [class.active]="selectedTab === 'tab2'">Salary Disbursement</a>
+        </li>
+    </ul>
+</div>
+<div *ngIf="!loading && client && selectedTab==='tab3'" class="client-details">
     <mat-card class="client-card">
         <mat-card-header class="client-card-header">
             <mat-card-title>{{ client.companyName }}</mat-card-title>
@@ -18,52 +32,45 @@
     </mat-card>
 </div>
 
-<!-- Tables Container -->
-<div class="tables-container">
-    <ul class="nav nav-tabs">
-        <li class="nav-item" (click)="selectTab('tab1')">
-            <a class="nav-link" [class.active]="selectedTab === 'tab1'">Benificiary Payments</a>
-        </li>
-        <li class="nav-item" (click)="selectTab('tab2')">
-            <a class="nav-link" [class.active]="selectedTab === 'tab2'">Salary Disbursement</a>
-        </li>
-    </ul>
-    <!-- Beneficiary Payment List -->
-    <div *ngIf="beneficiaryList && selectedTab==='tab1'" class="table-section beneficiary-section">
-
-        <div>
-            <h4>Beneficiary List</h4>
-        <table>
-            <thead>
-                <th>Beneficiary Name</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let beneficiary of beneficiaryList" (click)="loadPaymentsOfBeneficiary(beneficiary)">
-                    <td>{{beneficiary.benificiaryName}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <mat-paginator [length]="totalBeneficiary" [pageSize]="pageSize" (page)="onPageChangeBeneficiary($event)"
-                 showFirstLastButtons>
-            </mat-paginator>
+<div *ngIf="beneficiaryList && selectedTab==='tab1'" class="main-container">
+    <div class="row" style="width: 100%;">
+        <!-- Left Side: Beneficiary Table -->
+        <div class="col-md-6 beneficiary-container" style="margin-top: 5rem;">
+            <div class="table-container">
+                <h4>Beneficiary List</h4>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <th>Beneficiary Name</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let beneficiary of beneficiaryList" (click)="loadPaymentsOfBeneficiary(beneficiary)">
+                            <td [ngClass]="{'highlighted': beneficiary === selectedBeneficiary}">{{ beneficiary.benificiaryName }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <mat-paginator [length]="totalBeneficiary" [pageSize]="pageSize" (page)="onPageChangeBeneficiary($event)" showFirstLastButtons>
+                </mat-paginator>
+            </div>
         </div>
-        
 
-        <div *ngIf="paymentList">
+        <!-- Right Side: Payment Table -->
+        <div class="col-md-6 payment-container" *ngIf="paymentList">
             <h4 class="beneficiary-heading">Payment List</h4>
-        <!-- Filter Section for Payments -->
-        <div class="filters-section">
-            <label for="paymentFilter">Filter Payments:</label>
-            <select id="paymentFilter" [(ngModel)]="paymentFilter">
-                <option value="All">All</option>
-                <option value="Success">Success</option>
-                <option value="Pending">Pending</option>
-                <option value="Reject">Reject</option>
-            </select>
-        </div>
-        <div >
-            <div>
-                <table class="payment-table">
+
+            <!-- Filter Section for Payments -->
+            <div class="filters-section">
+                <label for="paymentFilter">Filter Payments:</label>
+                <select id="paymentFilter" [(ngModel)]="paymentFilter">
+                    <option value="All">All</option>
+                    <option value="Success">Success</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Reject">Reject</option>
+                </select>
+            </div>
+
+            <!-- Payment Table -->
+            <div class="table-container">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Payment Type</th>
@@ -86,28 +93,24 @@
                                 </td>
                                 <td>{{ payment.createdAt | date: 'short' }}</td>
                                 <td>
-                                    <button mat-button *ngIf="payment.status === 'Pending'"
-                                        (click)="viewPaymentDetails(payment)">View</button>
-                                    <button mat-button *ngIf="payment.status === 'Success'"
-                                        (click)="viewCompletedPayment(payment)">View</button>
+                                    <button mat-button *ngIf="payment.status === 'Pending'" (click)="viewPaymentDetails(payment)">View</button>
+                                    <button mat-button *ngIf="payment.status === 'Success'" (click)="viewCompletedPayment(payment)">View</button>
                                 </td>
                             </tr>
                         </ng-container>
                     </tbody>
                 </table>
-                <mat-paginator [length]="totalPayments" [pageSize]="pageSize" (page)="onPageChangePayment($event)"
-                 showFirstLastButtons>
-            </mat-paginator>
+                <mat-paginator [length]="totalPayments" [pageSize]="pageSize" (page)="onPageChangePayment($event)" showFirstLastButtons>
+                </mat-paginator>
             </div>
         </div>
-        </div>
-        
     </div>
+</div>
 
-    <!-- Salary Disbursement List -->
-    <div *ngIf="salaryDisbursementList && selectedTab==='tab2'" class="container table-section salary-section">
-        <div class="d-flex justify-content-center" style="flex-direction: column; align-items: center;">
-            <h3 class="salary-heading">Salary Disbursement List</h3>
+
+
+<div *ngIf="salaryDisbursementList && selectedTab==='tab2'" class="container table-section salary-section">
+    <div class="d-flex justify-content-center" style="flex-direction: column; align-items: center;">
         <!-- Filter Section for Salary Disbursements -->
         <div class="filters-section">
             <label for="salaryFilter">Filter Salary Disbursements:</label>
@@ -150,11 +153,10 @@
                 </tbody>
             </table>
             <mat-paginator [length]="totalSalary" [pageSize]="pageSize" (page)="onPageChangeSalary($event)"
-                 showFirstLastButtons>
+                showFirstLastButtons>
             </mat-paginator>
         </div>
 
-        </div>
-        
     </div>
+
 </div>

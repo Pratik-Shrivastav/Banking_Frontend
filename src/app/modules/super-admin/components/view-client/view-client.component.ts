@@ -53,7 +53,7 @@ export class ViewClientComponent implements OnInit {
     private dialog: MatDialog,
   ) { }
 
-  selectedTab: string = 'tab1'; // Default selected tab
+  selectedTab: string = 'tab3'; // Default selected tab
 
   selectTab(tab: string): void {
     this.selectedTab = tab; // Update the selected tab
