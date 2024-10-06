@@ -88,4 +88,7 @@
     color: #dc3545; /* Red for rejected */
     font-weight: bold;
   }
-  
+  .highlighted {
+    background-color: #37b9ffe5; /* Light blue background */
+    color: white;
+  }

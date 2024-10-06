@@ -17,6 +17,8 @@ export class RejectedDocumentsComponent implements OnInit {
   loading: boolean = true; // Loading indicator
   error: string | null = null; // Error message
   previewUrl!:string
+  documentType:any = ["Certificate of Incorporation (CIN)","Memorandum & Articles of Association (AOA)","Company PAN Card"]
+  selectedDocumnet:any 
 
   constructor(
     private route: ActivatedRoute,
@@ -48,8 +50,9 @@ export class RejectedDocumentsComponent implements OnInit {
     });
   }
 
-  previewFile(fileName: string): void {
-    this.loginService.previewFile(fileName).subscribe(
+  previewFile(doc: any): void {
+    this.selectedDocumnet = doc;
+    this.loginService.previewFile(doc.documentName).subscribe(
       (response)=>{
         console.log(response.documentUrl);
         this.previewUrl = response.documentUrl;

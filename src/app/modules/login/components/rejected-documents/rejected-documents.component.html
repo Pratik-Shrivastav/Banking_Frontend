@@ -36,14 +36,15 @@
     <div class="col-md-6">
       <h3>Documents</h3>
       <ul class="list-group">
-        <li *ngFor="let doc of documents" class="list-group-item d-flex justify-content-between align-items-center">
+        <li [ngClass]="{'highlighted': doc === selectedDocumnet}" *ngFor="let doc of documents ; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
           <div>
+            <p><strong>{{documentType[i]}}</strong></p>
             <strong>{{ doc.documentName }}</strong>
             <p>Uploaded on: {{ doc.uploadedOn | date }}</p>
           </div>
           
           <!-- Preview Button -->
-          <button mat-button class="btn btn-outline-primary btn-sm mr-2" (click)="previewFile(doc.documentName)">
+          <button mat-button class="btn btn-outline-primary btn-sm mr-2" (click)="previewFile(doc)">
             <mat-icon>visibility</mat-icon> Preview
           </button>
         </li>

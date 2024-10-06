@@ -13,7 +13,8 @@ export class DisplayPendingClientComponent {
   loading: boolean = true; // Loading indicator
   error: string | null = null; // Error message
   previewUrl!:string
-
+  documentType:any = ["Certificate of Incorporation (CIN)","Memorandum & Articles of Association (AOA)","Company PAN Card"]
+  selectedDocumnet:any 
   constructor(
     private route: ActivatedRoute,
     private superAdminService: SuperAdminService,
@@ -58,8 +59,9 @@ export class DisplayPendingClientComponent {
     });
   }
 
-  previewFile(fileName: string): void {
-    this.superAdminService.previewFile(fileName).subscribe(
+  previewFile(doc: any): void {
+    this.selectedDocumnet = doc;
+    this.superAdminService.previewFile(doc.documentName).subscribe(
       (response)=>{
         console.log(response.documentUrl);
         this.previewUrl = response.documentUrl;
