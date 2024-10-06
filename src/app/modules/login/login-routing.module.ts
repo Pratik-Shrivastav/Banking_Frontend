@@ -5,6 +5,7 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { DocumentComponent } from './components/document/document.component';
 import { DocumentDisplayComponent } from './components/document-display/document-display.component';
 import { authGuard } from '../../authentication/auth.guard';
+import { RejectedDocumentsComponent } from './components/rejected-documents/rejected-documents.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
   },
   {
     path:"DocumentDisplay", component:DocumentDisplayComponent,
+    canActivate: [authGuard],  // Apply the authGuard here
+    data: { role: 'Client' }
+  },
+  {
+    path:"RejectedDisplay", component:RejectedDocumentsComponent,
     canActivate: [authGuard],  // Apply the authGuard here
     data: { role: 'Client' }
   }

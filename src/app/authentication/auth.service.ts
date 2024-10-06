@@ -28,6 +28,7 @@ export class AuthService {
     const decodedToken = this.getDecodedToken();
     if (decodedToken) {
       const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']; // Access the role from the claim
+      console.log(role);
       if (role) {
         console.log(role);
         return role === requiredRole;  // Check if the role matches

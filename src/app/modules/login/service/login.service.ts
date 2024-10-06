@@ -51,8 +51,10 @@ export class LoginService {
       );
     };
   }
-  
-  
-  
 
+  public previewFile(fileName: string): Observable<any> {
+    return this.httpClient
+      .get<any>(`${this.url}/Download/${fileName}`);
+  }
+  
 }

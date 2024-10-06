@@ -29,9 +29,9 @@
             <td>{{ (page - 1) * pageSize + (i + 1) }}</td>
             <td>{{ beneficiary.benificiaryName }}</td>
             <td>{{ beneficiary.email }}</td>
-            <td>{{ beneficiary.accountDetailsObject?.accountNumber }}</td>
-            <td>{{ beneficiary.accountDetailsObject?.ifsc }}</td>
-            <td>{{ beneficiary.accountDetailsObject?.branch }}</td>
+            <td>{{ beneficiary.accountDetailsObject.accountNumber }}</td>
+            <td>{{ beneficiary.accountDetailsObject.ifsc }}</td>
+            <td>{{ beneficiary.accountDetailsObject.branch }}</td>
             <td class="text-center">
               <a [routerLink]="['/Client/edit-beneficiary', beneficiary.id]" class="icon-action" matTooltip="Edit Beneficiary">
                 <i class="fas fa-edit text-primary"></i>

@@ -15,6 +15,8 @@ import { DocumentDisplayComponent } from './components/document-display/document
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatIcon } from '@angular/material/icon';
+import { RejectedDocumentsComponent } from './components/rejected-documents/rejected-documents.component';
+import { MatSpinner } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { MatIcon } from '@angular/material/icon';
     RegisterPageComponent,
     DocumentComponent,
     DocumentDisplayComponent,
-    NavbarComponent
+    NavbarComponent,
+    RejectedDocumentsComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import { MatIcon } from '@angular/material/icon';
     MatCardModule,
     HttpClientModule,
     NgxCaptchaModule,
-    MatIcon
+    MatIcon,
+    MatSpinner
   ]
 })
 export class LoginModule { }

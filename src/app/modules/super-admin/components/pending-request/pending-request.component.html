@@ -14,7 +14,7 @@
 
   <div *ngIf="!loading && clients.length > 0" class="row justify-content-center">
     <div *ngFor="let client of clients" class="col-md-3 mb-4"> <!-- Adjusting the column size for 4 cards per row -->
-      <div class="card h-100 client-card" (click)="onCardClick(client.id)">
+      <div class="card h-100 client-card" (click)="onCardClick(client.clientObject.id)">
         <div class="card-body">
           <h3 class="card-title display-6 client-card-title">{{ client.clientObject.companyName }}</h3>
           <p class="card-text fs-6"><strong>Founder Name: </strong> {{ client.clientObject.founderName }}</p>

@@ -17,10 +17,9 @@ export class ToastComponent implements OnInit {
       this.message = message;
       this.show = true;
 
-      // Hide toast after 3 seconds
       setTimeout(() => {
         this.show = false;
-      }, 3000);
+      }, 2000);
     });
   }
 

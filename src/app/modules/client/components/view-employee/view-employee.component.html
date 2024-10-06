@@ -32,9 +32,9 @@
           <td>{{ employee.email }}</td>
           <td>{{ employee.designation }}</td>
           <td>{{ employee.salary | currency:'INR' }}</td>
-          <td>{{ employee.accountDetailsObject?.accountNumber }}</td>
-          <td>{{ employee.accountDetailsObject?.ifsc }}</td>
-          <td>{{ employee.accountDetailsObject?.branch }}</td>
+          <td>{{ employee.accountDetailsObject.accountNumber }}</td>
+          <td>{{ employee.accountDetailsObject.ifsc }}</td>
+          <td>{{ employee.accountDetailsObject.branch }}</td>
           <td class="text-center">
             <a [routerLink]="['/Client/edit-employee', employee.employeeId]" class="icon-action" matTooltip="Edit Employee">
               <i class="fas fa-edit text-primary"></i>

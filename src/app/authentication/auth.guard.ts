@@ -14,7 +14,6 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
     return true;
   } else {
     console.log(expectedRole);
-
     console.log("Role not match")
     router.navigate(['/Login']);  // Redirect to login if not authorized
     return false;

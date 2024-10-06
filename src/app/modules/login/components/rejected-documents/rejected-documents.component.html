@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="loading-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+  <p>Loading client details...</p>
+</div>
+
+<div *ngIf="error" class="error-message">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && client" class="client-details-container">
+  <mat-card class="client-card">
+    <mat-card-header>
+      <mat-card-title>{{ client.companyName }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="client-info">
+        <p><strong>Founder Name:</strong> {{ client.founderName }}</p>
+        <p><strong>Phone:</strong> {{ client.phone }}</p>
+        <p><strong>Address:</strong> {{ client.address }}, {{ client.city }}, {{ client.region }}, {{ client.country }}</p>
+        <p><strong>Status:</strong> 
+          <span [ngClass]="{'status-approved': client.status === 'Approved', 'status-rejected': client.status === 'Rejected'}">
+            {{ client.status }}
+          </span>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Documents Section with Preview -->
+  <!-- Container for Documents and Preview Section -->
+<div *ngIf="documents.length > 0" class="container mt-5">
+  <div class="row">
+    <!-- Documents List Section -->
+    <div class="col-md-6">
+      <h3>Documents</h3>
+      <ul class="list-group">
+        <li *ngFor="let doc of documents" class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ doc.documentName }}</strong>
+            <p>Uploaded on: {{ doc.uploadedOn | date }}</p>
+          </div>
+          
+          <!-- Preview Button -->
+          <button mat-button class="btn btn-outline-primary btn-sm mr-2" (click)="previewFile(doc.documentName)">
+            <mat-icon>visibility</mat-icon> Preview
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Preview Section -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+      <!-- Display the preview only if previewUrl is available -->
+      <div *ngIf="previewUrl" class="image-preview text-center">
+        <h5>Document Preview:</h5>
+        <img [src]="previewUrl" alt="Document Preview" class="img-fluid" style="max-height: 400px; max-width: 100%;" />
+      </div>
+      <!-- Message if no preview is available -->
+      <div *ngIf="!previewUrl" class="text-muted">
+        <p>Select a document to preview.</p>
+      </div>
+    </div>
+  </div>
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" [routerLink]="['/Login/Document']" routerLinkActive="router-link-active" >Re-Upload</button>
+</div>

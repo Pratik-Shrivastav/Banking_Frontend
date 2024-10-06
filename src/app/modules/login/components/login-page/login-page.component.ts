@@ -71,15 +71,18 @@ export class LoginPageComponent {
                 }
               )
             }
+            else if(response.success && response.status == "Rejected"){
+              this.router.navigate(['Login/RejectedDisplay'])
+              localStorage.setItem("Token", response.token);
+            }
             else {
               this.toastService.showToast(response.message);
-              console.log("Rejected");
-
             }
 
           }
         },
         error => {
+          this.toastService.showToast('Login failed');
           console.error('Login failed', error);
         }
       );
