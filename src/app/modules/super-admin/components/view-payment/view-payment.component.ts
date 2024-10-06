@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SuperAdminService } from '../../service/super-admin.service';
+import { ToastService } from '../../../../service/toast.service';
 
 declare var paypal: any; // Declare PayPal variable
 
@@ -13,7 +14,8 @@ export class ViewPaymentComponent implements OnInit {
   constructor(
     private superAdminService: SuperAdminService,
     public dialogRef: MatDialogRef<ViewPaymentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private toast:ToastService
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +75,7 @@ export class ViewPaymentComponent implements OnInit {
           this.dialogRef.close('approved');
         },
         (err) => {
+          this.toast.showToast('Insufficient Balance');
           console.log("Cannot Update ", err);
         }
       );

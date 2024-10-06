@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClientService } from '../../service/client.service'; // Adjust path if necessary
 import { Employee } from '../../../../models/employee'; // Import the Employee model
+import { ToastService } from '../../../../service/toast.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -15,7 +16,8 @@ export class AddEmployeeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private clientService: ClientService,
-    private router: Router
+    private router: Router,
+    private toast:ToastService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class AddEmployeeComponent implements OnInit {
             },
             error => {
                 console.error('Error adding employee', error);
+                this.toast.showToast("Invalid IFSC Code")
             }
         );
     }

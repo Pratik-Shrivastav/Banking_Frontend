@@ -132,7 +132,7 @@ export class AddBeneficiaryComponent implements OnInit {
         },
         error => {
           console.error('Error adding beneficiary', error);
-          this.toast.showToast("Failed to add Client as Beneficiary");
+          this.toast.showToast("Invalid IFSC Code");
         }
       );
     } else {
