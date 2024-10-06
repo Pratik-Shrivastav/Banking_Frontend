@@ -139,6 +139,9 @@
                     <mat-label>Account Number</mat-label>
                     <input matInput formControlName="accountNumber" required />
                     <mat-error *ngIf="accountFormGroup.get('accountNumber')?.hasError('required')">Account Number is required</mat-error>
+                    <mat-error *ngIf="accountFormGroup.get('accountNumber')?.hasError('accountNumberTaken') && accountFormGroup.get('accountNumber')?.dirty">
+                      Account Number already exists
+                    </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6 mb-3 mt-3">

@@ -57,4 +57,21 @@ export class LoginService {
       .get<any>(`${this.url}/Download/${fileName}`);
   }
   
+  checkAccountUniqueness(accountNumber:string):Observable<any>{
+    return this.httpClient.get<{}>(`${this.url}/AccountNumber/${accountNumber}`)
+  }
+  
+  validateAccountNumber(): (control: AbstractControl) => Observable<ValidationErrors | null> {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return of(control.value).pipe(
+        debounceTime(300),  // Delay to avoid sending too many requests
+        switchMap((accountNumber) =>
+          this.checkAccountUniqueness(accountNumber).pipe(  // Check with backend if username is unique
+            tap(response => console.log('Backend response:', response)),  // Log the response from backend
+            map(isUnique => (isUnique ? null : { accountNumberTaken: true }))  // If false, return validation error
+          )
+        )
+      );
+    };
+  }
 }

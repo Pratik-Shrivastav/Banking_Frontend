@@ -36,7 +36,7 @@ export class RegisterPageComponent {
 
     // Form for account details
     this.accountFormGroup = this._formBuilder.group({
-      accountNumber: ['', Validators.required],
+      accountNumber: ['', Validators.required, this._service.validateAccountNumber()],
       ifsc: ['', Validators.required],
       branch: ['', Validators.required]
     });

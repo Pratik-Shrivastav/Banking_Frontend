@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, debounceTime, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { Employee } from '../../../models/employee'; 
 import { AuditLog } from '../../../models/auditLogs';  // Import the employee model
 import { Beneficiary, BeneficiaryPaymentRequest, Payment } from '../../../models/beneficiary';  // Import the beneficiary model
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -159,8 +160,22 @@ private handleError(error: any): Observable<never> {
   return throwError('Something went wrong; please try again later.');
 }
 
-checkAccountUniqueness():Observable<any>{
-  return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`)
+checkAccountUniqueness(accountNumber:string):Observable<any>{
+  return this.http.get<{}>(`https://localhost:7005/api/UserAuth/AccountNumber/${accountNumber}`)
+}
+
+validateAccountNumber(): (control: AbstractControl) => Observable<ValidationErrors | null> {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    return of(control.value).pipe(
+      debounceTime(300),  // Delay to avoid sending too many requests
+      switchMap((accountNumber) =>
+        this.checkAccountUniqueness(accountNumber).pipe(  // Check with backend if username is unique
+          tap(response => console.log('Backend response:', response)),  // Log the response from backend
+          map(isUnique => (isUnique ? null : { accountNumberTaken: true }))  // If false, return validation error
+        )
+      )
+    );
+  };
 }
 
 addInboundBeneficiary(clientIdToBeAdded:number):Observable<any>{

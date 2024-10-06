@@ -15,7 +15,7 @@ import { MakePaymentComponent } from './components/make-payment/make-payment.com
 import { ViewRecentSalaryComponent } from './components/view-recent-salary/view-recent-salary.component';
 import { DetailsModalComponent } from './components/details-modal/details-modal.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCard } from '@angular/material/card';
 import { MatCheckbox } from '@angular/material/checkbox';
@@ -55,7 +55,7 @@ import { ViewRecentComponent } from './components/view-recent/view-recent.compon
     AuditLogComponent,
     NavbarComponent,
     ViewRecentPaymentComponent,
-    ViewRecentComponent,
+    ViewRecentComponent
     
     
   ],
@@ -82,7 +82,8 @@ import { ViewRecentComponent } from './components/view-recent/view-recent.compon
     MatTable,
     MatPaginatorModule,
     MatTableModule,
-    FormsModule
+    FormsModule,
+    MatError
 
     
     

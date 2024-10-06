@@ -10,6 +10,7 @@ import { ClientService } from '../../service/client.service';
 })
 export class AddBeneficiaryComponent implements OnInit {
   beneficiaryForm!: FormGroup;
+  selectedTab = "tab1"
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +24,7 @@ export class AddBeneficiaryComponent implements OnInit {
       email:['',Validators.required], // Match with the model
       accountDetailsObject: this.fb.group({       // Create a FormGroup for account details
         id: [0],                                   // Optional ID for new account details
-        accountNumber: ['', Validators.required],   // Required field
+        accountNumber: ['', Validators.required,this.clientService.validateAccountNumber()],   // Required field
         ifsc: ['', Validators.required],           // Required field
         branch: ['', Validators.required],  
         accountBalance:0       // Required field
@@ -31,6 +32,10 @@ export class AddBeneficiaryComponent implements OnInit {
       createdOn: [new Date().toISOString()],      // Optional if you want to handle it in the backend
       isActive: [true]                            // Default value
     });
+  }
+
+  selectTab(tab:string){
+      this.selectedTab = tab;
   }
 
   onSubmit(): void {
