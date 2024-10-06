@@ -27,19 +27,28 @@ export class ViewRecentPaymentComponent implements OnInit {
       this.closePaymentPanel();
     } else {
       this.selectedBeneficiary = this.beneficiaryList.find(b => b.id === beneficiaryId);
-      this.getPaymentsOfBeneficiary(beneficiaryId); // Fetch and set payments
+      this.getPaymentsOfBeneficiary(beneficiaryId, this.pageIndex, this.pageSize); // Fetch payments with pagination starting at page 1
     }
   }
+  
   
   closePaymentPanel() {
     this.selectedBeneficiary = null;
     this.payments = [];
   }
-  getPaymentsOfBeneficiary(id:number){
-    this.clientService.getBeneficiaryById(id).subscribe((response)=>{
-      this.payments= response.paymentsList;
-    });
+  getPaymentsOfBeneficiary(beneficiaryId: number, pageNumber: number, pageSize: number) {
+    this.clientService.getPaymentsForBeneficiary(beneficiaryId, pageNumber, pageSize).subscribe(
+      (response) => {
+        console.log(response)
+        this.payments = response.paginatedPayments; // Set the paginated payment list
+        this.count = response.count; // Update the count for the paginator
+      },
+      (error) => {
+        console.error('Error fetching paginated payments:', error);
+      }
+    );
   }
+  
   loadBeneficiaryOptions(): void {
     this.clientService.getBeneficiariesForOptions(this.pageIndex, this.pageSize).subscribe(
       (data: any) => {
@@ -52,7 +61,10 @@ export class ViewRecentPaymentComponent implements OnInit {
       }
     );
   }
-
+  onPaymentPageChange(event: PageEvent) {
+    this.getPaymentsOfBeneficiary(this.selectedBeneficiary.id, event.pageIndex + 1, event.pageSize);
+  }
+  
   onPageChange(event: PageEvent) {
     this.pageIndex = event.pageIndex + 1; // Set pageIndex directly from event
     this.pageSize = event.pageSize;

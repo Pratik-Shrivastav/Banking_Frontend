@@ -186,4 +186,16 @@ getAllClients():Observable<any>{
   return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`)
 }
 
+
+
+getPaymentsForBeneficiary(beneficiaryId: number, pageNumber: number, pageSize: number) {
+  return this.http.get<any>(`${this.apiUrl}/beneficiaries/payments-paginated`, {
+    params: {
+      beneficiaryId: beneficiaryId.toString(),
+      pageNumber: pageNumber.toString(),
+      pageSize: pageSize.toString()
+    }
+  });
+}
+
 }
