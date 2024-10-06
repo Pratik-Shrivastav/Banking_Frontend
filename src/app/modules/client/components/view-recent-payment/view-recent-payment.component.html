@@ -66,8 +66,15 @@
                 </tr>
             </tbody>
         </table>
+        <mat-paginator
+  [length]="count"
+  [pageSize]="pageSize"
+  showFirstLastButtons
+  (page)="onPaymentPageChange($event)"
+></mat-paginator>
+
   
-        <button class="close-btn" (click)="closePaymentPanel()">Close</button>
+        
     </div>
 </div>
 <div> </div>
