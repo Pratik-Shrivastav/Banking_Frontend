@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, debounceTime, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { Employee } from '../../../models/employee'; 
 import { AuditLog } from '../../../models/auditLogs';  // Import the employee model
@@ -187,6 +187,9 @@ getAllClients():Observable<any>{
 }
 
 
+searchBeneficiaries(searchTerm: string, pageNumber: number, pageSize: number): Observable<any> {
+  return this.http.get(`${this.apiUrl}/beneficiaries/search?searchTerm=${searchTerm || ''}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+}
 
 getPaymentsForBeneficiary(beneficiaryId: number, pageNumber: number, pageSize: number) {
   return this.http.get<any>(`${this.apiUrl}/beneficiaries/payments-paginated`, {
@@ -197,5 +200,21 @@ getPaymentsForBeneficiary(beneficiaryId: number, pageNumber: number, pageSize: n
     }
   });
 }
+getPaymentsForBeneficiaryPaginated(
+  beneficiaryId: number,
+  pageNumber: number,
+  pageSize: number,
+  searchTerm: string
+): Observable<{ paginatedPayments: Payment[]; count: number }> {
+  const params = new HttpParams()
+    .set('beneficiaryId', beneficiaryId.toString())
+    .set('pageNumber', pageNumber.toString())
+    .set('pageSize', pageSize.toString())
+    .set('searchTerm', searchTerm || ''); // Use an empty string if no search term is provided
 
+  return this.http.get<{ paginatedPayments: Payment[]; count: number }>(
+    `${this.apiUrl}/beneficiaries/payments/search`, // Adjust the endpoint URL
+    { params }
+  );
+}
 }

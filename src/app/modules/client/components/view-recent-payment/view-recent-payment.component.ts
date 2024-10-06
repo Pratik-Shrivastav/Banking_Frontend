@@ -11,12 +11,15 @@ import { DetailsModalComponent } from '../details-modal/details-modal.component'
 })
 export class ViewRecentPaymentComponent implements OnInit {
   beneficiaryList: any[] = [];
-  count: number = 0; // Initialize count to zero
-  pageSize: number = 5;
-  pageIndex: number = 1; // Start at pageIndex 0
-  payments:any;
-  selectedBeneficiary: any = null;
+  count: number = 0;
   
+  pageSize: number = 5;
+  pageIndex: number = 1;
+  searchTerm: string = ''; // New property to store search term
+  payments: any;
+  selectedBeneficiary: any = null;
+  paymentSearchTerm: string = '';
+
   constructor(private clientService: ClientService,private modalService: NgbModal) {}
 
   ngOnInit() {
@@ -30,7 +33,20 @@ export class ViewRecentPaymentComponent implements OnInit {
       this.getPaymentsOfBeneficiary(beneficiaryId, this.pageIndex, this.pageSize); // Fetch payments with pagination starting at page 1
     }
   }
-  
+  onPaymentSearchChange() {
+    this.getPaymentsOfBeneficiarySearch(this.selectedBeneficiary.id); // Fetch payments with the updated search term
+}
+
+getPaymentsOfBeneficiarySearch(id: number) {
+    this.clientService.getPaymentsForBeneficiaryPaginated(id, this.pageIndex, this.pageSize, this.paymentSearchTerm).subscribe((response) => {
+        this.payments = response.paginatedPayments;
+        this.count = response.count; // Ensure count is assigned correctly
+    });
+}
+  onSearchChange() {
+    this.pageIndex = 1; // Reset to first page when searching
+    this.loadBeneficiaryOptions();
+  }
   
   closePaymentPanel() {
     this.selectedBeneficiary = null;
@@ -50,14 +66,13 @@ export class ViewRecentPaymentComponent implements OnInit {
   }
   
   loadBeneficiaryOptions(): void {
-    this.clientService.getBeneficiariesForOptions(this.pageIndex, this.pageSize).subscribe(
+    this.clientService.searchBeneficiaries(this.searchTerm, this.pageIndex, this.pageSize).subscribe(
       (data: any) => {
-        console.log(data);
-        this.beneficiaryList = data.paginatedBeneficiary;
-        this.count = data.count; // Ensure count is assigned correctly
+        this.beneficiaryList = data.paginatedBeneficiaries;
+        this.count = data.count;
       },
       error => {
-        console.error('Error fetching paginated recent payments', error);
+        console.error('Error fetching paginated beneficiaries', error);
       }
     );
   }
