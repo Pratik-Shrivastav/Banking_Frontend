@@ -1,12 +1,13 @@
-<div class="table-wrapper mb-5">
+<div class="table-wrapper mb-5" style="width: 100%;">
     <div class="beneficiary-wrapper">
         <h4 class="font-weight-bold mb-2">Beneficiary List</h4>
         <input 
-        type="text" 
-        placeholder="Search beneficiaries..." 
-        [(ngModel)]="searchTerm" 
-        (input)="onSearchChange()"
-      />
+        class="mt-4"
+            type="text" 
+            placeholder="Search beneficiaries..." 
+            [(ngModel)]="searchTerm" 
+            (input)="onSearchChange()"
+        />
         <table class="table table-striped table-hover beneficiary-table">
             <thead>
                 <tr>
@@ -36,23 +37,27 @@
         ></mat-paginator>
     </div>
 
-    <!-- Divider -->
     <div class="divider" *ngIf="selectedBeneficiary"></div>
 
-    <!-- Payments List, conditionally displayed beside the Beneficiary List -->
     <div class="payment-wrapper" *ngIf="selectedBeneficiary">
-        <h4 class="font-weight-bold mb-2">
+        <h4 class="font-weight-bold mb-2 d-flex justify-content-between align-items-center">
             Payments for {{ selectedBeneficiary.benificiaryName }}
+            <div class="date-filter">
+                <label for="startDate">From:</label>
+                <input type="date" [(ngModel)]="startDate" />
+                <label for="endDate">To:</label>
+                <input type="date" [(ngModel)]="endDate" />
+                <button (click)="downloadData()">Download</button>
+            </div>
         </h4>
 
-
         <input 
-        type="text" 
-        placeholder="Search payments..." 
-        [(ngModel)]="paymentSearchTerm" 
-        (input)="onPaymentSearchChange()"
-    />
-  
+            type="text" 
+            placeholder="Search payments..." 
+            [(ngModel)]="paymentSearchTerm" 
+            (input)="onPaymentSearchChange()"
+        />
+
         <table class="table table-striped table-hover payment-table">
             <thead>
                 <tr>
@@ -63,7 +68,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let payment of payments" (click)="onPaymentClick(payment,beneficiaryList)" >
+                <tr *ngFor="let payment of payments" (click)="onPaymentClick(payment, beneficiaryList)">
                     <td>{{ payment.paymentType }}</td>
                     <td>{{ payment.amount | currency: 'INR' }}</td>
                     <td>
@@ -77,19 +82,15 @@
                             {{ payment.status }}
                         </span>
                     </td>
-                    <td>{{payment.createdAt | date:'short'}}</td>
+                    <td>{{ payment.createdAt | date:'short' }}</td>
                 </tr>
             </tbody>
         </table>
         <mat-paginator
-  [length]="count"
-  [pageSize]="pageSize"
-  showFirstLastButtons
-  (page)="onPaymentPageChange($event)"
-></mat-paginator>
-
-  
-        
+            [length]="count"
+            [pageSize]="pageSize"
+            showFirstLastButtons
+            (page)="onPaymentPageChange($event)"
+        ></mat-paginator>
     </div>
 </div>
-<div> </div>

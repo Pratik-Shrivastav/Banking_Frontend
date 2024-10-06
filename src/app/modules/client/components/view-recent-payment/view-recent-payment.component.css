@@ -127,3 +127,37 @@ input[type="text"]::placeholder {
   color: #999; /* Light gray for placeholder text */
   opacity: 1; /* Ensure visibility */
 }
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Reduced space between items */
+}
+
+.date-filter label {
+  margin: 0; /* Removed margin for labels */
+  font-weight: 200; /* Slightly bold for better visibility */
+}
+
+.date-filter input[type="date"] {
+  border: 1px solid #ced4da; /* Light border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 3px; /* Reduced padding for input fields */
+  width: 100px; /* Fixed width for inputs */
+  font-size: 0.9rem; /* Slightly smaller font size */
+}
+
+.date-filter button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 3px 8px; /* Reduced padding for button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition */
+  font-size: 0.9rem; /* Slightly smaller font size */
+}
+
+.date-filter button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+

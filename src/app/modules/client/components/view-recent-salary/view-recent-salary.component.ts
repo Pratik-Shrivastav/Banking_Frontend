@@ -14,6 +14,7 @@ export class ViewRecentSalaryComponent implements OnInit {
   beneficiaryList: any[] = [];
   filteredSalaryDisbursements: any[] = [];
   filteredRecentPayments: any[] = [];
+  selectedDate: string | null = null; 
 
   // Pagination state for salary disbursements
   salaryPageNumber: number = 1;
@@ -154,7 +155,11 @@ count!:number;
       if (salary.status === 'Success' && salary.transactionList) {
         salary.employeeList.forEach((employee: { name: string; employeeId: number }) => {
           salary.transactionList.forEach((transaction: { transactionAmount: number, transactionStatus: string, transactionDate: Date, employeePaidId: number }) => {
-            if (transaction.employeePaidId === employee.employeeId && transaction.transactionStatus === 'Success') {
+            // Check if transaction is on the selected date
+            const transactionDate = new Date(transaction.transactionDate).toLocaleDateString();
+            if (transaction.employeePaidId === employee.employeeId 
+                && transaction.transactionStatus === 'Success' 
+                && (!this.selectedDate || transactionDate === new Date(this.selectedDate).toLocaleDateString())) {
               successfulTransactions.push({
                 transaction: 'Salary',
                 typeEmployeeBeneficiary: employee.name,
@@ -174,21 +179,26 @@ count!:number;
       beneficiary.paymentsList.forEach((payment: { status: string, transactions: any[] }) => {
         if (payment.status === 'Success' && payment.transactions) {
           payment.transactions.forEach(transaction => {
-            successfulTransactions.push({
-              transaction: 'Payment',
-              typeEmployeeBeneficiary: beneficiary.benificiaryName,
-              nameTransaction: beneficiary.benificiaryName,
-              amountTransaction: transaction.transactionAmount.toFixed(2),
-              statusTransaction: transaction.transactionStatus,
-              date: new Date(transaction.transactionDate).toLocaleString(),
-            });
+            // Check if transaction is on the selected date
+            const transactionDate = new Date(transaction.transactionDate).toLocaleDateString();
+            if (!this.selectedDate || transactionDate === new Date(this.selectedDate).toLocaleDateString()) {
+              successfulTransactions.push({
+                transaction: 'Payment',
+                typeEmployeeBeneficiary: beneficiary.benificiaryName,
+                nameTransaction: beneficiary.benificiaryName,
+                amountTransaction: transaction.transactionAmount.toFixed(2),
+                statusTransaction: transaction.transactionStatus,
+                date: new Date(transaction.transactionDate).toLocaleString(),
+              });
+            }
           });
         }
       });
     });
 
     if (successfulTransactions.length === 0) {
-      alert('No successful transactions to download.');
+      alert('No successful transactions to download for the selected date.');
+      this.selectedDate="";
       return;
     }
 
