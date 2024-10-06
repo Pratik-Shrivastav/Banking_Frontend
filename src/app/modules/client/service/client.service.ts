@@ -159,4 +159,16 @@ private handleError(error: any): Observable<never> {
   return throwError('Something went wrong; please try again later.');
 }
 
+checkAccountUniqueness():Observable<any>{
+  return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`)
+}
+
+addInboundBeneficiary(clientIdToBeAdded:number):Observable<any>{
+  return this.http.post<AuditLog[]>(`${this.apiUrl}/auditlogs`,clientIdToBeAdded)
+}
+
+getAllClients():Observable<any>{
+  return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`)
+}
+
 }
