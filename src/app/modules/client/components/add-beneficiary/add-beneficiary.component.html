@@ -93,3 +93,30 @@
     </div>
 </div>
   
+<div *ngIf="selectedTab === 'tab2'" class="container">
+  <h3 class="text-center mb-3">Inbound Clients</h3>
+  <div class="search-container" style="width:18rem;">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="form-inline">
+      <div class="form-group mb-2">
+        <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by company name" />
+      </div>
+    </form>
+  </div>
+  <div *ngIf="loading" class="loading-message">Loading clients...</div>
+  <div *ngIf="!loading" class="card form-card shadow">
+    <ul class="list-group">
+      <li *ngFor="let client of inboundClients" class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ client.name }}</strong>
+          <p>{{ client.email }}</p>
+        </div>
+        <button class="btn btn-primary" (click)="addAsBeneficiary(client.id)">Add As Beneficiary</button>
+      </li>
+    </ul>
+    <mat-paginator [length]="totalInboundClinets"
+                 [pageSize]="pageSize"
+                 (page)="onPageChange($event)"
+                 showFirstLastButtons>
+  </mat-paginator>
+  </div>
+</div>

@@ -183,7 +183,7 @@ addInboundBeneficiary(clientIdToBeAdded:number):Observable<any>{
 }
 
 getAllClients():Observable<any>{
-  return this.http.get<AuditLog[]>(`${this.apiUrl}/auditlogs`)
+  return this.http.get<AuditLog[]>(`${this.apiUrl}/GetInboundClients`)
 }
 
 
