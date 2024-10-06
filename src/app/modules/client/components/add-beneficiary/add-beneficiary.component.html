@@ -98,7 +98,7 @@
   <div class="search-container" style="width:18rem;">
     <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="form-inline">
       <div class="form-group mb-2">
-        <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by company name" />
+        <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by Account Number" />
       </div>
     </form>
   </div>
@@ -107,8 +107,8 @@
     <ul class="list-group">
       <li *ngFor="let client of inboundClients" class="list-group-item d-flex justify-content-between align-items-center">
         <div>
-          <strong>{{ client.name }}</strong>
-          <p>{{ client.email }}</p>
+          <p><strong>{{ client.accountDetailsObject.accountNumber }}</strong></p>
+          <p>{{ client.founderName }}</p>
         </div>
         <button class="btn btn-primary" (click)="addAsBeneficiary(client.id)">Add As Beneficiary</button>
       </li>

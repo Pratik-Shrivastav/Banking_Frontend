@@ -15,8 +15,8 @@ export class AddBeneficiaryComponent implements OnInit {
   beneficiaryForm!: FormGroup;
   selectedTab = "tab1"
   filterType = 'All';
-  inboundClients:any = [];
-  inboundClientsAll:any = [];
+  inboundClients:any;
+  inboundClientsAll:any;
   totalInboundClinets:number=0;
   totalInboundClinetsAll:number=0;
   pageSize = 5;
@@ -65,7 +65,7 @@ export class AddBeneficiaryComponent implements OnInit {
   }
 
   loadInBoundClients(){
-    this.clientService.getAllClients().subscribe(
+    this.clientService.getAllClients(this.currentPage,this.pageSize).subscribe(
       (response)=>{
         console.log(response);
           this.inboundClients = response.paginatedClients;
@@ -96,21 +96,20 @@ export class AddBeneficiaryComponent implements OnInit {
     if (searchTerm) {
       this.loading = true; // Show loading indicator during search
       this.filterType = 'Search';
-      // this.clientService.getClientByAccountNumber(searchTerm, this.searchCurrentPage, this.pageSize).subscribe({
-      //   next: (response) => {
-
-      //     this.inboundClients = response.paginatedUser.map((user: any) => user.clientObject);             
-      //     this.totalInboundClinets = response.count;
-      //     this.loading = false; // Hide loading indicator
-      //   },
-      //   error: (error) => {
-      //     console.error('Error searching clients:', error);
-      //     this.loading = false; // Hide loading indicator in case of error
-      //   }
-      // });
+      this.clientService.searchInboundClients(searchTerm, this.searchCurrentPage, this.pageSize).subscribe({
+        next: (response) => {
+          this.inboundClients = response.paginatedClients;        
+          this.totalInboundClinets = response.count;
+          this.loading = false; // Hide loading indicator
+        },
+        error: (error) => {
+          console.error('Error searching clients:', error);
+          this.loading = false; // Hide loading indicator in case of error
+        }
+      });
     } else {
       this.filterType = 'All';
-      this.inboundClients = [...this.inboundClientsAll]; // Reset clients to all
+      this.inboundClients = this.inboundClientsAll; // Reset clients to all
       this.totalInboundClinets = this.totalInboundClinetsAll; // Reset total client count
     }
   }
@@ -143,6 +142,8 @@ export class AddBeneficiaryComponent implements OnInit {
   }
 
   addAsBeneficiary(clientId:number){
+    console.log(clientId);
+    
     this.clientService.addInboundBeneficiary(clientId).subscribe(
       ()=>{
         alert("Beneficiary Added Successfully");

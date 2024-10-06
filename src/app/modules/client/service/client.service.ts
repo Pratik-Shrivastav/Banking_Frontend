@@ -179,11 +179,15 @@ validateAccountNumber(): (control: AbstractControl) => Observable<ValidationErro
 }
 
 addInboundBeneficiary(clientIdToBeAdded:number):Observable<any>{
-  return this.http.post<AuditLog[]>(`${this.apiUrl}/auditlogs`,clientIdToBeAdded)
+  const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  return this.http.post<AuditLog[]>(`${this.apiUrl}/AddInboundBeneficiary`,clientIdToBeAdded, {headers})
 }
 
-getAllClients():Observable<any>{
-  return this.http.get<AuditLog[]>(`${this.apiUrl}/GetInboundClients`)
+getAllClients( page:number,  pageSize:number):Observable<any>{
+  return this.http.get<AuditLog[]>(`${this.apiUrl}/GetInboundClients?page=${page}&pageSize=${pageSize}`)
+}
+searchInboundClients(searchTerm:string, page:number, pageSize:number):Observable<any>{
+  return this.http.get<AuditLog[]>(`${this.apiUrl}/GetSearchedInboundClients?searchTerm=${searchTerm}&page=${page}&pageSize=${pageSize}`)
 }
 
 
