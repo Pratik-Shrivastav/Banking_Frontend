@@ -33,6 +33,16 @@ export class SuperAdminService {
     return this.httpClient.get<any>(requestUrl);
   }
 
+  public getBeneficiaryByName(clientId:number,beneficiaryName: string, page: number, pageSize: number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/GetBeneficiaryByName/${clientId}/${beneficiaryName}?page=${page}&pageSize=${pageSize}`;
+    return this.httpClient.get<any[]>(requestUrl)
+  }
+
+  public getPaymentByName(beneficiaryId:number,paymentName: string, page: number, pageSize: number): Observable<any> {
+    const requestUrl = `${this.apiUrl}/GetPaymentByName/${beneficiaryId}/${paymentName}?page=${page}&pageSize=${pageSize}`;
+    return this.httpClient.get<any[]>(requestUrl)
+  }
+
 
 
   public getObjects(): Observable<any> {

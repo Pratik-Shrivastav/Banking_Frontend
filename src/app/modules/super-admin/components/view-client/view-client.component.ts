@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewSuccessPaymentComponent } from '../view-success-payment/view-success-payment.component';
 import { ViewSalaryDisbursementComponent } from '../view-salary-disbursement/view-salary-disbursement.component';
 import { ViewSuccessSalaryDisbursementComponent } from '../view-success-salary-disbursement/view-success-salary-disbursement.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-view-client',
@@ -20,43 +22,47 @@ export class ViewClientComponent implements OnInit {
   paymentFilter: string = 'All';
   salaryFilter: string = 'All';
 
+  selectedTab: string = 'tab3'; 
+
   totalSalary!:number;
   currentPageSalary:number = 1;
   pageSize:number = 5;
 
   beneficiaryList!:any;
-  totalBeneficiary!:number
+  beneficiaryListAll!:any;
+  totalBeneficiary!:number;
+  totalBeneficiaryAll!:number;
   beneficiaryCurrentPage:number=1;
-  selectedBeneficiary!:any
+  selectedBeneficiary!:any;
 
-  paymentList!:any
-  totalPayments!:number
+  
+  paymentList!:any;
+  paymentListAll!:any;
+  totalPayments!:number;
+  totalPaymentsAll!:number;
   paymentCurrentPage:number=1;
 
-  onPageChangeSalary($event:any){
-    this.currentPageSalary = $event.pageIndex + 1;
-    this.loadSalaryDisburseemntCLient(this.client.id);
-  }
-  onPageChangeBeneficiary($event:any){
-    this.beneficiaryCurrentPage = $event.pageIndex +1;
-    this.loadBeneficiarysOfClient(this.client.id)
-  }
 
-  onPageChangePayment($event:any){
-    this.paymentCurrentPage = $event.pageIndex +1;
-    this.loadPaymentsOfBeneficiary(this.selectedBeneficiary)
-  }
+  searchFormBeneficiary!: FormGroup;
+  searchBeneficiaryCurrentPage:number =1;
+  getTypeBeneficiary:string="All Beneficiary";
+
+  searchFormPayment!: FormGroup;
+  searchPaymentCurrentPage:number = 1;
+  getTypePayment:string="All Payment";
 
   constructor(
     private route: ActivatedRoute,
     private superAdminService: SuperAdminService,
     private dialog: MatDialog,
-  ) { }
-
-  selectedTab: string = 'tab3'; // Default selected tab
-
-  selectTab(tab: string): void {
-    this.selectedTab = tab; // Update the selected tab
+    private fb:FormBuilder
+  ) { 
+    this.searchFormBeneficiary = this.fb.group({
+      searchTerm: [''] 
+    });
+    this.searchFormPayment = this.fb.group({
+      searchTermPayment: [''] 
+    });
   }
 
   ngOnInit(): void {
@@ -66,9 +72,116 @@ export class ViewClientComponent implements OnInit {
       this.loadBeneficiarysOfClient(parseInt(clientId));
       this.loadSalaryDisburseemntCLient(parseInt(clientId))
     }
+    this.searchFormBeneficiary.get('searchTerm')?.valueChanges
+      .pipe(debounceTime(500)) 
+      .subscribe(() => this.onSearchBeneficiary());
+    this.searchFormPayment.get('searchTermPayment')?.valueChanges
+      .pipe(debounceTime(500)) 
+      .subscribe(() => this.onSearchPayment());
   }
-  
 
+  selectTab(tab: string): void {
+    this.selectedTab = tab; // Update the selected tab
+  }
+
+
+  loadBeneficiarysOfClient(id:number){
+    this.loading = true;
+    this.superAdminService.getpaginationBeneficiary(id, this.beneficiaryCurrentPage, this.pageSize).subscribe({
+      next: (beneficiarys) => {
+        this.beneficiaryList = beneficiarys.paginatedBenificiary;
+        this.beneficiaryListAll = [...this.beneficiaryList];
+        this.totalBeneficiary = beneficiarys.count;
+        this.totalBeneficiaryAll = this.totalBeneficiary;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching Disbursement details:', err);
+        this.error = 'Failed to load Disbursement details';
+        this.loading = false;
+      }
+    });
+  }
+
+  onPageChangeBeneficiary($event:any){
+    if(this.getTypeBeneficiary=="All Beneficiary"){
+      this.beneficiaryCurrentPage = $event.pageIndex +1;
+      this.loadBeneficiarysOfClient(this.client.id)
+    }
+    else{
+      this.searchBeneficiaryCurrentPage = $event.pageIndex +1;
+      this.onSearchBeneficiary();
+    }
+  }
+
+  onSearchBeneficiary(): void {
+    const searchTerm = this.searchFormBeneficiary.get('searchTerm')?.value.trim();
+    if (searchTerm) {
+      this.loading = true; // Show loading indicator during search
+      this.getTypeBeneficiary = "Search Beneficiary";
+      this.superAdminService.getBeneficiaryByName(this.client.id,searchTerm,this.searchBeneficiaryCurrentPage,this.pageSize ).subscribe((beneficiaryByName) => {
+        this.beneficiaryList = beneficiaryByName.paginatedBeneficiarySearch;        
+        this.totalBeneficiary = beneficiaryByName.count;
+      });
+    } else {
+      this.getTypeBeneficiary = "All Beneficiary";
+      this.beneficiaryList = [...this.beneficiaryListAll];
+      this.totalBeneficiary = this.totalBeneficiaryAll;
+    }
+  }
+
+  onPageChangeSalary($event:any){
+    this.currentPageSalary = $event.pageIndex + 1;
+    this.loadSalaryDisburseemntCLient(this.client.id);
+  }
+
+  loadPaymentsOfBeneficiary(beneficiary:any){
+    this.selectedBeneficiary = beneficiary;
+    console.log(beneficiary.benificiaryName);
+    this.superAdminService.getpaginationPaymentsByBeneficiaryId(beneficiary.id, this.paymentCurrentPage, this.pageSize).subscribe({
+      next: (payments) => {
+        this.paymentList = payments.paginatedPayments;
+        this.paymentListAll = this.paymentList;
+        this.totalPayments = payments.count;
+        this.totalPaymentsAll = this.totalPayments;
+        console.log(this.paymentList);
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching Disbursement details:', err);
+        this.error = 'Failed to load Disbursement details';
+        this.loading = false;
+      }
+    });   
+  }
+
+
+  onSearchPayment(){
+    const searchTermPayment = this.searchFormPayment.get('searchTermPayment')?.value.trim();
+    console.log(searchTermPayment);
+    
+    if (searchTermPayment) {
+      this.loading = true; // Show loading indicator during search
+      this.getTypePayment= "Search Paymnet";
+      this.superAdminService.getPaymentByName(this.client.id,searchTermPayment,this.searchPaymentCurrentPage,this.pageSize ).subscribe((paymentsByname) => {
+        console.log(paymentsByname);  
+        this.paymentList = paymentsByname.paginatedPaymentSearch;        
+        this.totalPayments = paymentsByname.count;
+      });
+    } else {
+      this.getTypePayment = "All Payment";
+      this.paymentList = [...this.paymentListAll];
+      this.totalPayments = this.totalPaymentsAll;
+    }
+
+  }
+
+  onPageChangePayment($event:any){
+    this.paymentCurrentPage = $event.pageIndex +1;
+    this.loadPaymentsOfBeneficiary(this.selectedBeneficiary)
+  }
+
+ 
   // Method to filter salary disbursements based on selected filter
   getFilteredPayments(beneficiary: any): any[] {
     if (this.paymentFilter === 'All') {
@@ -123,40 +236,8 @@ getStatusIcon(status: string): string {
     });
   }
 
-  loadBeneficiarysOfClient(id:number){
-    this.superAdminService.getpaginationBeneficiary(id, this.beneficiaryCurrentPage, this.pageSize).subscribe({
-      next: (beneficiarys) => {
-        this.beneficiaryList = beneficiarys.paginatedBenificiary;
-        this.totalBeneficiary = beneficiarys.count;
-        console.log(this.beneficiaryList);
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching Disbursement details:', err);
-        this.error = 'Failed to load Disbursement details';
-        this.loading = false;
-      }
-    });
-  }
-
-  loadPaymentsOfBeneficiary(beneficiary:any){
-    this.selectedBeneficiary = beneficiary;
-    console.log(beneficiary.benificiaryName);
-    this.superAdminService.getpaginationPaymentsByBeneficiaryId(beneficiary.id, this.paymentCurrentPage, this.pageSize).subscribe({
-      next: (payments) => {
-        this.paymentList = payments.paginatedPayments;
-        this.totalPayments = payments.count;
-        console.log(this.paymentList);
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error fetching Disbursement details:', err);
-        this.error = 'Failed to load Disbursement details';
-        this.loading = false;
-      }
-    });
-    
-  }
+  
+  
 
   loadSalaryDisburseemntCLient(id:number):void{    
     this.superAdminService.getClientSalaryDisbursementById(id, this.currentPageSalary, this.pageSize).subscribe({

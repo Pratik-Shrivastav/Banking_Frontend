@@ -33,9 +33,17 @@
 </div>
 
 <div *ngIf="beneficiaryList && selectedTab==='tab1'" class="main-container">
-    <div class="row" style="width: 100%;">
+    
+    <div class="row" style="width: 100%;"> 
         <!-- Left Side: Beneficiary Table -->
         <div class="col-md-6 beneficiary-container" style="margin-top: 5rem;">
+            <div class="search-container mb-4" style="width: 18rem;">
+                <form [formGroup]="searchFormBeneficiary" (ngSubmit)="onSearchBeneficiary()" class="form-inline">
+                  <div class="form-group mb-2">
+                    <input type="text" class="form-control" formControlName="searchTerm" placeholder="Search by Beneficiary Name" />
+                  </div>
+                </form>
+              </div>
             <div class="table-container">
                 <h4>Beneficiary List</h4>
                 <table class="table table-bordered table-hover">
@@ -56,6 +64,13 @@
         <!-- Right Side: Payment Table -->
         <div class="col-md-6 payment-container" *ngIf="paymentList">
             <h4 class="beneficiary-heading">Payment List</h4>
+            <div class="search-container mb-4" style="width: 18rem;">
+                <form [formGroup]="searchFormPayment" (ngSubmit)="onSearchPayment()" class="form-inline">
+                  <div class="form-group mb-2">
+                    <input type="text" class="form-control" formControlName="searchTermPayment" placeholder="Search by Payment Name" />
+                  </div>
+                </form>
+              </div>
 
             <!-- Filter Section for Payments -->
             <div class="filters-section">
@@ -73,7 +88,7 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Payment Type</th>
+                            <th>Payment Name</th>
                             <th>Amount</th>
                             <th>Status</th>
                             <th>Created At</th>

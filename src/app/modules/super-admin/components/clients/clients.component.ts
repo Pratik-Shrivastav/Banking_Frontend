@@ -19,6 +19,7 @@ export class ClientsComponent implements OnInit {
   pageSize = 8; // Clients per page
   searchCurrentPage = 1;
   filterType = 'All'; // Track if search is active or not
+  totalClientsAll!:number;
 
   constructor(
     private fb: FormBuilder, 
@@ -44,6 +45,7 @@ export class ClientsComponent implements OnInit {
         this.allClients = response.clients;
         this.clients = [...this.allClients]; // Clone the array to prevent reference issues
         this.totalClients = response.totalCount;
+        this.totalClientsAll = this.totalClients;
         this.loading = false; // Hide loading indicator
       },
       error: (error) => {
@@ -75,9 +77,7 @@ export class ClientsComponent implements OnInit {
       this.superAdminService.getClientByName(searchTerm, 'Success', this.searchCurrentPage, this.pageSize).subscribe({
         next: (response) => {
 
-          this.clients = response.paginatedUser.map((user: any) => user.clientObject);   
-          console.log(this.clients);
-          
+          this.clients = response.paginatedUser.map((user: any) => user.clientObject);             
           this.totalClients = response.count;
           this.loading = false; // Hide loading indicator
         },
@@ -89,7 +89,7 @@ export class ClientsComponent implements OnInit {
     } else {
       this.filterType = 'All';
       this.clients = [...this.allClients]; // Reset clients to all
-      this.totalClients = this.allClients.length; // Reset total client count
+      this.totalClients = this.totalClientsAll; // Reset total client count
     }
   }
 }

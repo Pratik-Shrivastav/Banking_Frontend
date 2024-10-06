@@ -14,9 +14,11 @@ export class PendingRequestComponent {
   clients: any[] = [];
   loading = true;
   totalClients = 0; // The total number of clients in the database
+  totalClientsAll!:number;
   currentPage = 1; // Current page index (starts at 1)
   pageSize = 8; // Flag to show loading state
   clientsAll: any;
+  
   searchCurrentPage =1;
   getType = "All";
 
@@ -41,6 +43,7 @@ export class PendingRequestComponent {
         this.clients = response.clients;
         this.clientsAll = this.clients
         this.totalClients = response.totalCount
+        this.totalClientsAll = this.totalClients;
         this.loading = false; // Hide loading indicator
       },
       error: (error) => {
@@ -57,13 +60,12 @@ export class PendingRequestComponent {
     onPageChange(event: any): void {
       if(this.getType=="All"){
         this.currentPage = event.pageIndex + 1; // Material paginator is zero-indexed
+        this.loadClients();
       }
       else{
         this.searchCurrentPage = event.pageIndex +1;
         this.onSearch();
       }
-      this.loadClients();
-
     }
 
     onSearch(): void {
@@ -80,6 +82,7 @@ export class PendingRequestComponent {
       } else {
         this.getType = "All";
         this.clients = this.clientsAll;
+        this.totalClients = this.totalClientsAll;
       }
     }
 }
