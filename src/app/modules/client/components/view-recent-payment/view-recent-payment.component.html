@@ -1,7 +1,12 @@
 <div class="table-wrapper mb-5">
     <div class="beneficiary-wrapper">
         <h4 class="font-weight-bold mb-2">Beneficiary List</h4>
-  
+        <input 
+        type="text" 
+        placeholder="Search beneficiaries..." 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearchChange()"
+      />
         <table class="table table-striped table-hover beneficiary-table">
             <thead>
                 <tr>
@@ -39,6 +44,14 @@
         <h4 class="font-weight-bold mb-2">
             Payments for {{ selectedBeneficiary.benificiaryName }}
         </h4>
+
+
+        <input 
+        type="text" 
+        placeholder="Search payments..." 
+        [(ngModel)]="paymentSearchTerm" 
+        (input)="onPaymentSearchChange()"
+    />
   
         <table class="table table-striped table-hover payment-table">
             <thead>
@@ -46,6 +59,7 @@
                     <th>Payment Type</th>
                     <th>Amount</th>
                     <th>Status</th>
+                    <th>Created At</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +77,7 @@
                             {{ payment.status }}
                         </span>
                     </td>
+                    <td>{{payment.createdAt | date:'short'}}</td>
                 </tr>
             </tbody>
         </table>

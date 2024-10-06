@@ -104,3 +104,26 @@
 .close-btn:hover {
   background-color: #c82333; /* Darker shade on hover */
 }
+/* Search Input Styling */
+input[type="text"] {
+  padding: 10px; /* Add padding for better touch targets */
+  margin-bottom: 20px; /* Space below the search input */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+  width: 100%; /* Make input full width */
+}
+
+/* Focus State for Input Fields */
+input[type="text"]:focus {
+  border-color: #343a40; /* Dark border on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add shadow on focus */
+}
+
+/* Placeholder Text Color */
+input[type="text"]::placeholder {
+  color: #999; /* Light gray for placeholder text */
+  opacity: 1; /* Ensure visibility */
+}
