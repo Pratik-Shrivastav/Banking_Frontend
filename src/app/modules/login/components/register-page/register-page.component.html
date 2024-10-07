@@ -158,18 +158,26 @@
                     <mat-error *ngIf="accountFormGroup.get('branch')?.hasError('required')">Branch is required</mat-error>
                   </mat-form-field>
                 </div>
+                <p *ngIf="!accountFormGroup.valid">Total of Payment and Salary must not exceed 100.</p>
                 <div class="col-md-6 mb-3">
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>For Payment</mat-label>
                     <input matInput formControlName="forPayment" required />
-                    <mat-error *ngIf="accountFormGroup.get('forPayment')?.hasError('required')">Payment Bifarcation is required.</mat-error>
+                    <mat-error *ngIf="accountFormGroup.get('forPayment')?.hasError('required')">
+                      For Payment is required.
+                    </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-md-6 mb-3">
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>For Salary</mat-label>
                     <input matInput formControlName="forSalary" required />
-                    <mat-error *ngIf="accountFormGroup.get('forSalary')?.hasError('required')">Salary Bifarcation is required</mat-error>
+                    <mat-error *ngIf="accountFormGroup.get('forSalary')?.hasError('required')">
+                      For Salary is required.
+                    </mat-error>
+                    <mat-error *ngIf="accountFormGroup.valid">
+                      Total of Payment and Salary must not exceed 100.
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>

@@ -72,6 +72,7 @@ export class ViewPaymentComponent implements OnInit {
       this.superAdminService.paymentStatus(this.payment.id, this.benificiary.id, "Success", this.clientId).subscribe(
         (response) => {
           console.log(response);
+          this.toast.showToast("Payment Successful")
           this.dialogRef.close('approved');
         },
         (err) => {
@@ -84,6 +85,7 @@ export class ViewPaymentComponent implements OnInit {
       this.superAdminService.paymentStatus(this.payment.id, this.benificiary.id, "Reject", this.clientId).subscribe(
         (response) => {
           console.log(response);
+          this.toast.showToast("Payment Rejected");
           this.dialogRef.close('rejected');
         },
         (err) => {
@@ -97,6 +99,7 @@ export class ViewPaymentComponent implements OnInit {
     console.log('Payment Rejected:', this.data);
     this.superAdminService.paymentStatus(this.payment.id, this.benificiary.id, "Reject", this.clientId).subscribe(
       (response) => {
+        this.toast.showToast("Payment Rejected")
         console.log(response);
       },
       (err) => {
