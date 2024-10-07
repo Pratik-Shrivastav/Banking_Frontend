@@ -13,6 +13,7 @@ import { ToastService } from '../../../../service/toast.service';
   styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
+
   loginForm: FormGroup;
   recaptchaResponse: string | undefined;
   constructor(private fb: FormBuilder, private loginService: LoginService, private router: Router,private toastService: ToastService) {
@@ -88,7 +89,9 @@ export class LoginPageComponent {
       );
     }
   }
-
+  navigateToForgotPassword() {
+    this.router.navigate(['Login/ForgotPassword']);
+    }
   
 
 }

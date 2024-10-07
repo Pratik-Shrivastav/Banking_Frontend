@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Register } from '../../../models/register';
 import { debounceTime, map, Observable, of, switchMap, tap } from 'rxjs';
 import { Login } from '../../../models/login';
 import { LoginResponse } from '../../../models/login-response';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { ForgotPasswordDto } from '../../../models/ForgotPasswordDto';
+import { VerifyOtpDto } from '../../../models/VerifyOtp';
+import { ResetPasswordDto } from '../../../models/ResetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +76,32 @@ export class LoginService {
         )
       );
     };
+  }
+
+   // Method to call the Forgot Password API
+   forgotPassword(forgotPasswordDto: ForgotPasswordDto): Observable<any> {
+    return this.httpClient.post(`${this.url}/ForgotPassword`, forgotPasswordDto, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
+  // Method to call the Verify OTP API
+  verifyOtp(verifyOtpDto: VerifyOtpDto): Observable<any> {
+    return this.httpClient.post(`${this.url}/VerifyOtp`, verifyOtpDto, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
+  }
+
+  // Method to call the Reset Password API
+  resetPassword(resetPasswordDto: ResetPasswordDto): Observable<any> {
+    return this.httpClient.post(`${this.url}/ResetPassword`, resetPasswordDto, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
   }
 }

@@ -39,6 +39,9 @@
               <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Login</button>
               <button mat-raised-button color="primary" routerLink="Register">Register</button>
             </div>
+            <div class="text-center mt-3">
+              <button mat-button (click)="navigateToForgotPassword()">Forgot Password?</button>
+            </div>
             
           </form>
         </mat-card-content>

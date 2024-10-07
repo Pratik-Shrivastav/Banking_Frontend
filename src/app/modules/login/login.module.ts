@@ -17,6 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatIcon } from '@angular/material/icon';
 import { RejectedDocumentsComponent } from './components/rejected-documents/rejected-documents.component';
 import { MatSpinner } from '@angular/material/progress-spinner';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { MatSpinner } from '@angular/material/progress-spinner';
     DocumentComponent,
     DocumentDisplayComponent,
     NavbarComponent,
-    RejectedDocumentsComponent
+    RejectedDocumentsComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,
