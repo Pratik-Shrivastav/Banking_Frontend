@@ -266,13 +266,11 @@ getStatusIcon(status: string): string {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'approved') {
         console.log('Payment was approved');
-        this.ngOnInit();
+        this.loadPaymentsOfBeneficiary(this.selectedBeneficiary);
         // Handle approval logic here
       } else if (result === 'rejected') {
         console.log('Payment was rejected');
-        this.ngOnInit();
-
-        // Handle rejection logic here
+        this.loadPaymentsOfBeneficiary(this.selectedBeneficiary);
       }
     });
   };
@@ -289,12 +287,25 @@ getStatusIcon(status: string): string {
       width: '400px',
       data: salaryDisbursement
     });
+    
   }
+
+
   viewSalaryDisbursementDetails(salaryDisbursement:any){
     const clientId = this.client.id;
     const dialogRef = this.dialog.open(ViewSalaryDisbursementComponent, {
       width: '400px',
       data: {salaryDisbursement,clientId }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'approved') {
+        console.log('Salary was approved');
+        this.loadSalaryDisburseemntCLient(this.client.id);
+        // Handle approval logic here
+      } else if (result === 'rejected') {
+        console.log('Salary was rejected');
+        this.loadSalaryDisburseemntCLient(this.client.id);
+      }
     });
   }
 }

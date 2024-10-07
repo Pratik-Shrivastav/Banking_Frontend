@@ -26,16 +26,17 @@ export class ViewSalaryDisbursementComponent {
   }
   approve() {
     console.log('Salary Approved:', this.salaryDisbursement);
+    this.toast.showToast("Salary Disbursement In Progress Please Wait......")
     this.superAdminService.salaryDisbursementStatus(this.salaryDisbursement.id, "Success", this.clientId).subscribe((response)=>{
       console.log(response);  
       this.toast.showToast("Salary Disbursed Successfully");
+      this.dialogRef.close('approved');
     },
     (err)=>{
       console.log("Cannot Update ", err)
       this.toast.showToast("Insufficient funds for Salary Disbursement")
     }
   )
-    this.dialogRef.close('approved');
   }
 
   reject() {

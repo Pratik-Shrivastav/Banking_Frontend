@@ -82,16 +82,8 @@ export class ViewPaymentComponent implements OnInit {
       );
     } else {
       // Handle rejection or cancellation
-      this.superAdminService.paymentStatus(this.payment.id, this.benificiary.id, "Reject", this.clientId).subscribe(
-        (response) => {
-          console.log(response);
-          this.toast.showToast("Payment Rejected");
-          this.dialogRef.close('rejected');
-        },
-        (err) => {
-          console.log("Cannot Update ", err);
-        }
-      );
+      this.toast.showToast("Payment Rejected From GateWay, Retry");
+      this.dialogRef.close();
     }
   }
 
@@ -101,11 +93,11 @@ export class ViewPaymentComponent implements OnInit {
       (response) => {
         this.toast.showToast("Payment Rejected")
         console.log(response);
+        this.dialogRef.close('rejected');
       },
       (err) => {
         console.log("Cannot Update ", err);
       }
     );
-    this.dialogRef.close('rejected');
   }
 }
