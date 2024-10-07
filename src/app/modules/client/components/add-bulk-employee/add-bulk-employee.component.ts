@@ -39,9 +39,6 @@ export class AddBulkEmployeeComponent {
       const formData = new FormData();
       const file = this.form.get('csvFile')?.value;
       formData.append('csvFile', file, file.name);  // Ensure the file is appended with its name
-
-      console.log('FormData:', formData.get('csvFile')); // Check FormData content
-
       // Call your service method to upload the CSV file
       this.clientService.uploadCsv(formData).subscribe(
         (response) => {
