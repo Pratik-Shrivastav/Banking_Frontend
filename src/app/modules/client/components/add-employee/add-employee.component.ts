@@ -63,7 +63,7 @@ export class AddEmployeeComponent implements OnInit {
 
 viewBulkEmployee(){
   const dialogRef = this.dialog.open(AddBulkEmployeeComponent, {
-    width: '400px'
+    width: '500px'
   });
 }
 

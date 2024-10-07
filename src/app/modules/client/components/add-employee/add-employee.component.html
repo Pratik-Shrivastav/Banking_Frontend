@@ -1,15 +1,14 @@
 <app-navbar></app-navbar>
-<diV>
-  <button (click)="viewBulkEmployee()">Add Bulk Emplpoyess</button>
-</diV>
-<div class="container full-screen-container">
-  <div class="card form-card shadow">
-    <h3 class="text-center mb-3">Add Employee</h3>
+
+<div class="container full-screen-container d-flex mt-3" style="flex-direction: column;">
+
+  <div class="card form-card shadow p-4">
+    <h3 class="text-center mb-4">Add Employee</h3>
     <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-      <div class="form-row">
+      <div class="row">
         <!-- Employee Name -->
-        <div class="form-group col-md-6 mb-2">
-          <mat-form-field class="w-100 small-field">
+        <div class="col-md-6 mb-3">
+          <mat-form-field class="w-100">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name" placeholder="Enter name" id="name" />
             <mat-error *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched">
@@ -17,8 +16,9 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group col-md-6 mb-2">
-          <mat-form-field class="w-100 small-field">
+        <!-- Employee Email -->
+        <div class="col-md-6 mb-3">
+          <mat-form-field class="w-100">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email" placeholder="Enter email" id="email" />
             <mat-error *ngIf="employeeForm.get('email')?.invalid && employeeForm.get('email')?.touched">
@@ -26,10 +26,9 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-        <!-- Designation -->
-        <div class="form-group col-md-6 mb-2">
-          <mat-form-field class="w-100 small-field">
+        <!-- Employee Designation -->
+        <div class="col-md-6 mb-3">
+          <mat-form-field class="w-100">
             <mat-label>Designation</mat-label>
             <input matInput formControlName="designation" placeholder="Enter designation" id="designation" />
             <mat-error *ngIf="employeeForm.get('designation')?.invalid && employeeForm.get('designation')?.touched">
@@ -39,10 +38,10 @@
         </div>
       </div>
 
-      <!-- Salary -->
-      <div class="form-row">
-        <div class="form-group col-md-6 mb-2">
-          <mat-form-field class="w-100 small-field">
+      <div class="row">
+        <!-- Salary -->
+        <div class="col-md-6 mb-3">
+          <mat-form-field class="w-100">
             <mat-label>Salary</mat-label>
             <input matInput type="number" formControlName="salary" placeholder="Enter salary" id="salary" />
             <mat-error *ngIf="employeeForm.get('salary')?.invalid && employeeForm.get('salary')?.touched">
@@ -53,11 +52,12 @@
       </div>
 
       <!-- Account Details -->
-      <div formGroupName="accountDetailsObject" class="account-details mt-3">
+      <div formGroupName="accountDetailsObject" class="account-details mt-4">
         <h4 class="sub-heading">Account Details</h4>
-        <div class="form-row">
-          <div class="form-group col-md-4 mb-2">
-            <mat-form-field class="w-100 small-field">
+        <div class="row">
+          <!-- Account Number -->
+          <div class="col-md-4 mb-3">
+            <mat-form-field class="w-100">
               <mat-label>Account Number</mat-label>
               <input matInput formControlName="accountNumber" placeholder="Enter account number" id="accountNumber" />
               <mat-error *ngIf="employeeForm.get('accountDetailsObject.accountNumber')?.invalid && employeeForm.get('accountDetailsObject.accountNumber')?.touched">
@@ -65,9 +65,9 @@
               </mat-error>
             </mat-form-field>
           </div>
-
-          <div class="form-group col-md-4 mb-2">
-            <mat-form-field class="w-100 small-field">
+          <!-- IFSC -->
+          <div class="col-md-4 mb-3">
+            <mat-form-field class="w-100">
               <mat-label>IFSC</mat-label>
               <input matInput formControlName="ifsc" placeholder="Enter IFSC" id="ifsc" />
               <mat-error *ngIf="employeeForm.get('accountDetailsObject.ifsc')?.invalid && employeeForm.get('accountDetailsObject.ifsc')?.touched">
@@ -75,9 +75,9 @@
               </mat-error>
             </mat-form-field>
           </div>
-
-          <div class="form-group col-md-4 mb-2">
-            <mat-form-field class="w-100 small-field">
+          <!-- Branch -->
+          <div class="col-md-4 mb-3">
+            <mat-form-field class="w-100">
               <mat-label>Branch</mat-label>
               <input matInput formControlName="branch" placeholder="Enter branch" id="branch" />
               <mat-error *ngIf="employeeForm.get('accountDetailsObject.branch')?.invalid && employeeForm.get('accountDetailsObject.branch')?.touched">
@@ -89,11 +89,13 @@
       </div>
 
       <!-- Submit Button -->
-      <div class="text-center mt-3">
-        <button type="submit" mat-raised-button color="primary" class="w-100 submit-button" [disabled]="employeeForm.invalid">
+      <div class="text-center mt-4">
+        <button type="submit" mat-raised-button color="primary" class="btn btn-primary w-100" [disabled]="employeeForm.invalid">
           Submit
         </button>
       </div>
     </form>
+    <button class="btn btn-primary my-3 mt-3" (click)="viewBulkEmployee()">Add Bulk Employees</button>
+
   </div>
 </div>

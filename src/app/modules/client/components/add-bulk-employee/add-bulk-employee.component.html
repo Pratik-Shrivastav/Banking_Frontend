@@ -1,18 +1,25 @@
-<h2 mat-dialog-title>Add Bulk Employees</h2>
+<h2 mat-dialog-title class="text-center mb-4 mt-4">Add Bulk Employees</h2>
+
 <mat-dialog-content class="dialog-content">
-  <form [formGroup]="form">
-    <input
-      type="file"
-      (change)="onFileChange($event)"
-      accept=".csv"
-      formControlName="csvFile" 
-    />
-    <div *ngIf="form.get('csvFile')?.invalid && (form.get('csvFile')?.touched || form.get('csvFile')?.dirty)">
-      <small class="error-text">A CSV file is required.</small>
+  <form [formGroup]="form" class="px-3">
+    <div class="form-group mb-3">
+      <label for="csvFile" class="form-label">Select CSV File</label>
+      <input
+        id="csvFile"
+        type="file"
+        class="form-control"
+        (change)="onFileChange($event)"
+        accept=".csv"
+        formControlName="csvFile"
+      />
+      <div *ngIf="form.get('csvFile')?.invalid && (form.get('csvFile')?.touched || form.get('csvFile')?.dirty)">
+        <small class="text-danger">A CSV file is required.</small>
+      </div>
     </div>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions class="dialog-actions">
-  <button mat-button class="action-button close-button" (click)="submit()">Submit</button>
-  <button mat-button class="action-button close-button" (click)="close()">Close</button>
+
+<mat-dialog-actions class="dialog-actions d-flex justify-content-between align-items-center px-3 pt-3">
+  <button mat-button class="btn btn-secondary" (click)="close()">Close</button>
+  <button mat-button class="btn btn-primary" [disabled]="form.invalid" (click)="submit()">Submit</button>
 </mat-dialog-actions>
