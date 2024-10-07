@@ -272,6 +272,10 @@ getStatusIcon(status: string): string {
         console.log('Payment was rejected');
         this.loadPaymentsOfBeneficiary(this.selectedBeneficiary);
       }
+      else if(result===""){
+        console.log("Gateway Error");
+        this.loadPaymentsOfBeneficiary(this.selectedBeneficiary);
+      }
     });
   };
 
