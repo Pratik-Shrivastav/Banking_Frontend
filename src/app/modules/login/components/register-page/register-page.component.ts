@@ -5,9 +5,7 @@ import { LoginService } from '../../service/login.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../../service/toast.service';
 
-interface PaymentSalaryErrors {
-  amountExceeded?: boolean; // optional property
-}
+// Custom validator to check if forPayment and forSalary exceed a total of 100
 export function paymentSalaryValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const forPayment = control.get('forPayment')?.value;
@@ -25,12 +23,12 @@ export function paymentSalaryValidator(): ValidatorFn {
     return null; // Return null if the validation passes
   };
 }
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.css'
+  styleUrls: ['./register-page.component.css']
 })
-
 export class RegisterPageComponent {
 
   isLinear = false;
@@ -39,7 +37,7 @@ export class RegisterPageComponent {
   accountFormGroup: FormGroup;
   userFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder, private _service:LoginService, private router:Router,private _toastService:ToastService) {
+  constructor(private _formBuilder: FormBuilder, private _service: LoginService, private router: Router, private _toastService: ToastService) {
     // Form for company details
     this.companyFormGroup = this._formBuilder.group({
       founderName: ['', Validators.required],
@@ -56,20 +54,20 @@ export class RegisterPageComponent {
       country: ['', Validators.required]
     });
 
-    // Form for account details
+    // Form for account details with custom validator
     this.accountFormGroup = this._formBuilder.group({
       accountNumber: ['', Validators.required],
       ifsc: ['', Validators.required],
       branch: ['', Validators.required],
       forPayment: ['', Validators.required],
       forSalary: ['', Validators.required]
-    }, { validators: paymentSalaryValidator() }); // Apply the custom validator here
-    
+    }, { validators: paymentSalaryValidator() });
 
+    // Form for user details
     this.userFormGroup = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      userName: ['', Validators.required,this._service.validateUsername()]
+      userName: ['', Validators.required, this._service.validateUsername()]
     });
   }
 
@@ -77,11 +75,12 @@ export class RegisterPageComponent {
     if (this.accountFormGroup.invalid) {
       const errors = this.accountFormGroup.errors;
       if (errors?.['amountExceeded']) {
-        this._toastService.showToast('The total of forPayment and forSalary must be less than 100.'); // Show toast
+        this._toastService.showToast('The total of forPayment and forSalary must be less than 100.');
         return; // Prevent submission
       }
+    }
+
     const registerObject: Register = {
-      
       founderName: this.companyFormGroup.value.founderName,
       companyName: this.companyFormGroup.value.companyName,
       address: this.addressFormGroup.value.address,
@@ -100,22 +99,15 @@ export class RegisterPageComponent {
       forPayment: this.accountFormGroup.value.forPayment,
       forSalary: this.accountFormGroup.value.forSalary
     };
-   
-      
+
     this._service.Register(registerObject).subscribe(
-      
       response => {
-     
         console.log('Registration successful:', response);
+        this.router.navigate(['Login']);
       },
       error => {
-        // Handle error response
         console.error('Registration failed:', error);
       }
-    )
-
-    this.router.navigate(['Login']);
-
+    );
   }
-
-  }}
+}
