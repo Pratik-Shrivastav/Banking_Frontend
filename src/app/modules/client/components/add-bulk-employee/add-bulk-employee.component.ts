@@ -17,7 +17,7 @@ export class AddBulkEmployeeComponent {
     private clientService: ClientService,
     public dialogRef: MatDialogRef<AddBulkEmployeeComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private toast:ToastService
+    private toast: ToastService
   ) {
     this.form = this.fb.group({
       csvFile: [null, Validators.required]  // FormControl for the file input
@@ -26,26 +26,25 @@ export class AddBulkEmployeeComponent {
 
   onFileChange(event: Event) {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length) {
-        const file = input.files[0];
-        this.form.patchValue({ csvFile: file }); // Ensure this updates the form 
-        console.log('Selected file:', file);
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.form.patchValue({ csvFile: file });
+      this.form.get('csvFile')?.updateValueAndValidity();  // Update the validity
+      console.log('Selected file:', file);
     }
-}
-
+  }
 
   submit() {
-    if (this.form.valid) {
+    if (this.form.valid && this.form.get('csvFile')?.value) {
       const formData = new FormData();
-      console.log(this.form.get('csvFile')?.value);
       const file = this.form.get('csvFile')?.value;
-      formData.append('CsvFile', file);
-      console.log(formData);
-      
+      formData.append('csvFile', file, file.name);  // Ensure the file is appended with its name
+
+      console.log('FormData:', formData.get('csvFile')); // Check FormData content
+
       // Call your service method to upload the CSV file
       this.clientService.uploadCsv(formData).subscribe(
         (response) => {
-          // Handle success
           console.log('File uploaded successfully:', response);
           this.dialogRef.close();
           this.toast.showToast("File uploaded successfully");
@@ -56,7 +55,7 @@ export class AddBulkEmployeeComponent {
         }
       );
     } else {
-      console.error('Form is invalid');
+      console.error('Form is invalid or file not selected');
     }
   }
 
