@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ClientService } from '../../service/client.service'; // Update with your service path
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import for Reactive Forms
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ClientService } from '../../service/client.service'; // Adjust as per your path
 import { Payment } from '../../../../models/payment'; // Update with your Payment model
 
 @Component({
@@ -10,33 +9,36 @@ import { Payment } from '../../../../models/payment'; // Update with your Paymen
   styleUrls: ['./make-payment.component.css']
 })
 export class MakePaymentComponent implements OnInit {
-  paymentForm!: FormGroup; // FormGroup to manage the form
-  beneficiaries: any[] = [];  // List of beneficiaries
+  paymentForm!: FormGroup;
+  beneficiaryControl = new FormControl('');  // Control for the searchable input
+  beneficiaries: any[] = [];
+  filteredBeneficiaries: any[] = [];
 
   constructor(
-    private clientService: ClientService,
-    private fb: FormBuilder, // FormBuilder for form controls
-    private router: Router
+    private fb: FormBuilder,
+    private clientService: ClientService
   ) {}
 
   ngOnInit(): void {
-    // Initialize the form
     this.paymentForm = this.fb.group({
       paymentType: ['', Validators.required],
       amount: [null, [Validators.required, Validators.min(1)]],
       beneficiaryId: ['', Validators.required]
     });
 
-    // Load beneficiaries on component initialization
     this.loadBeneficiaries();
+
+    // Initialize the beneficiary search to show all at first
+    this.beneficiaryControl.valueChanges.subscribe(value => {
+      this.filterBeneficiaries(value);  // Pass the search term
+    });
   }
 
-  // Load beneficiaries for the client
   loadBeneficiaries(): void {
     this.clientService.getBeneficiaries().subscribe(
       (data: any) => {
         this.beneficiaries = data;
-        console.log('Beneficiaries loaded:', this.beneficiaries); // Log the loaded beneficiaries
+        this.filteredBeneficiaries = this.beneficiaries;
       },
       error => {
         console.error('Error fetching beneficiaries', error);
@@ -44,7 +46,24 @@ export class MakePaymentComponent implements OnInit {
     );
   }
 
-  // Submit the payment form
+  // Filter beneficiaries based on search input
+  filterBeneficiaries(search: string | null): void {
+    if (!search) {
+      this.filteredBeneficiaries = this.beneficiaries;
+    } else {
+      this.filteredBeneficiaries = this.beneficiaries.filter(beneficiary =>
+        beneficiary.benificiaryName.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+  }
+
+  // Set the selected beneficiary's id in the payment form
+  onSelectBeneficiary(event: any): void {
+    if (event.isUserInput) {
+      this.paymentForm.patchValue({ beneficiaryId: event.source.value });
+    }
+  }
+
   onSubmit(): void {
     if (this.paymentForm.invalid) {
       alert('Please fill in all required fields.');
@@ -56,20 +75,18 @@ export class MakePaymentComponent implements OnInit {
       paymentType: this.paymentForm.value.paymentType,
       amount: this.paymentForm.value.amount,
       status: 'Pending',
-      createdAt: new Date().toISOString(), 
+      createdAt: new Date().toISOString(),
       approvedBy: 0,
-      approvedAt: "", // Set to null if no approval yet
+      approvedAt: '',
       transactions: []
     };
 
     const beneficiaryId = this.paymentForm.value.beneficiaryId;
-    console.log(beneficiaryId);
-    
+    console.log('Beneficiary ID:', beneficiaryId);
 
     this.clientService.makePayment(payment, beneficiaryId).subscribe(
       response => {
         alert('Payment sent for approval!');
-        this.router.navigate(['/Client']);
       },
       error => {
         console.error('Error making payment', error);

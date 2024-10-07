@@ -38,6 +38,8 @@ import { MatTableModule } from '@angular/material/table'; // Import MatTableModu
 import { FormsModule } from '@angular/forms';
 import { ViewRecentPaymentComponent } from './components/view-recent-payment/view-recent-payment.component';
 import { ViewRecentComponent } from './components/view-recent/view-recent.component';
+import { MatSelectTrigger } from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -83,7 +85,9 @@ import { ViewRecentComponent } from './components/view-recent/view-recent.compon
     MatPaginatorModule,
     MatTableModule,
     FormsModule,
-    MatError
+    MatError,
+    MatSelectTrigger,
+    MatAutocompleteModule
 
     
     

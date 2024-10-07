@@ -59,9 +59,12 @@ export class AddBeneficiaryComponent implements OnInit {
 
   selectTab(tab:string){
       this.selectedTab = tab;
-      if(this.selectedTab="tab2"){
+      console.log(tab);
+      
+      if(this.selectedTab === "tab2"){
         this.loadInBoundClients();
       }
+    
   }
 
   loadInBoundClients(){

@@ -27,18 +27,28 @@
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Beneficiary Dropdown -->
+                <!-- Beneficiary Dropdown with Search -->
                 <mat-form-field appearance="fill" class="w-100">
                     <mat-label>Select Beneficiary</mat-label>
-                    <mat-select formControlName="beneficiaryId" required>
-                        <mat-option *ngFor="let beneficiary of beneficiaries" [value]="beneficiary.id">
-                            {{ beneficiary.benificiaryName }}
-                        </mat-option>
-                    </mat-select>
+                    
+                    <input type="text" placeholder="Search Beneficiary" 
+                           matInput 
+                           [matAutocomplete]="auto" 
+                           [formControl]="beneficiaryControl">
+                  
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option *ngFor="let beneficiary of filteredBeneficiaries" 
+                                  [value]="beneficiary.id"
+                                  (onSelectionChange)="onSelectBeneficiary($event)">
+                        {{ beneficiary.benificiaryName }}
+                      </mat-option>
+                    </mat-autocomplete>
+                    
                     <mat-error *ngIf="paymentForm.get('beneficiaryId')?.invalid && paymentForm.get('beneficiaryId')?.touched">
-                        Please select a beneficiary.
+                      Please select a beneficiary.
                     </mat-error>
-                </mat-form-field>
+                  </mat-form-field>
+                  
 
                 <div class="text-center">
                     <button mat-raised-button color="primary" class="mt-3" [disabled]="paymentForm.invalid">
