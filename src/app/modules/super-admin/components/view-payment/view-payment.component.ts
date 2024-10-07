@@ -50,16 +50,24 @@ export class ViewPaymentComponent implements OnInit {
         });
       },
       onApprove: (data: any, actions: any) => {
-        return actions.order.capture().then((details: any) => {
+        return actions.order.capture().then(
+          (details: any) => {
+            console.log("break -2",details)
           console.log('Transaction completed by ' + details.payer.name.given_name);
           this.handlePaymentResponse(true); // Payment approved
-        });
+        },
+        (error: any)=>{
+          console.log(error);          
+        }
+      );
       },
       onCancel: (data: any) => {
+        console.log("break -3",data)
         console.log('Transaction was canceled.');
         this.handlePaymentResponse(false); // Payment canceled
       },
       onError: (err: any) => {
+        console.log("Break1");
         console.error('Error during the transaction', err);
         this.handlePaymentResponse(false); // Payment error
       }
@@ -81,9 +89,8 @@ export class ViewPaymentComponent implements OnInit {
         }
       );
     } else {
-      // Handle rejection or cancellation
       this.toast.showToast("Payment Rejected From GateWay, Retry");
-      this.dialogRef.close();
+      this.dialogRef.close("RejectedByGateway");
     }
   }
 
@@ -100,4 +107,5 @@ export class ViewPaymentComponent implements OnInit {
       }
     );
   }
+  
 }

@@ -8,6 +8,7 @@ import { ViewSalaryDisbursementComponent } from '../view-salary-disbursement/vie
 import { ViewSuccessSalaryDisbursementComponent } from '../view-success-salary-disbursement/view-success-salary-disbursement.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import { ToastService } from '../../../../service/toast.service';
 
 @Component({
   selector: 'app-view-client',
@@ -55,7 +56,8 @@ export class ViewClientComponent implements OnInit {
     private route: ActivatedRoute,
     private superAdminService: SuperAdminService,
     private dialog: MatDialog,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private toast:ToastService
   ) { 
     this.searchFormBeneficiary = this.fb.group({
       searchTerm: [''] 
@@ -272,7 +274,7 @@ getStatusIcon(status: string): string {
         console.log('Payment was rejected');
         this.loadPaymentsOfBeneficiary(this.selectedBeneficiary);
       }
-      else if(result===""){
+      else if(result==="RejectedByGateway"){
         console.log("Gateway Error");
         this.loadPaymentsOfBeneficiary(this.selectedBeneficiary);
       }
