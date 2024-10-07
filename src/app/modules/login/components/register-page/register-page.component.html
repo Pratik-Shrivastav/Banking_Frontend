@@ -158,14 +158,14 @@
                     <mat-error *ngIf="accountFormGroup.get('branch')?.hasError('required')">Branch is required</mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-md-12 mb-3">
+                <div class="col-md-6 mb-3">
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>For Payment</mat-label>
                     <input matInput formControlName="forPayment" required />
-                    <mat-error *ngIf="accountFormGroup.get('forPayment')?.hasError('required')">Payment Bifarcation Percentage is required.</mat-error>
+                    <mat-error *ngIf="accountFormGroup.get('forPayment')?.hasError('required')">Payment Bifarcation is required.</mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-md-12 mb-3">
+                <div class="col-md-6 mb-3">
                   <mat-form-field appearance="outline" class="w-100">
                     <mat-label>For Salary</mat-label>
                     <input matInput formControlName="forSalary" required />

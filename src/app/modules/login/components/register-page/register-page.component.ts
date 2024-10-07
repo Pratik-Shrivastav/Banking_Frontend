@@ -1,14 +1,36 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
 import { Register } from '../../../../models/register';
 import { LoginService } from '../../service/login.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../../service/toast.service';
 
+interface PaymentSalaryErrors {
+  amountExceeded?: boolean; // optional property
+}
+export function paymentSalaryValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const forPayment = control.get('forPayment')?.value;
+    const forSalary = control.get('forSalary')?.value;
+
+    // Ensure both fields are numbers
+    const paymentAmount = Number(forPayment);
+    const salaryAmount = Number(forSalary);
+
+    // Check if the sum exceeds 100
+    if (paymentAmount + salaryAmount > 100) {
+      return { amountExceeded: true }; // Return an error if the sum exceeds 100
+    }
+
+    return null; // Return null if the validation passes
+  };
+}
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css'
 })
+
 export class RegisterPageComponent {
 
   isLinear = false;
@@ -17,7 +39,7 @@ export class RegisterPageComponent {
   accountFormGroup: FormGroup;
   userFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder, private _service:LoginService, private router:Router) {
+  constructor(private _formBuilder: FormBuilder, private _service:LoginService, private router:Router,private _toastService:ToastService) {
     // Form for company details
     this.companyFormGroup = this._formBuilder.group({
       founderName: ['', Validators.required],
@@ -36,10 +58,13 @@ export class RegisterPageComponent {
 
     // Form for account details
     this.accountFormGroup = this._formBuilder.group({
-      accountNumber: ['', Validators.required, this._service.validateAccountNumber()],
+      accountNumber: ['', Validators.required],
       ifsc: ['', Validators.required],
-      branch: ['', Validators.required]
-    });
+      branch: ['', Validators.required],
+      forPayment: ['', Validators.required],
+      forSalary: ['', Validators.required]
+    }, { validators: paymentSalaryValidator() }); // Apply the custom validator here
+    
 
     this.userFormGroup = this._formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -49,7 +74,14 @@ export class RegisterPageComponent {
   }
 
   onSubmit() {
+    if (this.accountFormGroup.invalid) {
+      const errors = this.accountFormGroup.errors;
+      if (errors?.['amountExceeded']) {
+        this._toastService.showToast('The total of forPayment and forSalary must be less than 100.'); // Show toast
+        return; // Prevent submission
+      }
     const registerObject: Register = {
+      
       founderName: this.companyFormGroup.value.founderName,
       companyName: this.companyFormGroup.value.companyName,
       address: this.addressFormGroup.value.address,
@@ -68,8 +100,12 @@ export class RegisterPageComponent {
       forPayment: this.accountFormGroup.value.forPayment,
       forSalary: this.accountFormGroup.value.forSalary
     };
+   
+      
     this._service.Register(registerObject).subscribe(
+      
       response => {
+     
         console.log('Registration successful:', response);
       },
       error => {
@@ -82,4 +118,4 @@ export class RegisterPageComponent {
 
   }
 
-}
+  }}
