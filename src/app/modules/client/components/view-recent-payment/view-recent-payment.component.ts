@@ -72,7 +72,7 @@
     loadBeneficiaryOptions(): void {
       this.clientService.searchBeneficiaries(this.searchTerm, this.pageIndex, this.pageSize).subscribe(
         (data: any) => {
-          this.beneficiaryList = data.paginatedBeneficiaries;
+          this.beneficiaryList = data.paginatedBeneficiaries.filter((beneficiary: { isActive: any; }) => beneficiary.isActive);
           this.count = data.count;
         },
         error => {

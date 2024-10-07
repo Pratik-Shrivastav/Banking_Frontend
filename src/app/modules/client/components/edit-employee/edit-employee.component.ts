@@ -30,6 +30,7 @@ export class EditEmployeeComponent implements OnInit {
     this.employeeForm = this.fb.group({
       employeeId: [0],
       name: ['', Validators.required],
+      email:['',Validators.required],
       designation: ['', Validators.required],
       salary: ['', [Validators.required, Validators.min(0)]],
       accountDetailsObject: this.fb.group({

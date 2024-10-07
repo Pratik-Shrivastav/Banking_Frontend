@@ -16,9 +16,24 @@
               </mat-form-field>
             </div>
           </div>
-  
+          <div class="form-row">
+            <!-- Beneficiary Email -->
+            <div class="form-group col-md-6 mb-2">
+              <mat-form-field class="w-100 small-field">
+                <mat-label>Beneficiary Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter benificiary email" id="email" />
+                <mat-error *ngIf="beneficiaryForm.get('email')?.invalid && beneficiaryForm.get('email')?.touched">
+                  Beneficiary email is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngIf="!accountbool">
+
+            <p>Cannot Edit Inbound Clients</p>
+          </div>
           <!-- Account Details -->
-          <div formGroupName="accountDetailsObject" class="account-details mt-3">
+          <div *ngIf="accountbool" formGroupName="accountDetailsObject" class="account-details mt-3">
             <h4 class="sub-heading">Account Details</h4>
             <div class="form-row">
               <div class="form-group col-md-4 mb-2">

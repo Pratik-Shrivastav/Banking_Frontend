@@ -12,6 +12,7 @@ import { Beneficiary } from '../../../../models/beneficiary'; // Adjust path as 
 export class EditBeneficiaryComponent implements OnInit {
   beneficiaryForm!: FormGroup;
   beneficiaryId!: number;
+  accountbool:boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -30,6 +31,7 @@ export class EditBeneficiaryComponent implements OnInit {
     this.beneficiaryForm = this.fb.group({
       id: [0],
       benificiaryName: ['', Validators.required],
+      email:['',Validators.required],
       accountDetailsObject: this.fb.group({
         id: [0],
         accountNumber: ['', Validators.required],
@@ -43,6 +45,9 @@ export class EditBeneficiaryComponent implements OnInit {
 
   getBeneficiary(): void {
     this.clientService.getBeneficiaryById(this.beneficiaryId).subscribe(beneficiary => {
+      if(beneficiary.accountDetailsObject == null){
+          this.accountbool = false;
+      }
       this.beneficiaryForm.patchValue(beneficiary); // Populate form with beneficiary data
     });
   }
