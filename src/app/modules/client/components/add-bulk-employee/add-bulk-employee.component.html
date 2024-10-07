@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add Bulk Employees</h2>
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="form">
+    <input
+      type="file"
+      (change)="onFileChange($event)"
+      accept=".csv"
+      formControlName="csvFile" 
+    />
+    <div *ngIf="form.get('csvFile')?.invalid && (form.get('csvFile')?.touched || form.get('csvFile')?.dirty)">
+      <small class="error-text">A CSV file is required.</small>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions class="dialog-actions">
+  <button mat-button class="action-button close-button" (click)="submit()">Submit</button>
+  <button mat-button class="action-button close-button" (click)="close()">Close</button>
+</mat-dialog-actions>

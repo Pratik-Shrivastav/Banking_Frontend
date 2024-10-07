@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ClientService } from '../../service/client.service'; // Adjust path if necessary
 import { Employee } from '../../../../models/employee'; // Import the Employee model
 import { ToastService } from '../../../../service/toast.service';
+import { AddBulkEmployeeComponent } from '../add-bulk-employee/add-bulk-employee.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-employee',
@@ -17,7 +19,8 @@ export class AddEmployeeComponent implements OnInit {
     private fb: FormBuilder,
     private clientService: ClientService,
     private router: Router,
-    private toast:ToastService
+    private toast:ToastService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +59,12 @@ export class AddEmployeeComponent implements OnInit {
             }
         );
     }
+}
+
+viewBulkEmployee(){
+  const dialogRef = this.dialog.open(AddBulkEmployeeComponent, {
+    width: '400px'
+  });
 }
 
 }

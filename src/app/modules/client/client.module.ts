@@ -40,6 +40,8 @@ import { ViewRecentPaymentComponent } from './components/view-recent-payment/vie
 import { ViewRecentComponent } from './components/view-recent/view-recent.component';
 import { MatSelectTrigger } from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { AddBulkEmployeeComponent } from './components/add-bulk-employee/add-bulk-employee.component';
+import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     ClientdashboardComponent,
@@ -57,8 +59,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     AuditLogComponent,
     NavbarComponent,
     ViewRecentPaymentComponent,
-    ViewRecentComponent
-    
+    ViewRecentComponent,
+    AddBulkEmployeeComponent
     
   ],
   imports: [
@@ -87,7 +89,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     FormsModule,
     MatError,
     MatSelectTrigger,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogActions,
+    MatDialogContent
 
     
     

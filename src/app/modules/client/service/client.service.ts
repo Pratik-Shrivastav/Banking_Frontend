@@ -221,4 +221,9 @@ getPaymentsForBeneficiaryPaginated(
     { params }
   );
 }
+
+public uploadCsv(file:FormData):Observable<any>{
+  const requestUrl = `${this.apiUrl}/AddUsingCsv`;
+  return this.http.post<{}>(requestUrl, file);
+}
 }
