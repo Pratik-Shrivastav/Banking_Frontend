@@ -13,5 +13,8 @@ export interface Register {
   userName: string,
   accountNumber: string,
   ifsc: string,
-  branch: string
+  branch: string,
+  forPayment:number,
+  forSalary:number
+
 }

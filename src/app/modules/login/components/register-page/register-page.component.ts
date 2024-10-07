@@ -51,8 +51,8 @@ export class RegisterPageComponent {
   onSubmit() {
     const registerObject: Register = {
       founderName: this.companyFormGroup.value.founderName,
-      companyName: this.companyFormGroup.value.companyName, 
-      address: this.addressFormGroup.value.address, 
+      companyName: this.companyFormGroup.value.companyName,
+      address: this.addressFormGroup.value.address,
       city: this.addressFormGroup.value.city,
       region: this.addressFormGroup.value.region,
       postalCode: this.addressFormGroup.value.postalCode,
@@ -62,15 +62,15 @@ export class RegisterPageComponent {
       password: this.userFormGroup.value.password,
       role: "Client",
       userName: this.userFormGroup.value.userName,
-      accountNumber:this.accountFormGroup.value.accountNumber,
+      accountNumber: this.accountFormGroup.value.accountNumber,
       ifsc: this.accountFormGroup.value.ifsc,
-      branch: this.accountFormGroup.value.branch
+      branch: this.accountFormGroup.value.branch,
+      forPayment: this.accountFormGroup.value.forPayment,
+      forSalary: this.accountFormGroup.value.forSalary
     };
     this._service.Register(registerObject).subscribe(
       response => {
-        // Handle success response
         console.log('Registration successful:', response);
-        // Optionally navigate to another page or show a success message
       },
       error => {
         // Handle error response
