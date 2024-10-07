@@ -48,7 +48,7 @@ export class MakePaymentComponent implements OnInit {
 
   // Filter beneficiaries based on search input
   filterBeneficiaries(search: string | null): void {
-    if (!search) {
+    if (!search || typeof search !== 'string') {
       this.filteredBeneficiaries = this.beneficiaries;
     } else {
       this.filteredBeneficiaries = this.beneficiaries.filter(beneficiary =>
@@ -56,13 +56,20 @@ export class MakePaymentComponent implements OnInit {
       );
     }
   }
+  
 
   // Set the selected beneficiary's id in the payment form
-  onSelectBeneficiary(event: any): void {
-    if (event.isUserInput) {
-      this.paymentForm.patchValue({ beneficiaryId: event.source.value });
+  // Set the selected beneficiary's id in the payment form
+onSelectBeneficiary(event: any): void {
+  if (event.isUserInput) {
+    const selectedBeneficiary = this.filteredBeneficiaries.find(b => b.id === event.source.value);
+    if (selectedBeneficiary) {
+      this.paymentForm.patchValue({ beneficiaryId: selectedBeneficiary.id });
+      this.beneficiaryControl.setValue(selectedBeneficiary.benificiaryName);  // Set the name in the input
     }
   }
+}
+
 
   onSubmit(): void {
     if (this.paymentForm.invalid) {
@@ -87,11 +94,17 @@ export class MakePaymentComponent implements OnInit {
     this.clientService.makePayment(payment, beneficiaryId).subscribe(
       response => {
         alert('Payment sent for approval!');
+        this.resetForm();
       },
       error => {
         console.error('Error making payment', error);
         alert('Payment failed.');
       }
     );
+  }
+  resetForm(): void {
+    this.paymentForm.reset();
+    this.beneficiaryControl.setValue(''); // Clear the beneficiary input
+    this.filteredBeneficiaries = this.beneficiaries; // Reset filtered beneficiaries if needed
   }
 }

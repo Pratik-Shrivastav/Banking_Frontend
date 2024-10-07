@@ -74,12 +74,16 @@ export class RegisterPageComponent {
   }
 
   onSubmit() {
+    console.log("reached sumit");
     if (this.accountFormGroup.invalid) {
       const errors = this.accountFormGroup.errors;
       if (errors?.['amountExceeded']) {
         this._toastService.showToast('The total of forPayment and forSalary must be less than 100.'); // Show toast
-        return; // Prevent submission
+        return; 
       }
+      
+    console.log("reached object");
+ 
     const registerObject: Register = {
       
       founderName: this.companyFormGroup.value.founderName,
